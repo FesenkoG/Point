@@ -21,7 +21,7 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet var genderButtons: [RoundedButton]!
-    
+    @IBOutlet weak var dateOfBirthButton: UIButton!
     //Utils
     let helper = Utils()
     
@@ -29,6 +29,15 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
     
     //Variables
     var userInfo: NewUser = NewUser()
+    var datePicker : UIDatePicker = UIDatePicker()
+    var datePickerContainer = UIView()
+    var dateOfBirth: Date!
+    
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        return dateFormatter
+    }()
     
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -36,7 +45,9 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        userInfo.myAge = "12456"
+        dateOfBirth = Calendar.current.date(byAdding: .year, value: -18, to: Date())
+        userInfo.myAge = String(describing: dateOfBirth.timeIntervalSince1970)
+        dateOfBirthButton.setTitle(dateFormatter.string(from: dateOfBirth), for: .normal)
         nameTextField.delegate = self
         helper.setConstraints(left: leftConstraint, top: topConstraint, right: rightConstraint)
         helper.setBetweenConstraint(betweenConstraint)
@@ -60,9 +71,46 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
         }
         
     }
-    @IBAction func chooseDateOfBirthButtonTapped(_ sender: Any) {
+    @IBAction func chooseDateOfBirthButtonTapped(_ sender: UIButton) {
         
+        datePickerContainer.frame = CGRect(x: 0.0, y: self.view.frame.height - 200, width: UIScreen.main.bounds.width, height: 200)
+        datePicker.frame = CGRect(x: 0.0, y: 0, width: UIScreen.main.bounds.width, height: 200)
+        guard let date = Calendar.current.date(byAdding: .year, value: -18, to: Date()) else { return }
+        datePicker.setDate(date, animated: true)
+        datePicker.maximumDate = date
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.addTarget(self, action: #selector(dateChangedInDate), for: UIControlEvents.valueChanged)
+        datePickerContainer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        datePickerContainer.addSubview(datePicker)
+        
+        let doneButton = UIButton()
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.setTitleColor(#colorLiteral(red: 0.5803921569, green: 0.5725490196, blue: 0.9490196078, alpha: 1), for: .normal)
+        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        doneButton.addTarget(self, action: #selector(dismissPicker), for: .touchUpInside)
+        doneButton.frame = CGRect(x: UIScreen.main.bounds.width - 70, y: 5.0, width: 70.0, height: 37.0)
+        
+        datePickerContainer.addSubview(doneButton)
+        
+        self.view.addSubview(datePickerContainer)
     }
+    
+    /**
+     * MARK - observer to get the change in date
+     */
+    
+    @objc func dateChangedInDate(sender:UIDatePicker){
+        dateOfBirth = sender.date
+        dateOfBirthButton.setTitle(dateFormatter.string(from: sender.date), for: .normal)
+    }// end dateChangedInDate
+    
+    /*
+     * MARK - dismiss the date picker value
+     */
+    @objc func dismissPicker(sender: UIButton) {
+        datePickerContainer.removeFromSuperview()
+    }// end dismissPicker
+    
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         
     }
@@ -80,8 +128,8 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
             errorLabel.isHidden = true
             nextButton.isEnabled = true
             nextButton.backgroundColor = Colors.enabledButtonColor.color()
-            //TODO: - another date should be here
-            return (name, "1234567")
+            let finalDate = String(describing: dateOfBirth.timeIntervalSince1970)
+            return (name, finalDate)
         }
         errorLabel.isHidden = false
         nextButton.isEnabled = false

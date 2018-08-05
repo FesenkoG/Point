@@ -34,6 +34,10 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 privacyPolicyButton.isHidden = true
                 privacyPolicyLabel.isHidden = true
                 checkboxButton.isHidden = true
+                nextButton.setTitle("Get a verification code", for: .normal)
+                phoneCodeTextField.text = ""
+                phoneCodeTextField.placeholder = "Phone number"
+                phoneCodeTextField.isPartialFormatterEnabled = true
             case .sendSms:
                 nextButton.setTitle("Go!", for: .normal)
                 nextButton.isEnabled = false

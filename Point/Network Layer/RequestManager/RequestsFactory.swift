@@ -25,7 +25,15 @@ struct RequestFactory {
     }
     
     struct AuthenticationRequest {
-        
+        static func getSendPhoneConfig(phone: String) -> RequestConfig<RegistrationSendPhoneResponseParser> {
+            return RequestConfig(request: SendPhoneRequest(phoneNumber: phone, type: .authorisation), parser: RegistrationSendPhoneResponseParser())
+        }
+        static func getSubmitSmsConfig(phone: String, sms: String) -> RequestConfig<UserDataParser> {
+            return RequestConfig(request: SubmitSmsRequest(phoneNumber: phone, sms: sms, type: .authorisation), parser: UserDataParser())
+        }
+        static func getAuthByTokenConfig() -> RequestConfig<UserDataParser> {
+            return RequestConfig(request: CheckTokenRequest(), parser: UserDataParser())
+        }
     }
 }
 

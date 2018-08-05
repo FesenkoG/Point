@@ -9,14 +9,15 @@
 import Foundation
 
 struct UserDataParser: IParser {
-    func parse(data: Data) -> UserData? {
+    func parse(data: Data) -> (UserData, token: String)? {
         do {
             guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else { return nil }
             guard let payload = json["payload"] as? [String: Any], let data = payload["data"] as? [String: Any], let userData = data["userData"] as? [String: Any] else { return nil }
             
             let dataUserData = try JSONSerialization.data(withJSONObject: userData, options: [])
             let realUserData = try JSONDecoder().decode(UserData.self, from: dataUserData)
-            return realUserData
+            guard let token = data["token"] as? String else { return nil }
+            return (realUserData, token)
         } catch {
             print(error)
             return nil

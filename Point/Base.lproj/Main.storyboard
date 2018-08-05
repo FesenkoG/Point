@@ -120,7 +120,7 @@
                                 <rect key="frame" x="60" y="401" width="255" height="49.5"/>
                                 <color key="backgroundColor" red="0.52941176469999995" green="0.2784313725" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="Get a verification code">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -219,6 +219,12 @@
                                     <constraint firstAttribute="height" constant="1" id="aZn-Ac-4fZ"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfk-qe-bwE">
+                                <rect key="frame" x="253" y="458.5" width="62" height="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.98823529409999999" green="0.58823529409999997" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -227,6 +233,7 @@
                             <constraint firstItem="ePl-5g-lbw" firstAttribute="centerY" secondItem="vW1-87-Cyb" secondAttribute="centerY" id="38I-bi-YB8"/>
                             <constraint firstItem="cms-Y1-Q7P" firstAttribute="leading" secondItem="X8p-vR-THe" secondAttribute="leading" constant="40" id="6J7-aE-kGs"/>
                             <constraint firstItem="kqd-Kb-wUx" firstAttribute="top" secondItem="cQy-tw-ck2" secondAttribute="bottom" constant="12" id="7VN-1n-2Pw"/>
+                            <constraint firstItem="lfk-qe-bwE" firstAttribute="trailing" secondItem="s70-hp-XRD" secondAttribute="trailing" id="8Yz-YT-155"/>
                             <constraint firstItem="ePl-5g-lbw" firstAttribute="leading" secondItem="X8p-vR-THe" secondAttribute="leading" constant="60" id="ARy-D2-UNP"/>
                             <constraint firstItem="cQy-tw-ck2" firstAttribute="leading" secondItem="cms-Y1-Q7P" secondAttribute="trailing" constant="4" id="FIp-73-Y8a"/>
                             <constraint firstItem="ldd-vj-3yY" firstAttribute="top" secondItem="vW1-87-Cyb" secondAttribute="top" id="GZe-4i-RZ3"/>
@@ -237,6 +244,7 @@
                             <constraint firstItem="R8B-fH-HjX" firstAttribute="leading" secondItem="X8p-vR-THe" secondAttribute="leading" id="OXu-d4-YGn"/>
                             <constraint firstItem="cms-Y1-Q7P" firstAttribute="top" secondItem="X8p-vR-THe" secondAttribute="top" constant="30" id="PaT-sS-5VY"/>
                             <constraint firstItem="R8B-fH-HjX" firstAttribute="top" secondItem="kOQ-Z6-cOO" secondAttribute="bottom" constant="30" id="UrZ-3t-AIH"/>
+                            <constraint firstItem="lfk-qe-bwE" firstAttribute="top" secondItem="s70-hp-XRD" secondAttribute="bottom" constant="8" id="WFl-pk-ZtJ"/>
                             <constraint firstItem="s70-hp-XRD" firstAttribute="leading" secondItem="ePl-5g-lbw" secondAttribute="leading" id="Y8J-GY-YZG"/>
                             <constraint firstItem="6fK-Nv-gsw" firstAttribute="leading" secondItem="ePl-5g-lbw" secondAttribute="leading" id="fPo-cl-wCo"/>
                             <constraint firstItem="s70-hp-XRD" firstAttribute="top" secondItem="ePl-5g-lbw" secondAttribute="bottom" constant="50" id="jYR-YH-peZ"/>
@@ -251,10 +259,12 @@
                         <viewLayoutGuide key="safeArea" id="X8p-vR-THe"/>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="lfk-qe-bwE" id="Lhs-MW-E0I"/>
                         <outlet property="leftConstraint" destination="6J7-aE-kGs" id="NhN-h0-1Xh"/>
                         <outlet property="nextButton" destination="s70-hp-XRD" id="ZeO-WO-ZbS"/>
                         <outlet property="phoneNumberCodeTextField" destination="ePl-5g-lbw" id="9On-mW-URL"/>
                         <outlet property="topConstraint" destination="PaT-sS-5VY" id="GqI-IQ-caZ"/>
+                        <outlet property="tryAgainButton" destination="kOQ-Z6-cOO" id="LZS-7H-avI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg2-DM-dK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -550,6 +560,7 @@
                     </view>
                     <connections>
                         <outlet property="betweenConstraint" destination="KC6-8u-oQN" id="IHy-hb-BmY"/>
+                        <outlet property="dateOfBirthButton" destination="qNu-rp-FMb" id="hXa-ou-iBS"/>
                         <outlet property="errorLabel" destination="Jz4-m8-3Vg" id="Hdr-dR-jnH"/>
                         <outlet property="leftConstraint" destination="Naf-sh-Mhu" id="c9N-jv-tQv"/>
                         <outlet property="nameTextField" destination="fsh-Dg-LlK" id="Xrx-PD-Jhf"/>

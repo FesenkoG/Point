@@ -15,7 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        if let token = UserDefaults.standard.string(forKey: "token") {
+            let requestSender: IRequestSender = RequestSender()
+            requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig()) { (result) in
+                switch result {
+                case .error(let error):
+                    print(error)
+                    //TODO: - Set navigation controller as root view controller
+                case .success(let res):
+                    print(res.0)
+                    //TODO: - Set main view controller as root view controller and put data there
+                }
+            }
+        }
         return true
     }
 
