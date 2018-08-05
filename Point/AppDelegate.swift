@@ -17,14 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if let token = UserDefaults.standard.string(forKey: "token") {
             let requestSender: IRequestSender = RequestSender()
-            requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig()) { (result) in
+            requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig(token: token)) { (result) in
                 switch result {
                 case .error(let error):
                     print(error)
-                    //TODO: - Set navigation controller as root view controller
                 case .success(let res):
                     print(res.0)
-                    //TODO: - Set main view controller as root view controller and put data there
+                    guard let viewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
+                    viewController.selectedIndex = 1
+                    self.window?.rootViewController = viewController
                 }
             }
         }

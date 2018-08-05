@@ -31,8 +31,8 @@ struct RequestFactory {
         static func getSubmitSmsConfig(phone: String, sms: String) -> RequestConfig<UserDataParser> {
             return RequestConfig(request: SubmitSmsRequest(phoneNumber: phone, sms: sms, type: .authorisation), parser: UserDataParser())
         }
-        static func getAuthByTokenConfig() -> RequestConfig<UserDataParser> {
-            return RequestConfig(request: CheckTokenRequest(), parser: UserDataParser())
+        static func getAuthByTokenConfig(token: String) -> RequestConfig<UserDataParser> {
+            return RequestConfig(request: CheckTokenRequest(token: token), parser: UserDataParser())
         }
     }
 }

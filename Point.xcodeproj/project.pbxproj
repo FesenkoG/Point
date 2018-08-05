@@ -37,6 +37,7 @@
 		66766D2A211582D2008F5952 /* CreateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66766D29211582D2008F5952 /* CreateAccountRequest.swift */; };
 		66766D2C21159338008F5952 /* UserCreationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66766D2B21159338008F5952 /* UserCreationParser.swift */; };
 		66766D2E211594C0008F5952 /* UserDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66766D2D211594C0008F5952 /* UserDataParser.swift */; };
+		66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C725D421172C5B00F80CFD /* TabBar.storyboard */; };
 		ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		66766D29211582D2008F5952 /* CreateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountRequest.swift; sourceTree = "<group>"; };
 		66766D2B21159338008F5952 /* UserCreationParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreationParser.swift; sourceTree = "<group>"; };
 		66766D2D211594C0008F5952 /* UserDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataParser.swift; sourceTree = "<group>"; };
+		66C725D421172C5B00F80CFD /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,14 +113,12 @@
 		000B707720F78055005DE14B /* Point */ = {
 			isa = PBXGroup;
 			children = (
+				000B707820F78055005DE14B /* AppDelegate.swift */,
 				666D473E2109049C000E5374 /* Presentation Layer */,
 				66766D17211034A3008F5952 /* Network Layer */,
-				000B707820F78055005DE14B /* AppDelegate.swift */,
-				000B707C20F78055005DE14B /* Main.storyboard */,
 				000B707F20F78057005DE14B /* Assets.xcassets */,
 				000B708120F78057005DE14B /* LaunchScreen.storyboard */,
 				000B708420F78057005DE14B /* Info.plist */,
-				00B17CCF2114A7CB00EFC16C /* Constants.swift */,
 			);
 			path = Point;
 			sourceTree = "<group>";
@@ -174,6 +174,7 @@
 		666D47322108EAB6000E5374 /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				000B707C20F78055005DE14B /* Main.storyboard */,
 				000B707A20F78055005DE14B /* MainViewController.swift */,
 				666D4745210BA24E000E5374 /* Utils.swift */,
 				666D4742210A2FCA000E5374 /* Log In */,
@@ -196,6 +197,7 @@
 				666D472F2108E310000E5374 /* UI Elements */,
 				666D47392108F99D000E5374 /* Constants */,
 				666D47322108EAB6000E5374 /* Entry */,
+				66C725D321172C3600F80CFD /* TabBar */,
 			);
 			path = "Presentation Layer";
 			sourceTree = "<group>";
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				66766D232112409D008F5952 /* Result.swift */,
+				00B17CCF2114A7CB00EFC16C /* Constants.swift */,
 				66766D1A21123D9C008F5952 /* RequestManager */,
 				66766D1921123D94008F5952 /* Requests */,
 				66766D1821123D7A008F5952 /* Parsers */,
@@ -257,6 +260,38 @@
 				66766D272112432D008F5952 /* RequestsFactory.swift */,
 			);
 			path = RequestManager;
+			sourceTree = "<group>";
+		};
+		66C725D321172C3600F80CFD /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				66C725D821172CD700F80CFD /* MessagesPage */,
+				66C725D721172CCF00F80CFD /* SettingsPage */,
+				66C725D621172CC500F80CFD /* PointPage */,
+				66C725D421172C5B00F80CFD /* TabBar.storyboard */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		66C725D621172CC500F80CFD /* PointPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PointPage;
+			sourceTree = "<group>";
+		};
+		66C725D721172CCF00F80CFD /* SettingsPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingsPage;
+			sourceTree = "<group>";
+		};
+		66C725D821172CD700F80CFD /* MessagesPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MessagesPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */,
 				000B708320F78057005DE14B /* LaunchScreen.storyboard in Resources */,
 				000B708020F78057005DE14B /* Assets.xcassets in Resources */,
 				000B707E20F78055005DE14B /* Main.storyboard in Resources */,

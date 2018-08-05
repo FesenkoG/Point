@@ -11,12 +11,10 @@ import Foundation
 struct CheckTokenRequest: IRequest {
     var urlRequest: URLRequest?
     
-    init() {
+    init(token: String) {
         guard let url = URL(string: BASE_URL + CHECK_TOKEN_URL_AUTHORISATION) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        //TODO: Retreive token from local storage.
-        let token = "1"
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: ["payload": ["token": token]], options: [])
         } catch {
