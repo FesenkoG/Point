@@ -39,6 +39,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                 phoneNumberCodeTextField.placeholder = "Phone number"
                 errorLabel.isHidden = true
             case .sendSms:
+                nextButton.setTitle("Go!", for: .normal)
                 tryAgainButton.isHidden = false
                 phoneNumberCodeTextField.text = ""
                 phoneNumberCodeTextField.placeholder = "Verification code"
