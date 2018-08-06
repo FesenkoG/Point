@@ -265,33 +265,9 @@
 		66C725D321172C3600F80CFD /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				66C725D821172CD700F80CFD /* MessagesPage */,
-				66C725D721172CCF00F80CFD /* SettingsPage */,
-				66C725D621172CC500F80CFD /* PointPage */,
 				66C725D421172C5B00F80CFD /* TabBar.storyboard */,
 			);
 			path = TabBar;
-			sourceTree = "<group>";
-		};
-		66C725D621172CC500F80CFD /* PointPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PointPage;
-			sourceTree = "<group>";
-		};
-		66C725D721172CCF00F80CFD /* SettingsPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SettingsPage;
-			sourceTree = "<group>";
-		};
-		66C725D821172CD700F80CFD /* MessagesPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MessagesPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
