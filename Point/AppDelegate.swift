@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UITabBar.appearance().layer.shadowOffset = CGSize(width: 0, height: 2)
+        UITabBar.appearance().shadowRadius = 7
+        UITabBar.appearance().shadowColor = UIColor.black
+        UITabBar.appearance().shadowOpacity = 0.07
         if let token = UserDefaults.standard.string(forKey: "token") {
             let requestSender: IRequestSender = RequestSender()
             requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig(token: token)) { (result) in
@@ -25,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print(res.0)
                     guard let viewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
                     viewController.selectedIndex = 1
+                    self.configureTabBar(viewController)
                     self.window?.rootViewController = viewController
                 }
             }
@@ -52,6 +57,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    private func configureTabBar(_ tabBarController: UITabBarController) {
+        let tabBar = tabBarController.tabBar
+        tabBar.shadowImage = UIImage()
+        tabBar.backgroundImage = UIImage()
+        tabBarController.viewControllers?.forEach({ (controller) in
+            controller.tabBarItem.setImageInsets()
+        })
     }
 }
 
