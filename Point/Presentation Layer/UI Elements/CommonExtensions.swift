@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 extension UIView {
     
     /* The color of the shadow. Defaults to opaque black. Colors created

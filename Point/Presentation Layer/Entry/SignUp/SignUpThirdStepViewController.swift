@@ -74,8 +74,14 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     
     @IBAction func checkboxButtonTapped(_ sender: RoundedButton) {
         //TODO: - set a proper image here
+        if checkboxButton.image(for: .normal) == nil {
+            checkboxButton.setImage(UIImage(named: "CheckedCheckBox"), for: .normal)
+        } else {
+            checkboxButton.setImage(nil, for: .normal)
+        }
         nextButton.isEnabled = sender.image(for: .normal) == nil ? false : true
     }
+    
     @IBAction func nextButtonTapped(_ sender: Any) {
         switch state {
         case .sendPhone:
