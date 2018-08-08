@@ -16,6 +16,9 @@
 		0089E683211B02350037AF60 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E682211B02350037AF60 /* SettingsViewController.swift */; };
 		0089E687211B093B0037AF60 /* PointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E686211B093B0037AF60 /* PointViewController.swift */; };
 		0089E689211B09D00037AF60 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E688211B09D00037AF60 /* ChatsViewController.swift */; };
+		0089E68B211B189E0037AF60 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E68A211B189E0037AF60 /* RoundedView.swift */; };
+		0089E68D211B1DA10037AF60 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E68C211B1DA10037AF60 /* CircleImage.swift */; };
+		0089E68F211B2DF40037AF60 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E68E211B2DF40037AF60 /* EditProfileViewController.swift */; };
 		00B17CCE2114A7A300EFC16C /* SendPhoneRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CCD2114A7A300EFC16C /* SendPhoneRequest.swift */; };
 		00B17CD02114A7CB00EFC16C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CCF2114A7CB00EFC16C /* Constants.swift */; };
 		00B17CD22114AA3B00EFC16C /* SubmitSmsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD12114AA3B00EFC16C /* SubmitSmsRequest.swift */; };
@@ -57,6 +60,9 @@
 		0089E682211B02350037AF60 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0089E686211B093B0037AF60 /* PointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointViewController.swift; sourceTree = "<group>"; };
 		0089E688211B09D00037AF60 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		0089E68A211B189E0037AF60 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		0089E68C211B1DA10037AF60 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		0089E68E211B2DF40037AF60 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		00B17CCD2114A7A300EFC16C /* SendPhoneRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPhoneRequest.swift; sourceTree = "<group>"; };
 		00B17CCF2114A7CB00EFC16C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		00B17CD12114AA3B00EFC16C /* SubmitSmsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSmsRequest.swift; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				0089E682211B02350037AF60 /* SettingsViewController.swift */,
+				0089E68E211B2DF40037AF60 /* EditProfileViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -200,6 +207,8 @@
 				666D47372108F100000E5374 /* CircleView.swift */,
 				666D473C2108FB72000E5374 /* UnderlinedButton.swift */,
 				0089E67F211AFF130037AF60 /* CommonExtensions.swift */,
+				0089E68A211B189E0037AF60 /* RoundedView.swift */,
+				0089E68C211B1DA10037AF60 /* CircleImage.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -298,10 +307,10 @@
 		66C725D321172C3600F80CFD /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				66C725D421172C5B00F80CFD /* TabBar.storyboard */,
 				0089E685211B092D0037AF60 /* Chats */,
 				0089E684211B09210037AF60 /* PointMain */,
 				0089E681211B02270037AF60 /* Settings */,
-				66C725D421172C5B00F80CFD /* TabBar.storyboard */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -428,6 +437,8 @@
 				0089E689211B09D00037AF60 /* ChatsViewController.swift in Sources */,
 				0089E680211AFF130037AF60 /* CommonExtensions.swift in Sources */,
 				66766D2C21159338008F5952 /* UserCreationParser.swift in Sources */,
+				0089E68D211B1DA10037AF60 /* CircleImage.swift in Sources */,
+				0089E68F211B2DF40037AF60 /* EditProfileViewController.swift in Sources */,
 				000B707B20F78055005DE14B /* MainViewController.swift in Sources */,
 				00B17CD82114ACB300EFC16C /* RegistrationSendPhoneResponseParser.swift in Sources */,
 				666D47312108E32F000E5374 /* RoundedButton.swift in Sources */,
@@ -443,6 +454,7 @@
 				66766D1C21123DF6008F5952 /* IParser.swift in Sources */,
 				66766D2221123FAD008F5952 /* RequestConfig.swift in Sources */,
 				66766D26211241E6008F5952 /* RequestSender.swift in Sources */,
+				0089E68B211B189E0037AF60 /* RoundedView.swift in Sources */,
 				66766D242112409D008F5952 /* Result.swift in Sources */,
 				0089E683211B02350037AF60 /* SettingsViewController.swift in Sources */,
 				000B707920F78055005DE14B /* AppDelegate.swift in Sources */,

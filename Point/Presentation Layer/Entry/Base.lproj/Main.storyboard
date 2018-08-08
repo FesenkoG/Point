@@ -316,7 +316,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbG-NI-9te" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="Irc-rm-TOM"/>
                                             <constraint firstAttribute="width" constant="12" id="QZV-XY-vsM"/>
@@ -333,7 +333,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uh4-3I-Y8V" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="17" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
@@ -346,7 +346,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5M-ED-eHj" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="34" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="NO"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
@@ -662,7 +662,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-uB-WTZ" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="0BU-Tc-bVH"/>
                                             <constraint firstAttribute="width" constant="12" id="1qf-tN-JF2"/>
@@ -679,7 +679,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ay0-Qu-2yi" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="17" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
@@ -695,7 +695,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSX-Cf-OX6" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="34" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="NO"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
@@ -1158,7 +1158,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-z7-RJ4" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="bA6-Cb-WdK"/>
                                             <constraint firstAttribute="width" constant="12" id="gfV-hC-J9B"/>
@@ -1175,7 +1175,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ry-Hv-g1J" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="17" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
@@ -1191,7 +1191,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6O-6M-VNM" customClass="CircleView" customModule="Point" customModuleProvider="target">
                                         <rect key="frame" x="34" y="0.0" width="12" height="12"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">

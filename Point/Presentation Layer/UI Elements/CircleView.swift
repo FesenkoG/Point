@@ -21,11 +21,6 @@ class CircleView: UIView {
     @IBInspectable var strokeColor: UIColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     @IBInspectable var fillColor: UIColor = UIColor.black
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = UIColor.clear
-    }
-    
     override func draw(_ rect: CGRect) {
         let bezierPath = UIBezierPath(circleIn: rect)
         bezierPath.lineWidth = strokeWidth
