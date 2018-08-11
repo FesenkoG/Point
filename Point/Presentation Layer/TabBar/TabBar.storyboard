@@ -55,6 +55,31 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FjN-DE-Lax">
+                                <rect key="frame" x="70" y="191.5" width="235" height="235"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCY-uf-D8P">
+                                        <rect key="frame" x="0.0" y="0.0" width="235" height="235"/>
+                                        <state key="normal" title="POINT"/>
+                                        <connections>
+                                            <action selector="pointButtonTapped:" destination="dfa-i3-59m" eventType="touchUpInside" id="eAA-M1-7PR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FjN-DE-Lax" secondAttribute="height" id="URO-yy-ga6"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on point to share your location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQA-zF-XzH">
+                                <rect key="frame" x="95.5" y="120" width="184" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="MRu-Fv-CW5"/>
+                                    <constraint firstAttribute="width" constant="184" id="YQq-S9-22O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.69803921568627447" green="0.69019607843137254" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -63,16 +88,25 @@
                             <constraint firstItem="zaP-Ia-3Rr" firstAttribute="top" secondItem="io6-Zh-s5M" secondAttribute="top" id="6Te-g3-vZF"/>
                             <constraint firstItem="zaP-Ia-3Rr" firstAttribute="leading" secondItem="3ep-w1-Ljq" secondAttribute="leading" id="Ur9-Yb-mMN"/>
                             <constraint firstItem="zaP-Ia-3Rr" firstAttribute="trailing" secondItem="3ep-w1-Ljq" secondAttribute="trailing" id="WOF-vM-xhQ"/>
+                            <constraint firstItem="FjN-DE-Lax" firstAttribute="centerY" secondItem="io6-Zh-s5M" secondAttribute="centerY" id="XvW-rU-Y7c"/>
                             <constraint firstItem="g2F-zm-Tia" firstAttribute="trailing" secondItem="3ep-w1-Ljq" secondAttribute="trailing" id="dde-M4-nPx"/>
+                            <constraint firstItem="OQA-zF-XzH" firstAttribute="centerX" secondItem="io6-Zh-s5M" secondAttribute="centerX" id="guO-nn-Kyb"/>
                             <constraint firstItem="g2F-zm-Tia" firstAttribute="top" secondItem="io6-Zh-s5M" secondAttribute="top" id="hpx-DQ-B7L"/>
+                            <constraint firstItem="FjN-DE-Lax" firstAttribute="centerX" secondItem="io6-Zh-s5M" secondAttribute="centerX" id="pR1-Ud-31g"/>
+                            <constraint firstItem="3ep-w1-Ljq" firstAttribute="trailing" secondItem="FjN-DE-Lax" secondAttribute="trailing" constant="70" id="txs-z4-TP3"/>
+                            <constraint firstItem="FjN-DE-Lax" firstAttribute="leading" secondItem="3ep-w1-Ljq" secondAttribute="leading" constant="70" id="wHW-t6-nJF"/>
+                            <constraint firstItem="FjN-DE-Lax" firstAttribute="top" secondItem="OQA-zF-XzH" secondAttribute="bottom" constant="8" id="xzT-ee-quL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3ep-w1-Ljq"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Home icon" id="Du5-mt-6VX"/>
+                    <connections>
+                        <outlet property="pointButton" destination="OCY-uf-D8P" id="G1d-bc-5we"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TMk-Ec-qf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-223" y="-1168"/>
+            <point key="canvasLocation" x="-223.19999999999999" y="-1168.0659670164919"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="UtG-m6-0Y7">
