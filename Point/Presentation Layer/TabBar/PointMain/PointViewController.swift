@@ -19,25 +19,14 @@ class PointViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let v = view.subviews.first { (view) -> Bool in
-            if let _ = view as? UIVisualEffectView {
-                return true
-            }
-            return false
-        }
-        v?.removeFromSuperview()
+        
     }
     
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         let matchVC = MatchViewController()
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
         
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurEffectView)
         matchVC.modalPresentationStyle = .custom
-        navigationController?.pushViewController(matchVC, animated: false)
+        present(matchVC, animated: false, completion: nil)
     }
     
     //TODO: - Move this to AppDelegate

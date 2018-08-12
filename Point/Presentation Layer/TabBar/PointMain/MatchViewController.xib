@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchViewController" customModule="Point" customModuleProvider="target">
             <connections>
+                <outlet property="clockView" destination="6SO-4c-Iat" id="mZi-0P-CIy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,26 +23,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEZ-Pm-Ynz">
-                    <rect key="frame" x="0.0" y="120" width="375" height="447"/>
+                    <rect key="frame" x="0.0" y="80" width="375" height="547"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3N-ow-R1b">
-                            <rect key="frame" x="336" y="0.0" width="39" height="30"/>
-                            <state key="normal" title="Close"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3N-ow-R1b">
+                            <rect key="frame" x="325" y="0.0" width="20" height="22"/>
+                            <state key="normal" image="Exit icon"/>
                             <connections>
                                 <action selector="closeButtonTapped:" destination="-1" eventType="touchUpInside" id="KEu-cw-l6G"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7HN-GP-s7N">
-                            <rect key="frame" x="176" y="0.0" width="23" height="20.5"/>
+                            <rect key="frame" x="178" y="0.0" width="19.5" height="20.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20.5" id="Kie-cF-VOl"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SO-4c-Iat">
-                            <rect key="frame" x="30" y="28.5" width="315" height="400.5"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SO-4c-Iat" customClass="RoundedView" customModule="Point" customModuleProvider="target">
+                            <rect key="frame" x="30" y="40.5" width="315" height="488.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIw-Aa-CQx" customClass="CircleAroundImage" customModule="Point" customModuleProvider="target">
                                     <rect key="frame" x="70" y="36" width="175" height="175"/>
@@ -83,14 +84,14 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="y1V-Xb-uLE">
-                                    <rect key="frame" x="30" y="312" width="255" height="68.5"/>
+                                    <rect key="frame" x="30" y="312" width="255" height="156.5"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbk-7b-e1t">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="68.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="156.5"/>
                                             <state key="normal" image="RejectIcon"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be5-BK-1qk">
-                                            <rect key="frame" x="127.5" y="0.0" width="127.5" height="68.5"/>
+                                            <rect key="frame" x="127.5" y="0.0" width="127.5" height="156.5"/>
                                             <state key="normal" image="AcceptIcon"/>
                                         </button>
                                     </subviews>
@@ -111,6 +112,11 @@
                                 <constraint firstItem="ps7-uN-bE3" firstAttribute="top" secondItem="fIw-Aa-CQx" secondAttribute="bottom" constant="20" id="ssU-6R-0tB"/>
                                 <constraint firstItem="y1V-Xb-uLE" firstAttribute="top" secondItem="tFc-c2-V1N" secondAttribute="bottom" constant="10" id="tjn-Ae-NvM"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -118,10 +124,10 @@
                         <constraint firstAttribute="bottom" secondItem="6SO-4c-Iat" secondAttribute="bottom" constant="18" id="76s-JE-xkv"/>
                         <constraint firstAttribute="trailing" secondItem="6SO-4c-Iat" secondAttribute="trailing" constant="30" id="EpI-F0-msw"/>
                         <constraint firstItem="6SO-4c-Iat" firstAttribute="leading" secondItem="nEZ-Pm-Ynz" secondAttribute="leading" constant="30" id="Hko-Ou-xa2"/>
-                        <constraint firstAttribute="trailing" secondItem="U3N-ow-R1b" secondAttribute="trailing" id="Ngs-r7-zWF"/>
+                        <constraint firstItem="U3N-ow-R1b" firstAttribute="trailing" secondItem="6SO-4c-Iat" secondAttribute="trailing" id="KDa-hl-8VK"/>
                         <constraint firstItem="7HN-GP-s7N" firstAttribute="centerX" secondItem="nEZ-Pm-Ynz" secondAttribute="centerX" id="SNC-17-UQC"/>
                         <constraint firstItem="7HN-GP-s7N" firstAttribute="top" secondItem="nEZ-Pm-Ynz" secondAttribute="top" id="a5n-J7-Tvz"/>
-                        <constraint firstItem="6SO-4c-Iat" firstAttribute="top" secondItem="7HN-GP-s7N" secondAttribute="bottom" constant="8" id="eJF-FY-x9a"/>
+                        <constraint firstItem="6SO-4c-Iat" firstAttribute="top" secondItem="7HN-GP-s7N" secondAttribute="bottom" constant="20" id="eJF-FY-x9a"/>
                         <constraint firstItem="U3N-ow-R1b" firstAttribute="top" secondItem="nEZ-Pm-Ynz" secondAttribute="top" id="jb0-t9-sot"/>
                     </constraints>
                 </view>
@@ -129,9 +135,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="nEZ-Pm-Ynz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="63k-9L-IG5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nEZ-Pm-Ynz" secondAttribute="bottom" constant="100" id="MTF-4i-100"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nEZ-Pm-Ynz" secondAttribute="bottom" constant="40" id="MTF-4i-100"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nEZ-Pm-Ynz" secondAttribute="trailing" id="dSz-9S-E5H"/>
-                <constraint firstItem="nEZ-Pm-Ynz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="xHL-HI-ifB"/>
+                <constraint firstItem="nEZ-Pm-Ynz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="xHL-HI-ifB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="34.5" y="53.5"/>
@@ -139,6 +145,7 @@
     </objects>
     <resources>
         <image name="AcceptIcon" width="68" height="68"/>
+        <image name="Exit icon" width="20" height="20"/>
         <image name="RejectIcon" width="68" height="68"/>
         <image name="Test" width="170" height="170"/>
     </resources>

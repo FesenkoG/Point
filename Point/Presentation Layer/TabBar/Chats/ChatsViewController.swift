@@ -9,6 +9,7 @@
 import UIKit
 
 class ChatsViewController: UIViewController {
+    @IBOutlet weak var noMessagesView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
     

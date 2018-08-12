@@ -46,6 +46,7 @@
 		66766D2E211594C0008F5952 /* UserDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66766D2D211594C0008F5952 /* UserDataParser.swift */; };
 		6681658F211ED81E00ADF58E /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681658D211ED81E00ADF58E /* MatchViewController.swift */; };
 		66816590211ED81E00ADF58E /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6681658E211ED81E00ADF58E /* MatchViewController.xib */; };
+		66816594212051B000ADF58E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66816593212051B000ADF58E /* ConversationViewController.swift */; };
 		66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C725D421172C5B00F80CFD /* TabBar.storyboard */; };
 		ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		66766D2D211594C0008F5952 /* UserDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataParser.swift; sourceTree = "<group>"; };
 		6681658D211ED81E00ADF58E /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		6681658E211ED81E00ADF58E /* MatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
+		66816593212051B000ADF58E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		66C725D421172C5B00F80CFD /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				0089E688211B09D00037AF60 /* ChatsViewController.swift */,
+				66816593212051B000ADF58E /* ConversationViewController.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 			files = (
 				66766D2021123F8C008F5952 /* IRequestSender.swift in Sources */,
 				666D4744210BA056000E5374 /* SignUpThirdStepViewController.swift in Sources */,
+				66816594212051B000ADF58E /* ConversationViewController.swift in Sources */,
 				66766D1E21123F0C008F5952 /* IRequest.swift in Sources */,
 				666D4740210A2FAA000E5374 /* SignUpSecondStepViewController.swift in Sources */,
 				666D47382108F100000E5374 /* CircleView.swift in Sources */,
