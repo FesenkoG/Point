@@ -24,6 +24,9 @@
 		00B17CD22114AA3B00EFC16C /* SubmitSmsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD12114AA3B00EFC16C /* SubmitSmsRequest.swift */; };
 		00B17CD42114AB9700EFC16C /* CheckTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD32114AB9700EFC16C /* CheckTokenRequest.swift */; };
 		00B17CD82114ACB300EFC16C /* RegistrationSendPhoneResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD72114ACB300EFC16C /* RegistrationSendPhoneResponseParser.swift */; };
+		00F0B95F21358E2C00AC3013 /* OutgoingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B95E21358E2C00AC3013 /* OutgoingCell.swift */; };
+		00F0B96121358E3700AC3013 /* IncomingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B96021358E3700AC3013 /* IncomingCell.swift */; };
+		00F0B96321358F5200AC3013 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B96221358F5200AC3013 /* ChatCell.swift */; };
 		666D47312108E32F000E5374 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47302108E32F000E5374 /* RoundedButton.swift */; };
 		666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */; };
 		666D47362108EB00000E5374 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47352108EB00000E5374 /* LogInViewController.swift */; };
@@ -71,6 +74,9 @@
 		00B17CD12114AA3B00EFC16C /* SubmitSmsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSmsRequest.swift; sourceTree = "<group>"; };
 		00B17CD32114AB9700EFC16C /* CheckTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTokenRequest.swift; sourceTree = "<group>"; };
 		00B17CD72114ACB300EFC16C /* RegistrationSendPhoneResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSendPhoneResponseParser.swift; sourceTree = "<group>"; };
+		00F0B95E21358E2C00AC3013 /* OutgoingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingCell.swift; sourceTree = "<group>"; };
+		00F0B96021358E3700AC3013 /* IncomingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCell.swift; sourceTree = "<group>"; };
+		00F0B96221358F5200AC3013 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Point.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494E2C55FE84C5DA6A1DF2C6 /* Pods-Point.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.release.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.release.xcconfig"; sourceTree = "<group>"; };
 		666D47302108E32F000E5374 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 		0089E685211B092D0037AF60 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				00F0B9642135919600AC3013 /* Models */,
+				00F0B95D21358E0C00AC3013 /* Cells */,
 				0089E688211B09D00037AF60 /* ChatsViewController.swift */,
 				66816593212051B000ADF58E /* ConversationViewController.swift */,
 			);
@@ -190,6 +198,23 @@
 				66766D2D211594C0008F5952 /* UserDataParser.swift */,
 			);
 			path = Entry;
+			sourceTree = "<group>";
+		};
+		00F0B95D21358E0C00AC3013 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				00F0B95E21358E2C00AC3013 /* OutgoingCell.swift */,
+				00F0B96021358E3700AC3013 /* IncomingCell.swift */,
+				00F0B96221358F5200AC3013 /* ChatCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		00F0B9642135919600AC3013 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1AF32797C334682A764312D9 /* Frameworks */ = {
@@ -442,6 +467,7 @@
 				666D4744210BA056000E5374 /* SignUpThirdStepViewController.swift in Sources */,
 				66816594212051B000ADF58E /* ConversationViewController.swift in Sources */,
 				66766D1E21123F0C008F5952 /* IRequest.swift in Sources */,
+				00F0B95F21358E2C00AC3013 /* OutgoingCell.swift in Sources */,
 				666D4740210A2FAA000E5374 /* SignUpSecondStepViewController.swift in Sources */,
 				666D47382108F100000E5374 /* CircleView.swift in Sources */,
 				66766D282112432D008F5952 /* RequestsFactory.swift in Sources */,
@@ -460,10 +486,12 @@
 				00B17CD22114AA3B00EFC16C /* SubmitSmsRequest.swift in Sources */,
 				0089E687211B093B0037AF60 /* PointViewController.swift in Sources */,
 				00B17CD02114A7CB00EFC16C /* Constants.swift in Sources */,
+				00F0B96321358F5200AC3013 /* ChatCell.swift in Sources */,
 				66766D2A211582D2008F5952 /* CreateAccountRequest.swift in Sources */,
 				666D4746210BA24E000E5374 /* Utils.swift in Sources */,
 				666D47362108EB00000E5374 /* LogInViewController.swift in Sources */,
 				66766D1C21123DF6008F5952 /* IParser.swift in Sources */,
+				00F0B96121358E3700AC3013 /* IncomingCell.swift in Sources */,
 				66766D2221123FAD008F5952 /* RequestConfig.swift in Sources */,
 				66766D26211241E6008F5952 /* RequestSender.swift in Sources */,
 				0089E68B211B189E0037AF60 /* RoundedView.swift in Sources */,
