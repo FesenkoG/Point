@@ -51,15 +51,38 @@ struct RequestFactory {
     }
     
     struct BlockRequests {
-        
+        static func getBlockedUsersConfig(token: String) -> RequestConfig<BlockedUsersParser> {
+            return RequestConfig(request: GetBlockedRequest(token: token), parser: BlockedUsersParser())
+        }
+        static func getBlockUserConfig(token: String, userId: String, type: RequestBlockType) -> RequestConfig<BlankResponceParser> {
+            return RequestConfig(request: BlockUserRequest(token: token, userId: userId, type: type), parser: BlankResponceParser())
+        }
     }
     
+    //TODO: - There is no config for declaim an offer
     struct FriendsRequests {
-        
+        static func getAddFriendConfig(token: String, phoneNumber: String) -> RequestConfig<BlankResponceParser>{
+            return RequestConfig(request: AddFriendRequest(token: token, phoneNumber: phoneNumber), parser: BlankResponceParser())
+        }
+        static func getSubmitFriendConfig(token: String, userId: String, type: FriendRequestType) -> RequestConfig<BlankResponceParser> {
+            return RequestConfig(request: SubmitFriendRequest(token: token, userId: userId, type: type), parser: BlankResponceParser())
+        }
+        static func getFriendsListConfig(token: String) -> RequestConfig<GetFriendsParser> {
+            return RequestConfig(request: GetFriendsRequest(token: token), parser: GetFriendsParser())
+        }
+       
     }
     
     struct LocationRequests {
-        
+        static func getChangeLocationConfig(token: String, location: Location) -> RequestConfig<BlankResponceParser> {
+            return RequestConfig(request: ChangeLocationRequest(token: token, location: location), parser: BlankResponceParser())
+        }
+    }
+    
+    struct ModeRequests {
+        static func getChangeModeConfig(token: String) -> RequestConfig<BlankResponceParser> {
+            return RequestConfig(request: SwitchAppModeRequest(token: token), parser: BlankResponceParser())
+        }
     }
 }
 

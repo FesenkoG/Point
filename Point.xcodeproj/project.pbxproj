@@ -41,6 +41,10 @@
 		00F0B9842137FEA500AC3013 /* GetFriendsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9832137FEA500AC3013 /* GetFriendsRequest.swift */; };
 		00F0B9872137FF9E00AC3013 /* ChangeLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9862137FF9E00AC3013 /* ChangeLocationRequest.swift */; };
 		00F0B98A2138015100AC3013 /* SwitchAppModeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9892138015100AC3013 /* SwitchAppModeRequest.swift */; };
+		00F0B98D21380D0200AC3013 /* BlockedUsersParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B98C21380D0200AC3013 /* BlockedUsersParser.swift */; };
+		00F0B98F21380D4600AC3013 /* BlockedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B98E21380D4600AC3013 /* BlockedUser.swift */; };
+		00F0B9922138132500AC3013 /* GetFriendsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9912138132500AC3013 /* GetFriendsParser.swift */; };
+		00F0B9942138134C00AC3013 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9932138134C00AC3013 /* Friend.swift */; };
 		666D47312108E32F000E5374 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47302108E32F000E5374 /* RoundedButton.swift */; };
 		666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */; };
 		666D47362108EB00000E5374 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47352108EB00000E5374 /* LogInViewController.swift */; };
@@ -105,6 +109,10 @@
 		00F0B9832137FEA500AC3013 /* GetFriendsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFriendsRequest.swift; sourceTree = "<group>"; };
 		00F0B9862137FF9E00AC3013 /* ChangeLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLocationRequest.swift; sourceTree = "<group>"; };
 		00F0B9892138015100AC3013 /* SwitchAppModeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchAppModeRequest.swift; sourceTree = "<group>"; };
+		00F0B98C21380D0200AC3013 /* BlockedUsersParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersParser.swift; sourceTree = "<group>"; };
+		00F0B98E21380D4600AC3013 /* BlockedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUser.swift; sourceTree = "<group>"; };
+		00F0B9912138132500AC3013 /* GetFriendsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFriendsParser.swift; sourceTree = "<group>"; };
+		00F0B9932138134C00AC3013 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Point.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494E2C55FE84C5DA6A1DF2C6 /* Pods-Point.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.release.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.release.xcconfig"; sourceTree = "<group>"; };
 		666D47302108E32F000E5374 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -261,6 +269,8 @@
 			children = (
 				00F0B9692137D04500AC3013 /* EditedProfileModel.swift */,
 				00F0B96D2137EB8B00AC3013 /* EditImageModel.swift */,
+				00F0B98E21380D4600AC3013 /* BlockedUser.swift */,
+				00F0B9932138134C00AC3013 /* Friend.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,6 +324,22 @@
 				00F0B9892138015100AC3013 /* SwitchAppModeRequest.swift */,
 			);
 			path = AppMode;
+			sourceTree = "<group>";
+		};
+		00F0B98B21380CDD00AC3013 /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				00F0B98C21380D0200AC3013 /* BlockedUsersParser.swift */,
+			);
+			path = Blocks;
+			sourceTree = "<group>";
+		};
+		00F0B990213812E900AC3013 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				00F0B9912138132500AC3013 /* GetFriendsParser.swift */,
+			);
+			path = Friends;
 			sourceTree = "<group>";
 		};
 		1AF32797C334682A764312D9 /* Frameworks */ = {
@@ -414,6 +440,8 @@
 				66766D1B21123DF6008F5952 /* IParser.swift */,
 				00B17CD62114AC9500EFC16C /* Entry */,
 				00F0B9722137EFDF00AC3013 /* Chats */,
+				00F0B98B21380CDD00AC3013 /* Blocks */,
+				00F0B990213812E900AC3013 /* Friends */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -577,6 +605,7 @@
 				666D4740210A2FAA000E5374 /* SignUpSecondStepViewController.swift in Sources */,
 				666D47382108F100000E5374 /* CircleView.swift in Sources */,
 				66766D282112432D008F5952 /* RequestsFactory.swift in Sources */,
+				00F0B98D21380D0200AC3013 /* BlockedUsersParser.swift in Sources */,
 				0089E689211B09D00037AF60 /* ChatsViewController.swift in Sources */,
 				0089E680211AFF130037AF60 /* CommonExtensions.swift in Sources */,
 				66766D2C21159338008F5952 /* UserCreationParser.swift in Sources */,
@@ -609,14 +638,17 @@
 				00F0B9672137CF4400AC3013 /* EditProfileRequest.swift in Sources */,
 				00F0B98A2138015100AC3013 /* SwitchAppModeRequest.swift in Sources */,
 				00F0B9802137FA0900AC3013 /* AddFriendRequest.swift in Sources */,
+				00F0B9922138132500AC3013 /* GetFriendsParser.swift in Sources */,
 				66766D1C21123DF6008F5952 /* IParser.swift in Sources */,
 				00F0B96121358E3700AC3013 /* IncomingCell.swift in Sources */,
 				66766D2221123FAD008F5952 /* RequestConfig.swift in Sources */,
+				00F0B98F21380D4600AC3013 /* BlockedUser.swift in Sources */,
 				66766D26211241E6008F5952 /* RequestSender.swift in Sources */,
 				0089E68B211B189E0037AF60 /* RoundedView.swift in Sources */,
 				66766D242112409D008F5952 /* Result.swift in Sources */,
 				0089E683211B02350037AF60 /* SettingsViewController.swift in Sources */,
 				00F0B9742137F00700AC3013 /* ChatsHistoryParser.swift in Sources */,
+				00F0B9942138134C00AC3013 /* Friend.swift in Sources */,
 				000B707920F78055005DE14B /* AppDelegate.swift in Sources */,
 				66766D2E211594C0008F5952 /* UserDataParser.swift in Sources */,
 				00B17CCE2114A7A300EFC16C /* SendPhoneRequest.swift in Sources */,
