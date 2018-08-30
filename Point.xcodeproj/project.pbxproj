@@ -45,6 +45,8 @@
 		00F0B98F21380D4600AC3013 /* BlockedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B98E21380D4600AC3013 /* BlockedUser.swift */; };
 		00F0B9922138132500AC3013 /* GetFriendsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9912138132500AC3013 /* GetFriendsParser.swift */; };
 		00F0B9942138134C00AC3013 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9932138134C00AC3013 /* Friend.swift */; };
+		00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B998213820AB00AC3013 /* LocalDataStorage.swift */; };
+		00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */; };
 		666D47312108E32F000E5374 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47302108E32F000E5374 /* RoundedButton.swift */; };
 		666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */; };
 		666D47362108EB00000E5374 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47352108EB00000E5374 /* LogInViewController.swift */; };
@@ -113,6 +115,8 @@
 		00F0B98E21380D4600AC3013 /* BlockedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUser.swift; sourceTree = "<group>"; };
 		00F0B9912138132500AC3013 /* GetFriendsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFriendsParser.swift; sourceTree = "<group>"; };
 		00F0B9932138134C00AC3013 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		00F0B998213820AB00AC3013 /* LocalDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataStorage.swift; sourceTree = "<group>"; };
+		00F0B99B2138224500AC3013 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Point.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494E2C55FE84C5DA6A1DF2C6 /* Pods-Point.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.release.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.release.xcconfig"; sourceTree = "<group>"; };
 		666D47302108E32F000E5374 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 			children = (
 				000B707820F78055005DE14B /* AppDelegate.swift */,
 				666D473E2109049C000E5374 /* Presentation Layer */,
+				00F0B9962138208D00AC3013 /* ServiceLayer */,
+				00F0B9972138209500AC3013 /* CoreLayer */,
 				66766D17211034A3008F5952 /* Network Layer */,
 				000B707F20F78057005DE14B /* Assets.xcassets */,
 				000B708120F78057005DE14B /* LaunchScreen.storyboard */,
@@ -342,6 +348,30 @@
 			path = Friends;
 			sourceTree = "<group>";
 		};
+		00F0B99521381FC800AC3013 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				666D4748210CFBD6000E5374 /* NewUserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		00F0B9962138208D00AC3013 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		00F0B9972138209500AC3013 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				00F0B998213820AB00AC3013 /* LocalDataStorage.swift */,
+				00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
 		1AF32797C334682A764312D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,10 +436,10 @@
 		666D4741210A2FC2000E5374 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				00F0B99521381FC800AC3013 /* Models */,
 				666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */,
 				666D473F210A2FAA000E5374 /* SignUpSecondStepViewController.swift */,
 				666D4743210BA056000E5374 /* SignUpThirdStepViewController.swift */,
-				666D4748210CFBD6000E5374 /* NewUserModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -614,8 +644,10 @@
 				00F0B96C2137EB0700AC3013 /* EditImageRequest.swift in Sources */,
 				0089E68D211B1DA10037AF60 /* CircleImage.swift in Sources */,
 				0089E68F211B2DF40037AF60 /* EditProfileViewController.swift in Sources */,
+				00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */,
 				000B707B20F78055005DE14B /* MainViewController.swift in Sources */,
 				00F0B9762137F07700AC3013 /* ChatsModel.swift in Sources */,
+				00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */,
 				00F0B9842137FEA500AC3013 /* GetFriendsRequest.swift in Sources */,
 				00B17CD82114ACB300EFC16C /* BlankResponceParser.swift in Sources */,
 				666D47312108E32F000E5374 /* RoundedButton.swift in Sources */,
@@ -853,6 +885,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				00F0B99B2138224500AC3013 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 00F0B99B2138224500AC3013 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 000B706D20F78055005DE14B /* Project object */;
 }

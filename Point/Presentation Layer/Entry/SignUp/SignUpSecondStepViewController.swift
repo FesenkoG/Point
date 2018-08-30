@@ -27,7 +27,7 @@ class SignUpSecondStepViewController: UIViewController, UIGestureRecognizerDeleg
     let helper = Utils()
     
     //Variables
-    var userInfo: NewUser!
+    var userInfo: NewUserModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewUser: Codable {
+struct NewUserModel: Codable {
     var telephone: String = ""
     var nickname: String = ""
     var myAge: String = ""

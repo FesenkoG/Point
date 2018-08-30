@@ -84,10 +84,13 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                     print(error)
                     self.errorLabel.isHidden = false
                 case .success(let res):
-                    print(res.0)
+                    let user = res.0
                     UserDefaults.standard.set(res.token, forKey: "token")
+                    guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
+                    mainTab.selectedIndex = 1
+                    UIApplication.shared.keyWindow?.rootViewController = mainTab
+                    //TODO: - save user to core data
                     
-                    //TODO: - Perform segue to the next screen, save data somehow
                     
                 }
             }

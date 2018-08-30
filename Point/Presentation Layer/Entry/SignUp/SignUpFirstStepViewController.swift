@@ -28,7 +28,7 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
     //Services
     
     //Variables
-    var userInfo: NewUser = NewUser()
+    var userInfo: NewUserModel = NewUserModel()
     var datePicker : UIDatePicker = UIDatePicker()
     var datePickerContainer = UIView()
     var dateOfBirth: Date!

@@ -24,7 +24,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     @IBOutlet weak var phoneCodeTextField: PhoneNumberTextField!
     @IBOutlet weak var errorLabel: UILabel!
     //Variables
-    var newUser: NewUser!
+    var newUser: NewUserModel!
     var state: ScreenState = .sendPhone {
         didSet {
             switch state {
@@ -116,8 +116,11 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                             case .error(let error):
                                 print(error)
                             case .success(let res):
+                                //TODO: - save newUser to coreData
                                 UserDefaults.standard.set(res, forKey: "token")
-                                //TODO: Perform segue to the main screen
+                                guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
+                                mainTab.selectedIndex = 1
+                                UIApplication.shared.keyWindow?.rootViewController = mainTab
                             }
                         }
                     }

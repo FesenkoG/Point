@@ -11,7 +11,7 @@ import Foundation
 struct CreateAccountRequest: IRequest {
     var urlRequest: URLRequest?
     
-    init(userData: NewUser) {
+    init(userData: NewUserModel) {
         guard let url = URL(string: BASE_URL + CREATE_ACCOUNT_URL_REGISTRATION) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

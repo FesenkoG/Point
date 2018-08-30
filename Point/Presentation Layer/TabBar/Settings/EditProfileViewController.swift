@@ -11,14 +11,13 @@ import UIKit
 class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var saveButton: UIButton!
-    
     @IBOutlet var ageButtons: [RoundedButton]!
     @IBOutlet var genderButtons: [UIButton]!
     @IBOutlet var genderLabels: [UILabel]!
     @IBOutlet var genderOkImages: [UIImageView]!
     
     let helper = Utils()
-    var userInfo = NewUser()
+    var userInfo = NewUserModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
