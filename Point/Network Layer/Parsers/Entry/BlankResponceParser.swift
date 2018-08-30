@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RegistrationSendPhoneResponseParser: IParser {
+struct BlankResponceParser: IParser {
     
     func parse(data: Data) -> Bool? {
         do {
