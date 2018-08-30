@@ -29,8 +29,8 @@ class LocalDataStorage {
         }
     }
     
-    func getUserInfo() -> UserData {
-        
+    func getUserInfo() -> UserData? {
+        return nil
     }
     
 }
