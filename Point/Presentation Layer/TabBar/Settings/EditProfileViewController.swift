@@ -15,26 +15,58 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var genderButtons: [UIButton]!
     @IBOutlet var genderLabels: [UILabel]!
     @IBOutlet var genderOkImages: [UIImageView]!
+    @IBOutlet var myGenderButtons: [RoundedButton]!
     
+    //MARK: Utils
     let helper = Utils()
-    var userInfo = NewUserModel()
+    
+    //MARK: - Services
+    let requestSender: IRequestSender = RequestSender()
+    let localStorage: ILocalStorage = LocalDataStorage()
+    
+    //MARK: - Varisbles
+    var editedProfileModel: EditedProfileModel!
+    var editedImageModel: EditedImageModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        initialRetrieving()
     }
     
     
     @IBAction func saveButtonWasTapped(_ sender: Any) {
+        requestSender.send(config: RequestFactory.SettingsRequests.getEditProfileConfig(newProfile: editedProfileModel)) { (result) in
+            switch result {
+            case .error(let error):
+                print(error)
+            case .success(let result):
+                if result {
+                    self.requestSender.send(config: RequestFactory.SettingsRequests.getEditImageConfig(newImage: self.editedImageModel), completionHandler: { (result) in
+                        switch result {
+                        case .error(let error):
+                            print(error)
+                        case .success(let result):
+                            if result {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    //TODO: - Animation
+    @IBAction func genderMaleButtonWasTapped(_ sender: RoundedButton) {
+        helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
+        //editedProfileModel.myGender = "1"
         
     }
     
-    @IBAction func genderMaleButtonWasTapped(_ sender: Any) {
-        
-    }
-    
-    @IBAction func genderFemaleButtonWasTapped(_ sender: Any) {
-        
+    @IBAction func genderFemaleButtonWasTapped(_ sender: RoundedButton) {
+        helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
+        //editedProfileModel.myGender = "0"
     }
     
     //Preferences
@@ -42,19 +74,19 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         helper.checkAgeButtons(sender: sender, otherButtons: ageButtons)
         switch sender {
         case ageButtons[0]:
-            userInfo.yourAge = "18-22"
+            editedProfileModel.yourAge = "18-22"
         case ageButtons[1]:
-            userInfo.yourAge = "23-27"
+            editedProfileModel.yourAge = "23-27"
         case ageButtons[2]:
-            userInfo.yourAge = "28-35"
+            editedProfileModel.yourAge = "28-35"
         case ageButtons[3]:
-            userInfo.yourAge = "36-45"
+            editedProfileModel.yourAge = "36-45"
         case ageButtons[4]:
-            userInfo.yourAge = "46-99"
+            editedProfileModel.yourAge = "46-99"
         case ageButtons[5]:
-            userInfo.yourAge = "18-99"
+            editedProfileModel.yourAge = "18-99"
         default:
-            userInfo.yourAge = "18-99"
+            editedProfileModel.yourAge = "18-99"
         }
     }
     
@@ -63,19 +95,34 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         helper.checkGenderButtons(index: index, images: genderOkImages, labels: genderLabels)
         switch Int(index) {
         case 0:
-            userInfo.yourGender = "1"
+            editedProfileModel.yourGender = "1"
         case 1:
-            userInfo.yourGender = "0"
+            editedProfileModel.yourGender = "0"
         default:
-            userInfo.yourGender = "-1"
+            editedProfileModel.yourGender = "-1"
         }
     }
     
     @IBAction func chooseDateOfBirthWasTapped(_ sender: Any) {
-        
+        editedProfileModel.myAge = ""
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    //MARK: - Helper functions
+    private func initialRetrieving() {
+        guard let userInfo = self.localStorage.getUserInfo() else { return }
+        editedProfileModel.myAge = userInfo.myAge
+        editedProfileModel.myGender = userInfo.myGender
+        editedProfileModel.nickname = userInfo.nickname
+        editedProfileModel.telephone = userInfo.telephoneHash
+        editedProfileModel.token = ""
+        editedProfileModel.yourAge = userInfo.yourAge
+        editedProfileModel.yourGender = userInfo.yourGender
+        
+        editedImageModel.image = userInfo.image
+        editedImageModel.token = ""
     }
 }

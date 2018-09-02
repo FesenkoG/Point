@@ -30,7 +30,7 @@
 		00F0B9672137CF4400AC3013 /* EditProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9662137CF4400AC3013 /* EditProfileRequest.swift */; };
 		00F0B96A2137D04500AC3013 /* EditedProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9692137D04500AC3013 /* EditedProfileModel.swift */; };
 		00F0B96C2137EB0700AC3013 /* EditImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B96B2137EB0700AC3013 /* EditImageRequest.swift */; };
-		00F0B96E2137EB8B00AC3013 /* EditImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B96D2137EB8B00AC3013 /* EditImageModel.swift */; };
+		00F0B96E2137EB8B00AC3013 /* EditedImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B96D2137EB8B00AC3013 /* EditedImageModel.swift */; };
 		00F0B9712137EE3F00AC3013 /* ChatsHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9702137EE3F00AC3013 /* ChatsHistoryRequest.swift */; };
 		00F0B9742137F00700AC3013 /* ChatsHistoryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9732137F00700AC3013 /* ChatsHistoryParser.swift */; };
 		00F0B9762137F07700AC3013 /* ChatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9752137F07700AC3013 /* ChatsModel.swift */; };
@@ -100,7 +100,7 @@
 		00F0B9662137CF4400AC3013 /* EditProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequest.swift; sourceTree = "<group>"; };
 		00F0B9692137D04500AC3013 /* EditedProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedProfileModel.swift; sourceTree = "<group>"; };
 		00F0B96B2137EB0700AC3013 /* EditImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageRequest.swift; sourceTree = "<group>"; };
-		00F0B96D2137EB8B00AC3013 /* EditImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageModel.swift; sourceTree = "<group>"; };
+		00F0B96D2137EB8B00AC3013 /* EditedImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedImageModel.swift; sourceTree = "<group>"; };
 		00F0B9702137EE3F00AC3013 /* ChatsHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsHistoryRequest.swift; sourceTree = "<group>"; };
 		00F0B9732137F00700AC3013 /* ChatsHistoryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsHistoryParser.swift; sourceTree = "<group>"; };
 		00F0B9752137F07700AC3013 /* ChatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsModel.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				00F0B9692137D04500AC3013 /* EditedProfileModel.swift */,
-				00F0B96D2137EB8B00AC3013 /* EditImageModel.swift */,
+				00F0B96D2137EB8B00AC3013 /* EditedImageModel.swift */,
 				00F0B98E21380D4600AC3013 /* BlockedUser.swift */,
 				00F0B9932138134C00AC3013 /* Friend.swift */,
 			);
@@ -665,7 +665,7 @@
 				66766D2A211582D2008F5952 /* CreateAccountRequest.swift in Sources */,
 				666D4746210BA24E000E5374 /* Utils.swift in Sources */,
 				666D47362108EB00000E5374 /* LogInViewController.swift in Sources */,
-				00F0B96E2137EB8B00AC3013 /* EditImageModel.swift in Sources */,
+				00F0B96E2137EB8B00AC3013 /* EditedImageModel.swift in Sources */,
 				00F0B9712137EE3F00AC3013 /* ChatsHistoryRequest.swift in Sources */,
 				00F0B9672137CF4400AC3013 /* EditProfileRequest.swift in Sources */,
 				00F0B98A2138015100AC3013 /* SwitchAppModeRequest.swift in Sources */,

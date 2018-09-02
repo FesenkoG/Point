@@ -61,6 +61,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     
     //Services
     let requestSender: IRequestSender = RequestSender()
+    let localStorage: ILocalStorage = LocalDataStorage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,17 +117,30 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                             case .error(let error):
                                 print(error)
                             case .success(let res):
-                                //TODO: - save newUser to coreData
-                                UserDefaults.standard.set(res, forKey: "token")
-                                guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
-                                mainTab.selectedIndex = 1
-                                UIApplication.shared.keyWindow?.rootViewController = mainTab
+                                self.requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig(token: res), completionHandler: { (result) in
+                                    switch result {
+                                    case .error(let error):
+                                        print(error)
+                                    case .success(let res):
+                                        self.localStorage.saveUser(user: res.0, completion: { (error) in
+                                            if let error = error {
+                                                print(error)
+                                            } else {
+                                                UserDefaults.standard.set(res.token, forKey: "token")
+                                                guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
+                                                mainTab.selectedIndex = 1
+                                                UIApplication.shared.keyWindow?.rootViewController = mainTab
+                                            }
+                                        })
+                                        
+                                    }
+                                })
+                                
                             }
                         }
                     }
                 }
             }
-            
         }
     }
     

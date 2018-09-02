@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EditImageModel: Encodable {
-    let token: String
-    let image: String
+struct EditedImageModel: Encodable {
+    var token: String
+    var image: String
 }

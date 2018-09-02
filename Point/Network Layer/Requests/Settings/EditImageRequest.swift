@@ -11,7 +11,7 @@ import Foundation
 struct EditImageRequest: IRequest {
     var urlRequest: URLRequest?
     
-    init(newImage: EditImageModel) {
+    init(newImage: EditedImageModel) {
         guard let url = URL(string: BASE_URL + EDIT_PROFILE_IMAGE_URL_SETTINGS) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

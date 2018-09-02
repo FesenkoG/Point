@@ -39,7 +39,7 @@ struct RequestFactory {
         static func getEditProfileConfig(newProfile: EditedProfileModel) -> RequestConfig<BlankResponceParser> {
             return RequestConfig(request: EditProfileRequset(newProfile: newProfile), parser: BlankResponceParser())
         }
-        static func getEditImageConfig(newImage: EditImageModel) -> RequestConfig<BlankResponceParser> {
+        static func getEditImageConfig(newImage: EditedImageModel) -> RequestConfig<BlankResponceParser> {
             return RequestConfig(request: EditImageRequest(newImage: newImage), parser: BlankResponceParser())
         }
     }

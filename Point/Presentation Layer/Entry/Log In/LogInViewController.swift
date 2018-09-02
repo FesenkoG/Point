@@ -27,6 +27,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //Services
     let requestSender: IRequestSender = RequestSender()
+    let localStorage: ILocalStorage = LocalDataStorage()
     
     //Variables
     var state: ScreenState = .sendPhone {
@@ -84,14 +85,16 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                     print(error)
                     self.errorLabel.isHidden = false
                 case .success(let res):
-                    let user = res.0
-                    UserDefaults.standard.set(res.token, forKey: "token")
-                    guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
-                    mainTab.selectedIndex = 1
-                    UIApplication.shared.keyWindow?.rootViewController = mainTab
-                    //TODO: - save user to core data
-                    
-                    
+                    self.localStorage.saveUser(user: res.0, completion: { (error) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            UserDefaults.standard.set(res.token, forKey: "token")
+                            guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
+                            mainTab.selectedIndex = 1
+                            UIApplication.shared.keyWindow?.rootViewController = mainTab
+                        }
+                    })
                 }
             }
         }

@@ -1063,6 +1063,8 @@
                         <outletCollection property="genderOkImages" destination="4gz-Au-Ale" collectionClass="NSMutableArray" id="Cvp-ez-edY"/>
                         <outletCollection property="genderOkImages" destination="opE-EM-V74" collectionClass="NSMutableArray" id="gFa-GN-bPk"/>
                         <outletCollection property="genderOkImages" destination="7Mt-R9-LpY" collectionClass="NSMutableArray" id="Myc-DG-dWU"/>
+                        <outletCollection property="myGenderButtons" destination="ovE-OA-wNN" collectionClass="NSMutableArray" id="ILL-NL-I41"/>
+                        <outletCollection property="myGenderButtons" destination="KKY-i9-HUG" collectionClass="NSMutableArray" id="fam-ga-32F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zba-Pj-LC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
