@@ -144,8 +144,12 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         }
     }
     
+    @IBAction func loginButtonWasTapped(_ sender: Any) {
+        guard let loginController = helper.getLoginViewController() else { return }
+        UIApplication.shared.keyWindow?.rootViewController = loginController
+    }
     @IBAction func tryAgainButtonTapped(_ sender: Any) {
-        
+        state = .sendSms
     }
     
 }

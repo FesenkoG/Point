@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.window?.rootViewController = viewController
                 }
             }
+        } else {
+            //TODO: - redirect to start screen
         }
         return true
     }

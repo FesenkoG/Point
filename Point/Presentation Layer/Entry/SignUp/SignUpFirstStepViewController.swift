@@ -33,21 +33,22 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
     var datePickerContainer = UIView()
     var dateOfBirth: Date!
     
-    lazy var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        return dateFormatter
-    }()
+    
     
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         dateOfBirth = Calendar.current.date(byAdding: .year, value: -18, to: Date())
         userInfo.myAge = String(describing: dateOfBirth.timeIntervalSince1970)
-        dateOfBirthButton.setTitle(dateFormatter.string(from: dateOfBirth), for: .normal)
+        dateOfBirthButton.setTitle(helper.dateFormatter.string(from: dateOfBirth), for: .normal)
         nameTextField.delegate = self
         helper.setConstraints(left: leftConstraint, top: topConstraint, right: rightConstraint)
         helper.setBetweenConstraint(betweenConstraint)
@@ -95,24 +96,18 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
         self.view.addSubview(datePickerContainer)
     }
     
-    /**
-     * MARK - observer to get the change in date
-     */
-    
     @objc func dateChangedInDate(sender:UIDatePicker){
         dateOfBirth = sender.date
-        dateOfBirthButton.setTitle(dateFormatter.string(from: sender.date), for: .normal)
-    }// end dateChangedInDate
+        dateOfBirthButton.setTitle(helper.dateFormatter.string(from: sender.date), for: .normal)
+    }
     
-    /*
-     * MARK - dismiss the date picker value
-     */
     @objc func dismissPicker(sender: UIButton) {
         datePickerContainer.removeFromSuperview()
-    }// end dismissPicker
+    }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        
+        guard let loginViewController = helper.getLoginViewController() else { return }
+        UIApplication.shared.keyWindow?.rootViewController = loginViewController
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

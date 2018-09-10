@@ -16,7 +16,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var genderLabels: [UILabel]!
     @IBOutlet var genderOkImages: [UIImageView]!
     @IBOutlet var myGenderButtons: [RoundedButton]!
-    
+    @IBOutlet weak var dateOfBirthButton: UIButton!
     //MARK: Utils
     let helper = Utils()
     
@@ -27,6 +27,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: - Varisbles
     var editedProfileModel: EditedProfileModel!
     var editedImageModel: EditedImageModel!
+    let datePickerContainer = UIView()
+    let datePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,11 +106,39 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func chooseDateOfBirthWasTapped(_ sender: Any) {
-        editedProfileModel.myAge = ""
+        datePickerContainer.frame = CGRect(x: 0.0, y: self.view.frame.height - 200, width: UIScreen.main.bounds.width, height: 200)
+        datePicker.frame = CGRect(x: 0.0, y: 0, width: UIScreen.main.bounds.width, height: 200)
+        //TODO: - SET CURRENT AGE OF THE USER
+        guard let date = Calendar.current.date(byAdding: .year, value: -18, to: Date()) else { return }
+        datePicker.setDate(date, animated: true)
+        datePicker.maximumDate = date
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.addTarget(self, action: #selector(dateChangedInDate), for: UIControlEvents.valueChanged)
+        datePickerContainer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        datePickerContainer.addSubview(datePicker)
+        
+        let doneButton = UIButton()
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.setTitleColor(#colorLiteral(red: 0.5803921569, green: 0.5725490196, blue: 0.9490196078, alpha: 1), for: .normal)
+        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        doneButton.addTarget(self, action: #selector(dismissPicker), for: .touchUpInside)
+        doneButton.frame = CGRect(x: UIScreen.main.bounds.width - 70, y: 5.0, width: 70.0, height: 37.0)
+        datePickerContainer.addSubview(doneButton)
+        self.view.addSubview(datePickerContainer)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func dateChangedInDate(sender:UIDatePicker) {
+        //TODO: - DECIDE THE FORMAT AND SAVE IN IT HERE
+        //editedProfileModel.myAge = ""
+        dateOfBirthButton.setTitle(helper.dateFormatter.string(from: sender.date), for: .normal)
+    }
+
+    @objc func dismissPicker(sender: UIButton) {
+        datePickerContainer.removeFromSuperview()
     }
     
     //MARK: - Helper functions

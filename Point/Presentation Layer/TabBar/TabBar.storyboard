@@ -158,19 +158,19 @@
                                         <rect key="frame" x="112" y="13" width="176" height="88"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arisha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyI-go-hs3">
-                                                <rect key="frame" x="0.0" y="0.0" width="176" height="37.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="176" height="29.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="0.25490196079999999" green="0.23529411759999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here will be a small bio describing a person in just a fwe wprds" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtE-Vx-fYZ">
-                                                <rect key="frame" x="0.0" y="37.5" width="176" height="22.5"/>
+                                                <rect key="frame" x="0.0" y="29.5" width="176" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                 <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+7 999 999 99 99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pz0-IJ-ovw">
-                                                <rect key="frame" x="0.0" y="60" width="176" height="28"/>
+                                                <rect key="frame" x="0.0" y="65.5" width="176" height="22.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.58823529411764708" green="0.58039215686274503" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1047,6 +1047,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="1300"/>
                     <connections>
+                        <outlet property="dateOfBirthButton" destination="gRv-US-gtn" id="PUa-XT-fDy"/>
                         <outlet property="saveButton" destination="O7w-YW-RGd" id="wYT-bb-4Eu"/>
                         <outletCollection property="ageButtons" destination="flm-6X-9Tf" collectionClass="NSMutableArray" id="URp-ma-nhc"/>
                         <outletCollection property="ageButtons" destination="xxY-CR-quv" collectionClass="NSMutableArray" id="5pZ-4m-UhW"/>

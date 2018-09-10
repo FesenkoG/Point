@@ -44,6 +44,32 @@ class Utils {
         return age.contains(where: {$0.isChecked}) && gender.contains(where: {$0.textColor == Colors.checkedTextColor.color()})
     }
     
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        return dateFormatter
+    }()
+    
+    func getLoginViewController() -> UINavigationController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let startController = storyboard.instantiateViewController(withIdentifier: "startController") as? MainViewController else { return nil }
+        guard let loginViewControlelr = storyboard.instantiateViewController(withIdentifier: "loginController") as? LogInViewController else { return nil }
+        let navigationController = UINavigationController(rootViewController: startController)
+        navigationController.viewControllers = [startController, loginViewControlelr]
+        navigationController.navigationBar.isHidden = true
+        return navigationController
+    }
+    
+    func getSignUpViewController() -> UINavigationController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let startController = storyboard.instantiateViewController(withIdentifier: "startController")
+        let signUpViewController = storyboard.instantiateViewController(withIdentifier: "signupController")
+        let navigationController = UINavigationController(rootViewController: startController)
+        navigationController.viewControllers = [startController, signUpViewController]
+        return navigationController
+        
+    }
+    
 }
 
 extension UIViewController {

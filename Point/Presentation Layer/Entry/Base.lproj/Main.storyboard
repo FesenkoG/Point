@@ -15,7 +15,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startController" id="BYZ-38-t0r" customClass="MainViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,7 +108,7 @@
         <!--Log In View Controller-->
         <scene sceneID="mq3-J3-Jab">
             <objects>
-                <viewController id="tkr-R6-d93" customClass="LogInViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginController" id="tkr-R6-d93" customClass="LogInViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vW1-87-Cyb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,6 +190,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="loginButtonTapped:" destination="17Z-Mx-1MF" eventType="touchUpInside" id="O0j-bq-QYi"/>
+                                                    <action selector="signUpButtonWasPressed:" destination="tkr-R6-d93" eventType="touchUpInside" id="4wa-Qj-6U3"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -274,7 +275,7 @@
         <!--Sign Up First Step View Controller-->
         <scene sceneID="OOu-cg-mHi">
             <objects>
-                <viewController id="17Z-Mx-1MF" customClass="SignUpFirstStepViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signupController" id="17Z-Mx-1MF" customClass="SignUpFirstStepViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gRJ-C0-jbw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -610,6 +611,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="loginButtonTapped:" destination="17Z-Mx-1MF" eventType="touchUpInside" id="Dp6-an-dYJ"/>
+                                                    <action selector="loginButtonWasTapped:" destination="tFg-Q5-7Fj" eventType="touchUpInside" id="d1E-LW-I0H"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1240,6 +1242,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="loginButtonTapped:" destination="17Z-Mx-1MF" eventType="touchUpInside" id="yqk-lr-oBy"/>
+                                                    <action selector="loginButtonWasTapped:" destination="IXN-fV-aVH" eventType="touchUpInside" id="Amq-9e-hKp"/>
                                                 </connections>
                                             </button>
                                         </subviews>

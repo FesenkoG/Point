@@ -99,6 +99,10 @@ class SignUpSecondStepViewController: UIViewController, UIGestureRecognizerDeleg
         nextButton.backgroundColor = enabled ? Colors.enabledButtonColor.color() : Colors.disabledButtonColor.color()
     }
     
+    @IBAction func loginButtonWasTapped(_ sender: Any) {
+        guard let loginController = helper.getLoginViewController() else { return }
+        UIApplication.shared.keyWindow?.rootViewController = loginController
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? SignUpThirdStepViewController {
             vc.newUser = userInfo

@@ -57,6 +57,10 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
     @IBAction func nextButtonWasPressed(_ sender: Any) {
         switch state {
         case .sendPhone:
@@ -99,8 +103,12 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
+    @IBAction func signUpButtonWasPressed(_ sender: Any) {
+        UIApplication.shared.keyWindow?.rootViewController = helper.getSignUpViewController()
+    }
     
     @IBAction func tryAgainButtonWasPressed(_ sender: Any) {
+        state = .sendPhone
     }
     
     @IBAction func backButtonWasPressed(_ sender: Any) {
