@@ -70,8 +70,16 @@ class MatchViewController: UIViewController {
         layer.beginTime = timeSincePause
     }
     
-    @IBAction func closeButtonTapped(_ sender: UIButton) {
+    @IBAction func noButtonTapped(_ sender: Any) {
         pauseAnimation(layer: clockView.layer)
+        
+    }
+    @IBAction func yesButtonTapped(_ sender: Any) {
+        pauseAnimation(layer: clockView.layer)
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
 }

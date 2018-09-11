@@ -89,10 +89,16 @@
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbk-7b-e1t">
                                             <rect key="frame" x="0.0" y="0.0" width="127.5" height="156.5"/>
                                             <state key="normal" image="RejectIcon"/>
+                                            <connections>
+                                                <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="5sG-Ng-xpo"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be5-BK-1qk">
                                             <rect key="frame" x="127.5" y="0.0" width="127.5" height="156.5"/>
                                             <state key="normal" image="AcceptIcon"/>
+                                            <connections>
+                                                <action selector="yesButtonTapped:" destination="-1" eventType="touchUpInside" id="yho-nd-81t"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>

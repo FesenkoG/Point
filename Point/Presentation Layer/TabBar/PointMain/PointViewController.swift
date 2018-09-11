@@ -26,7 +26,7 @@ class PointViewController: UIViewController {
         let matchVC = MatchViewController()
         
         matchVC.modalPresentationStyle = .custom
-        present(matchVC, animated: false, completion: nil)
+        present(matchVC, animated: true, completion: nil)
     }
     
     //TODO: - Move this to AppDelegate
