@@ -12,8 +12,11 @@ class IncomingCell: UITableViewCell {
     
     @IBOutlet weak var personImageView: CircleImage!
     @IBOutlet weak var messageTextLabel: UILabel!
+    @IBOutlet weak var messageView: MessageView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     func configure(_ message: Message) {
         messageTextLabel.text = message.text
+        timeLabel.text = message.date
     }
 }

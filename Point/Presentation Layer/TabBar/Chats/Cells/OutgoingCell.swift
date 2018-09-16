@@ -9,5 +9,14 @@
 import UIKit
 
 class OutgoingCell: UITableViewCell {
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var messageView: MessageView!
+    @IBOutlet weak var personImageView: CircleImage!
+    
+    func configure(_ model: Message) {
+        messageLabel.text = model.text
+        timeLabel.text = model.date
+    }
     
 }

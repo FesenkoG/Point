@@ -11,8 +11,6 @@ import UIKit
 @IBDesignable
 class CircleImage: UIImageView {
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.cornerRadius = bounds.height / 2

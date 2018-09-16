@@ -72,6 +72,7 @@
 		66816594212051B000ADF58E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66816593212051B000ADF58E /* ConversationViewController.swift */; };
 		66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C725D421172C5B00F80CFD /* TabBar.storyboard */; };
 		ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */; };
+		B2E668CC214E74B400C3CC2D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E668CB214E74B400C3CC2D /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		66816593212051B000ADF58E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		66C725D421172C5B00F80CFD /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.debug.xcconfig"; sourceTree = "<group>"; };
+		B2E668CB214E74B400C3CC2D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +400,7 @@
 				0089E67F211AFF130037AF60 /* CommonExtensions.swift */,
 				0089E68A211B189E0037AF60 /* RoundedView.swift */,
 				0089E68C211B1DA10037AF60 /* CircleImage.swift */,
+				B2E668CB214E74B400C3CC2D /* MessageView.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				00F0B9842137FEA500AC3013 /* GetFriendsRequest.swift in Sources */,
 				00B17CD82114ACB300EFC16C /* BlankResponceParser.swift in Sources */,
 				666D47312108E32F000E5374 /* RoundedButton.swift in Sources */,
+				B2E668CC214E74B400C3CC2D /* MessageView.swift in Sources */,
 				00F0B97B2137F85400AC3013 /* BlockUserRequest.swift in Sources */,
 				666D473B2108F9B1000E5374 /* Colors.swift in Sources */,
 				666D4749210CFBD6000E5374 /* NewUserModel.swift in Sources */,
