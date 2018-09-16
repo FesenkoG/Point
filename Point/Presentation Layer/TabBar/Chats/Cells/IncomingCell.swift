@@ -10,4 +10,10 @@ import UIKit
 
 class IncomingCell: UITableViewCell {
     
+    @IBOutlet weak var personImageView: CircleImage!
+    @IBOutlet weak var messageTextLabel: UILabel!
+    
+    func configure(_ message: Message) {
+        messageTextLabel.text = message.text
+    }
 }

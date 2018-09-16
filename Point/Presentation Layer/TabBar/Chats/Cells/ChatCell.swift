@@ -14,4 +14,10 @@ class ChatCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: CircleImage!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    
+    func configure(_ model: Chat) {
+        nameLabel.text = model.chatmade
+        lastMessageLabel.text = model.messages.last?.text ?? "No messages yet."
+        timeLabel.text = model.messages.last?.date
+    }
 }

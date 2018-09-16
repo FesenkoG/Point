@@ -11,32 +11,58 @@ import UIKit
 class PointViewController: UIViewController {
     
     @IBOutlet weak var pointButton: UIButton!
-    
+    @IBOutlet weak var helperTextLabel: UILabel!
     
     var animate: Bool = false
+    var gradient: CAGradientLayer?
+    var toColors: [Any]?
+    var fromColors: [Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gradient = CAGradientLayer()
+        
         pointButton.layer.cornerRadius = pointButton.bounds.height / 2
         pointButton.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
         configureTabBar()
         //TODO: - Somewhat like a circle.
-        let view = UIView(frame: CGRect(x: self.view.bounds.width / 2 - 100, y: self.view.bounds.height / 2 - 100, width: 100, height: 100))
-        view.layer.cornerRadius = view.bounds.height / 2
-        view.clipsToBounds = true
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 10.0
-        self.view.addSubview(view)
+//        let view = UIView(frame: pointButton.frame)
+//        view.layer.cornerRadius = view.bounds.height / 2
+//        view.clipsToBounds = true
+//        view.layer.borderColor = UIColor.white.cgColor
+//        view.layer.borderWidth = 10
+//        self.gradient?.frame = view.bounds
+//        self.gradient?.colors = [UIColor.black, UIColor.white]
+//        UIView.animate(withDuration: 0, delay: 0, options: [.repeat, .autoreverse], animations: {
+//
+//        }, completion: nil)
+//        view.layer.insertSublayer(self.gradient!, at: 0)
+//        animateLayer()
+        //self.pointButton.addSubview(view)
         //
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
+
+//    func animateLayer(){
+//
+//        fromColors = self.gradient?.colors
+//        toColors = [ UIColor.black.cgColor, UIColor.blue.cgColor]
+//
+//        let animation : CABasicAnimation = CABasicAnimation(keyPath: "colors")
+//
+//        animation.fromValue = fromColors
+//        animation.toValue = toColors
+//        animation.duration = 3.00
+//        animation.isRemovedOnCompletion = true
+//        animation.fillMode = kCAFillModeForwards
+//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+//        animation.delegate = self
+//
+//        self.gradient?.add(animation, forKey:"animateGradient")
+//    }
     
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
+        helperTextLabel.isHidden = !helperTextLabel.isHidden
         animateButton(sender: sender, animate: animate)
         
         //let matchVC = MatchViewController()
@@ -56,31 +82,6 @@ class PointViewController: UIViewController {
     
     private func animateButton(sender: UIButton, animate: Bool) {
         if animate {
-//            let (view, transform) = self.getViewAndTransform(sender: sender)
-//            UIView.animate(withDuration: 1.0, delay: 0.0, options: .allowUserInteraction, animations: {
-//                view.transform = transform
-//                view.alpha = 0.5
-//            }) { (_) in
-//                let (secondView, secondTransform) = self.getViewAndTransform(sender: sender)
-//                UIView.animate(withDuration: 1.0,  delay: 0.0, options: .allowUserInteraction,animations: {
-//                    view.transform = view.transform.scaledBy(x: 2.0, y: 2.0)
-//                    view.alpha = 0.0
-//                }, completion: { (_) in
-//                    view.removeFromSuperview()
-//                    self.animateButton(sender: sender, animate: self.animate)
-//                })
-//                UIView.animate(withDuration: 1.0,  delay: 0.0, options: .allowUserInteraction,animations: {
-//                    secondView.transform = secondTransform
-//                    secondView.alpha = 0.5
-//                }, completion: { (_) in
-//                    UIView.animate(withDuration: 1.0,  delay: 0.0, options: .allowUserInteraction,animations: {
-//                        secondView.transform = secondTransform.scaledBy(x: 2.0, y: 2.0)
-//                        secondView.alpha = 0.0
-//                    }, completion: { (_) in
-//                        secondView.removeFromSuperview()
-//                    })
-//                })
-//            }
             let (view, transform) = getViewAndTransform(sender: sender)
             let (view2, transform2) = getViewAndTransform(sender: sender)
             let (view3, transform3) = getViewAndTransform(sender: sender)
@@ -125,4 +126,13 @@ class PointViewController: UIViewController {
     }
     
 }
+//
+//extension PointViewController: CAAnimationDelegate {
+//    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+//        
+//        self.toColors = self.fromColors;
+//        self.fromColors = self.gradient?.colors
+//        animateLayer()
+//    }
+//}
 
