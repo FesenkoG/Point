@@ -73,6 +73,7 @@
 		66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C725D421172C5B00F80CFD /* TabBar.storyboard */; };
 		ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */; };
 		B219DC152153D44A0035BF94 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC142153D44A0035BF94 /* GradientView.swift */; };
+		B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC1C2157BCDF0035BF94 /* Extensions.swift */; };
 		B2E668CC214E74B400C3CC2D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E668CB214E74B400C3CC2D /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +148,7 @@
 		66C725D421172C5B00F80CFD /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.debug.xcconfig"; sourceTree = "<group>"; };
 		B219DC142153D44A0035BF94 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		B219DC1C2157BCDF0035BF94 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B2E668CB214E74B400C3CC2D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -420,19 +422,20 @@
 			path = Entry;
 			sourceTree = "<group>";
 		};
-		666D47392108F99D000E5374 /* Constants */ = {
+		666D47392108F99D000E5374 /* Convenience */ = {
 			isa = PBXGroup;
 			children = (
 				666D473A2108F9B1000E5374 /* Colors.swift */,
+				B219DC1C2157BCDF0035BF94 /* Extensions.swift */,
 			);
-			path = Constants;
+			path = Convenience;
 			sourceTree = "<group>";
 		};
 		666D473E2109049C000E5374 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
 				666D472F2108E310000E5374 /* UI Elements */,
-				666D47392108F99D000E5374 /* Constants */,
+				666D47392108F99D000E5374 /* Convenience */,
 				666D47322108EAB6000E5374 /* Entry */,
 				66C725D321172C3600F80CFD /* TabBar */,
 			);
@@ -652,6 +655,7 @@
 				0089E68D211B1DA10037AF60 /* CircleImage.swift in Sources */,
 				0089E68F211B2DF40037AF60 /* EditProfileViewController.swift in Sources */,
 				00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */,
+				B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */,
 				000B707B20F78055005DE14B /* MainViewController.swift in Sources */,
 				00F0B9762137F07700AC3013 /* ChatsModel.swift in Sources */,
 				00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */,
