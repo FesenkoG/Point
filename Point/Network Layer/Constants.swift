@@ -8,7 +8,7 @@
 
 import Foundation
 
-let BASE_URL = "http://ec2-18-196-137-189.eu-central-1.compute.amazonaws.com"
+let BASE_URL = "http://192.168.1.246"
 
 //MARK: - Registration
 let SEND_PHONE_URL_REGISTRATION = "/registration/checkphone"

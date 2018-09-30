@@ -16,7 +16,7 @@ class ChatCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     func configure(_ model: Chat) {
-        nameLabel.text = model.chatmade
+        nameLabel.text = model.chatmade.nick
         lastMessageLabel.text = model.messages.last?.text ?? "No messages yet."
         timeLabel.text = model.messages.last?.date
     }

@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import Starscream
 
 class MatchViewController: UIViewController {
 
     @IBOutlet weak var clockView: RoundedView!
     
+    // MARK: - Data for controller.
+    let userID: String
+    let user: UserData
+    let socket: WebSocket
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         runAnimation()
+    }
+    
+    init(userID: String, user: UserData, socket: WebSocket) {
+        self.userID = userID
+        self.user = user
+        self.socket = socket
+        super.init(nibName: nil, bundle: nil)
+        socket.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func runAnimation() {
@@ -76,6 +93,7 @@ class MatchViewController: UIViewController {
     }
     @IBAction func yesButtonTapped(_ sender: Any) {
         pauseAnimation(layer: clockView.layer)
+        socket.write(string: "true")
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {

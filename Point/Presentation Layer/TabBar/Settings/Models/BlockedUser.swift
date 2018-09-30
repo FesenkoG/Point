@@ -9,6 +9,7 @@
 import Foundation
 
 struct BlockedUser: Codable {
-    let userId: String
-    let userNick: String
+    let friendId: String
+    let friendNickname: String
+    let friendPhoto: String
 }

@@ -80,7 +80,8 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         } else {
             checkboxButton.setImage(nil, for: .normal)
         }
-        nextButton.isEnabled = sender.image(for: .normal) == nil ? false : true
+        nextButton.isEnabled = checkboxButton.image(for: .normal) == nil ? false : true
+        nextButton.backgroundColor = checkboxButton.image(for: .normal) == nil ? Colors.disabledButtonColor.color() : Colors.enabledButtonColor.color()
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
@@ -92,7 +93,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 requestSender.send(config: RequestFactory.RegistrasionRequests.getSendPhoneConfig(phone: phoneNumber)) { (result) in
                     switch result {
                     case .error(let error):
-                        print(error)
+                        self.showErrorAlert(error)
                     case .success(let res):
                         print(res)
                         if res { self.state = .sendSms }
@@ -100,7 +101,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 }
                 
             } catch {
-                print(error)
+                self.showErrorAlert(error.localizedDescription)
             }
             
         case .sendSms:
@@ -108,26 +109,26 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
             requestSender.send(config: RequestFactory.RegistrasionRequests.getSubmitSmsConfig(phone: phoneNumber, sms: sms)) { (result) in
                 switch result {
                 case .error(let error):
-                    print(error)
+                    self.showErrorAlert(error)
                 case .success(let res):
                     print(res)
                     if res {
                         self.requestSender.send(config: RequestFactory.RegistrasionRequests.getCreateAccountConfig(user: self.newUser)) { (result) in
                             switch result {
                             case .error(let error):
-                                print(error)
+                                self.showErrorAlert(error)
                             case .success(let res):
+                                UserDefaults.standard.set(res, forKey: "token")
                                 self.requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig(token: res), completionHandler: { (result) in
                                     switch result {
                                     case .error(let error):
-                                        print(error)
+                                        self.showErrorAlert(error)
                                     case .success(let res):
                                         self.localStorage.saveUser(user: res.0, completion: { (error) in
                                             if let error = error {
-                                                print(error)
+                                                self.showErrorAlert(error.localizedDescription)
                                             } else {
-                                                UserDefaults.standard.set(res.token, forKey: "token")
-                                                guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
+                                                guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
                                                 mainTab.selectedIndex = 1
                                                 UIApplication.shared.keyWindow?.rootViewController = mainTab
                                             }
@@ -149,7 +150,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         UIApplication.shared.keyWindow?.rootViewController = loginController
     }
     @IBAction func tryAgainButtonTapped(_ sender: Any) {
-        state = .sendSms
+        state = .sendPhone
     }
     
 }

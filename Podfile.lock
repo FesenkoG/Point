@@ -5,17 +5,21 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (2.1.0)
   - PhoneNumberKit/UIKit (2.1.0):
     - PhoneNumberKit/PhoneNumberKitCore
+  - Starscream (3.0.5)
 
 DEPENDENCIES:
   - PhoneNumberKit (~> 2.1)
+  - Starscream (~> 3.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - PhoneNumberKit
+    - Starscream
 
 SPEC CHECKSUMS:
   PhoneNumberKit: 62003f40ff75315fd3738286558bc365365ac222
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: 27e8411a186b008304656b47025ba5d515279399
+PODFILE CHECKSUM: c8db88d91426d5d31643e0855e21c33a740980c0
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.6.0.beta.1

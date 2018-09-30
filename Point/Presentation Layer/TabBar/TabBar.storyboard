@@ -1087,7 +1087,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="s8v-8r-ljL">
             <objects>
-                <tabBarController storyboardIdentifier="MainTab" id="SIk-kh-XVR" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBar" id="SIk-kh-XVR" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="zvE-GD-b0Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1285,7 +1285,7 @@
         <!--Conversation View Controller-->
         <scene sceneID="KAx-UE-ECS">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="X69-ht-Q49" customClass="ConversationViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConversationViewController" hidesBottomBarWhenPushed="YES" id="X69-ht-Q49" customClass="ConversationViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2ph-Ey-wnZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1556,8 +1556,10 @@
                         <viewLayoutGuide key="safeArea" id="egx-oS-rM1"/>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="4hI-F7-WDu" id="b3K-c4-HNc"/>
                         <outlet property="messageTextView" destination="9EA-eM-7Sm" id="2ag-Zv-LO5"/>
                         <outlet property="nameLabel" destination="5JL-tH-lH0" id="Dyz-RL-J3J"/>
+                        <outlet property="tableView" destination="K1i-fD-fbK" id="Teg-9t-AyX"/>
                         <outlet property="titleLabel" destination="5JL-tH-lH0" id="fWD-zW-r10"/>
                     </connections>
                 </viewController>

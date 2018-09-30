@@ -6,7 +6,7 @@
 //  Copyright © 2018 Георгий Фесенко. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct ChatsModel: Decodable {
     let chats: [Chat]
@@ -14,9 +14,9 @@ struct ChatsModel: Decodable {
 
 struct Chat: Decodable {
     let chatId: String
-    let chatmade: String
+    let chatmade: ChatMade
     let initDate: String
-    let messages: [Message]
+    var messages: [Message]
 }
 
 struct Message: Decodable {
@@ -25,4 +25,10 @@ struct Message: Decodable {
     let senderId: String
     let text: String
     let date: String
+}
+
+struct ChatMade: Decodable {
+    let nick: String
+    let id: String
+    let photo: String
 }

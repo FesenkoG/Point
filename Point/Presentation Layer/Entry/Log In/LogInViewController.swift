@@ -43,6 +43,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                 nextButton.setTitle("Go!", for: .normal)
                 tryAgainButton.isHidden = false
                 phoneNumberCodeTextField.text = ""
+                phoneNumberCodeTextField.isPartialFormatterEnabled = false
                 phoneNumberCodeTextField.placeholder = "Verification code"
                 errorLabel.isHidden = true
             }
@@ -94,7 +95,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                             print(error)
                         } else {
                             UserDefaults.standard.set(res.token, forKey: "token")
-                            guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTab") as? UITabBarController else { return }
+                            guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
                             mainTab.selectedIndex = 1
                             UIApplication.shared.keyWindow?.rootViewController = mainTab
                         }

@@ -19,3 +19,12 @@ extension UIImageView {
         self.layer.add(rotateAnimation, forKey: nil)
     }
 }
+
+extension UIViewController {
+    func showErrorAlert(_ message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .actionSheet)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(ok)
+        self.present(alertController, animated: true, completion: nil)
+    }
+}

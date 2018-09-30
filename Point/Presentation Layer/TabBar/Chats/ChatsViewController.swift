@@ -16,7 +16,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var chats: [Chat] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        chats = [Chat(chatId: "12", chatmade: "Gleb", initDate: "21-22-23", messages: [Message(id: "23", chatId: "21", senderId: "23", text: "Hello, glyab!Lalalalalalalalallaasdasdaskdl;sahf;osdhgoahgiuhefiguhdfisuhvidsfuhviudhsfivudfiluvidfunvidfunvidusnvidusfnivdunfsivdunfsivudnsfivdufnvidusnfvisdufnvidsufnvidfsunvidfsunvidsufnviudsfunvidsfunvidsufnviodsunviodsunviosdufnvidsounviopdsunfivpdsunfovdisfopigfopaigopdfihgo;sdfh;sdfkhgl;afkjgpoeajig[ieprhjgo;dfigo;ishopierhgo;dfingoeirhg'fdgo[ierhiqg'fidghoeihrg'afidhgo;adfgi;odfahgp'sdfiho;iafdgp'idahfgo'iafdjgh'ioafhgp'erh[oirqehioytoirewhg;dlfkng/lkadsng", date: "21.10.2018"), Message(id: "2", chatId: "2", senderId: "2", text: "Hello!", date: "22-21")])]
         noMessagesView.isHidden = chats.count > 0
         tableView.isHidden = !noMessagesView.isHidden
         

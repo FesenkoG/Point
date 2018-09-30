@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Starscream
 
 class PointViewController: UIViewController {
     
@@ -15,34 +16,28 @@ class PointViewController: UIViewController {
     @IBOutlet weak var pointButton: UIButton!
     @IBOutlet weak var helperTextLabel: UILabel!
     
+    var socket: WebSocket!
     var animate: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+        socket = WebSocket(url: URL(string: "ws://192.168.1.246:80/search?token=\(token)&x=1&y=1")!)
         waitCircle.rotate360Degrees()
         pointButton.layer.cornerRadius = pointButton.bounds.height / 2
         pointButton.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
-        configureTabBar()
     }
     
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
         helperTextLabel.isHidden = !helperTextLabel.isHidden
+        socket.delegate = self
+        socket.connect()
         animateButton(sender: sender, animate: animate, withInterval: 2.5)
         
         //let matchVC = MatchViewController()
         //matchVC.modalPresentationStyle = .custom
         //present(matchVC, animated: true, completion: nil)
-    }
-    
-    //TODO: - Move this to AppDelegate
-    private func configureTabBar() {
-        guard let tabBar = tabBarController?.tabBar else { return }
-        tabBar.shadowImage = UIImage()
-        tabBar.backgroundImage = UIImage()
-        tabBarController?.viewControllers?.forEach({ (controller) in
-            controller.tabBarItem.setImageInsets()
-        })
     }
     
     private func animateButton(sender: UIButton, animate: Bool, withInterval interval: Double) {

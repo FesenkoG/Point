@@ -25,8 +25,19 @@ class RequestSender: IRequestSender {
                 }
                 return
             }
-            
-            guard let data = data, let parsedModel: Parser.Model = config.parser.parse(data: data) else {
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completionHandler(Result.error("There is no data in the responce"))
+                }
+                return
+            }
+            if let error = parseStatus(data: data) {
+                DispatchQueue.main.async {
+                    completionHandler(Result.error(error))
+                }
+                return
+            }
+            guard let parsedModel: Parser.Model = config.parser.parse(data: data) else {
                 DispatchQueue.main.async {
                     completionHandler(Result.error("data can't be parsed"))
                 }
@@ -39,4 +50,20 @@ class RequestSender: IRequestSender {
         
         task.resume()
     }
+}
+
+private func parseStatus(data: Data) -> String? {
+    guard let jsonOptional = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let json = jsonOptional else {
+        return nil
+    }
+    guard let statusOne = json["status"] as? Bool,
+            let messageOne = json["message"] as? String,
+    let payload = json["payload"] as? [String: Any],
+    let statusTwo = payload["status"] as? Bool,
+        let messageTwo = payload["message"] as? String else {
+            return nil
+    }
+    if !statusOne { return messageOne }
+    if !statusTwo { return messageTwo }
+    return nil
 }
