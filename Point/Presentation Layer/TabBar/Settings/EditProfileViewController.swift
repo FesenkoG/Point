@@ -62,13 +62,13 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     //TODO: - Animation
     @IBAction func genderMaleButtonWasTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
-        //editedProfileModel.myGender = "1"
+        editedProfileModel.myGender = "1"
         
     }
     
     @IBAction func genderFemaleButtonWasTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
-        //editedProfileModel.myGender = "0"
+        editedProfileModel.myGender = "0"
     }
     
     //Preferences

@@ -9,7 +9,8 @@
 import Foundation
 
 struct NewUserModel: Codable {
-    var telephone: String = ""
+    var phone: String = ""
+    var sms: String = ""
     var nickname: String = ""
     var myAge: String = ""
     var myGender: String = ""

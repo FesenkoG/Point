@@ -14,10 +14,6 @@ struct RequestFactory {
             return RequestConfig(request: SendPhoneRequest(phoneNumber: phone, type: .registration), parser: BlankResponceParser())
         }
         
-        static func getSubmitSmsConfig(phone: String, sms: String) -> RequestConfig<BlankResponceParser> {
-            return RequestConfig(request: SubmitSmsRequest(phoneNumber: phone, sms: sms, type: .registration), parser: BlankResponceParser())
-        }
-        
         static func getCreateAccountConfig(user: NewUserModel) -> RequestConfig<UserCreationParser> {
             return RequestConfig(request: CreateAccountRequest(userData: user), parser: UserCreationParser())
         }

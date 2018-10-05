@@ -21,7 +21,6 @@
 		0089E68F211B2DF40037AF60 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E68E211B2DF40037AF60 /* EditProfileViewController.swift */; };
 		00B17CCE2114A7A300EFC16C /* SendPhoneRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CCD2114A7A300EFC16C /* SendPhoneRequest.swift */; };
 		00B17CD02114A7CB00EFC16C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CCF2114A7CB00EFC16C /* Constants.swift */; };
-		00B17CD22114AA3B00EFC16C /* SubmitSmsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD12114AA3B00EFC16C /* SubmitSmsRequest.swift */; };
 		00B17CD42114AB9700EFC16C /* CheckTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD32114AB9700EFC16C /* CheckTokenRequest.swift */; };
 		00B17CD82114ACB300EFC16C /* BlankResponceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD72114ACB300EFC16C /* BlankResponceParser.swift */; };
 		00F0B95F21358E2C00AC3013 /* OutgoingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B95E21358E2C00AC3013 /* OutgoingCell.swift */; };
@@ -76,6 +75,7 @@
 		B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC1C2157BCDF0035BF94 /* Extensions.swift */; };
 		B2495E12215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2495E11215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift */; };
 		B2495E15215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2495E14215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift */; };
+		B2D43F442167B77600A5A5D1 /* SubmitSmsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D43F432167B77600A5A5D1 /* SubmitSmsRequest.swift */; };
 		B2E668CC214E74B400C3CC2D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E668CB214E74B400C3CC2D /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +96,6 @@
 		0089E68E211B2DF40037AF60 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		00B17CCD2114A7A300EFC16C /* SendPhoneRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPhoneRequest.swift; sourceTree = "<group>"; };
 		00B17CCF2114A7CB00EFC16C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		00B17CD12114AA3B00EFC16C /* SubmitSmsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSmsRequest.swift; sourceTree = "<group>"; };
 		00B17CD32114AB9700EFC16C /* CheckTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTokenRequest.swift; sourceTree = "<group>"; };
 		00B17CD72114ACB300EFC16C /* BlankResponceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankResponceParser.swift; sourceTree = "<group>"; };
 		00F0B95E21358E2C00AC3013 /* OutgoingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingCell.swift; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		B219DC1C2157BCDF0035BF94 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B2495E11215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointViewController+WebSocketDelegate.swift"; sourceTree = "<group>"; };
 		B2495E14215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchViewController+WebSocketDelegate.swift"; sourceTree = "<group>"; };
+		B2D43F432167B77600A5A5D1 /* SubmitSmsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitSmsRequest.swift; sourceTree = "<group>"; };
 		B2E668CB214E74B400C3CC2D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,8 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				00B17CCD2114A7A300EFC16C /* SendPhoneRequest.swift */,
-				00B17CD12114AA3B00EFC16C /* SubmitSmsRequest.swift */,
 				00B17CD32114AB9700EFC16C /* CheckTokenRequest.swift */,
+				B2D43F432167B77600A5A5D1 /* SubmitSmsRequest.swift */,
 				66766D29211582D2008F5952 /* CreateAccountRequest.swift */,
 			);
 			path = Entry;
@@ -661,6 +661,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66766D2021123F8C008F5952 /* IRequestSender.swift in Sources */,
+				B2D43F442167B77600A5A5D1 /* SubmitSmsRequest.swift in Sources */,
 				666D4744210BA056000E5374 /* SignUpThirdStepViewController.swift in Sources */,
 				66816594212051B000ADF58E /* ConversationViewController.swift in Sources */,
 				66766D1E21123F0C008F5952 /* IRequest.swift in Sources */,
@@ -692,7 +693,6 @@
 				666D4749210CFBD6000E5374 /* NewUserModel.swift in Sources */,
 				666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */,
 				00F0B9792137F79F00AC3013 /* GetBlockedRequest.swift in Sources */,
-				00B17CD22114AA3B00EFC16C /* SubmitSmsRequest.swift in Sources */,
 				0089E687211B093B0037AF60 /* PointViewController.swift in Sources */,
 				00F0B9822137FC7200AC3013 /* SubmitFriendRequest.swift in Sources */,
 				00B17CD02114A7CB00EFC16C /* Constants.swift in Sources */,
