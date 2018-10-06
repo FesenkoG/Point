@@ -143,12 +143,12 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         datePicker.maximumDate = date
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.addTarget(self, action: #selector(dateChangedInDate), for: UIControlEvents.valueChanged)
-        datePickerContainer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        datePickerContainer.backgroundColor = UIColor.white
         datePickerContainer.addSubview(datePicker)
         
         let doneButton = UIButton()
         doneButton.setTitle("Done", for: .normal)
-        doneButton.setTitleColor(#colorLiteral(red: 0.5803921569, green: 0.5725490196, blue: 0.9490196078, alpha: 1), for: .normal)
+        doneButton.setTitleColor(Colors.male.color(), for: .normal)
         doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         doneButton.addTarget(self, action: #selector(dismissPicker), for: .touchUpInside)
         doneButton.frame = CGRect(x: UIScreen.main.bounds.width - 70, y: 5.0, width: 70.0, height: 37.0)
