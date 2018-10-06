@@ -17,6 +17,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var genderOkImages: [UIImageView]!
     @IBOutlet var myGenderButtons: [RoundedButton]!
     @IBOutlet weak var dateOfBirthButton: UIButton!
+    @IBOutlet weak var userImageView: CircleImage!
     //MARK: Utils
     let helper = Utils()
     
@@ -29,11 +30,13 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var editedImageModel: EditedImageModel!
     let datePickerContainer = UIView()
     let datePicker = UIDatePicker()
+    private lazy var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         initialRetrieving()
+        setupGestureRecognizers()
     }
     
     
@@ -60,6 +63,32 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     //TODO: - Animation
+    @objc func didTapPhoto() {
+        imagePicker.delegate = self
+        let changeUserImage = UIAlertController(title: "Выбрать фотографию", message: "Как бы вы хотели выбрать фотографию для своего профиля?", preferredStyle: .actionSheet)
+        let galleryAction = UIAlertAction(title: "Взять из галереи", style: .default) { (buttonTapped) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                self.imagePicker.allowsEditing = false
+                self.imagePicker.sourceType = .photoLibrary
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+            
+        }
+        
+        let photoAction = UIAlertAction(title: "Сделать фото", style: .default) { (buttonTapped) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.imagePicker.allowsEditing = false
+                self.imagePicker.sourceType = .camera
+                self.imagePicker.cameraCaptureMode = .photo
+                self.imagePicker.modalPresentationStyle = .fullScreen
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+        }
+        
+        changeUserImage.addAction(galleryAction)
+        changeUserImage.addAction(photoAction)
+        present(changeUserImage, animated: true, completion: nil)
+    }
     @IBAction func genderMaleButtonWasTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
         editedProfileModel.myGender = "1"
@@ -154,5 +183,28 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         editedImageModel.image = userInfo.image
         editedImageModel.token = ""
+    }
+    
+    private func initialScreenSetup() {
+        
+    }
+    
+    private func setupGestureRecognizers() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapPhoto))
+        userImageView.addGestureRecognizer(tap)
+        userImageView.isUserInteractionEnabled = true
+    }
+}
+
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        userImageView.image = image
+        editedImageModel.image = UIImageJPEGRepresentation(image, 1.0)?.base64EncodedString() ?? ""
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }

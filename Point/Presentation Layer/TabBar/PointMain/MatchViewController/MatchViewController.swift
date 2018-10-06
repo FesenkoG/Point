@@ -13,11 +13,25 @@ class MatchViewController: UIViewController {
 
     @IBOutlet weak var clockView: RoundedView!
     
+    @IBOutlet weak var userPhotoImageView: CircleImage!
+    @IBOutlet weak var userNicknameAndAgeLabel: UILabel!
+    @IBOutlet weak var userBioLabel: UILabel!
     // MARK: - Data for controller.
     let userID: String
     let user: UserData
     let socket: WebSocket
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //TODO : - Do it
+        //userPhotoImageView.image = UIImage(data: <#T##Data#>)
+        //TODO : - convert myAge to real age, not date of birth
+        if let imageData = Data(base64Encoded: user.image) {
+            userPhotoImageView.image = UIImage(data: imageData)
+        }
+        userNicknameAndAgeLabel.text = user.nickname + ", " + user.myAge
+        userBioLabel.text = user.myBio
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         runAnimation()
@@ -56,8 +70,8 @@ class MatchViewController: UIViewController {
         
         // create shape layer for that path
         let shapeLayer = CAShapeLayer()
-        shapeLayer.fillColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor
-        shapeLayer.strokeColor = #colorLiteral(red: 0.9882352941, green: 0.5607843137, blue: 0.6666666667, alpha: 1).cgColor
+        shapeLayer.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        shapeLayer.strokeColor = user.myGender == "0" ? Colors.female.color().cgColor : Colors.male.color().cgColor
         shapeLayer.lineWidth = 6
         shapeLayer.path = path.cgPath
         
@@ -89,6 +103,7 @@ class MatchViewController: UIViewController {
     
     @IBAction func noButtonTapped(_ sender: Any) {
         pauseAnimation(layer: clockView.layer)
+        socket.write(string: "false")
         
     }
     @IBAction func yesButtonTapped(_ sender: Any) {
@@ -98,6 +113,7 @@ class MatchViewController: UIViewController {
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        socket.disconnect()
     }
     
 }
