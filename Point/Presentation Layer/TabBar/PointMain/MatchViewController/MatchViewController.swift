@@ -70,7 +70,7 @@ class MatchViewController: UIViewController {
         
         // create shape layer for that path
         let shapeLayer = CAShapeLayer()
-        shapeLayer.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = user.myGender == "0" ? Colors.female.color().cgColor : Colors.male.color().cgColor
         shapeLayer.lineWidth = 6
         shapeLayer.path = path.cgPath

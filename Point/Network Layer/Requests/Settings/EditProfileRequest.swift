@@ -16,7 +16,8 @@ struct EditProfileRequset: IRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: ["payload": newProfile], options: [])
+            
+            request.httpBody = try JSONEncoder().encode(RequestPayload<EditedProfileModel>(payload: newProfile))
         } catch {
             print(error)
         }

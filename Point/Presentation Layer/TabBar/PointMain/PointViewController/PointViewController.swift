@@ -22,8 +22,13 @@ class PointViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let token = UserDefaults.standard.string(forKey: "token") else { return }
-        socket = WebSocket(url: URL(string: "ws://192.168.1.246:80/search?token=\(token)&x=1&y=1")!)
+        socket = WebSocket(url: URL(string: "ws://192.168.1.74/search?token=\(token)&x=1&y=1")!)
         waitCircle.rotate360Degrees()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         pointButton.layer.cornerRadius = pointButton.bounds.height / 2
         pointButton.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
     }

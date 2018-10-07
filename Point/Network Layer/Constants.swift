@@ -8,7 +8,7 @@
 
 import Foundation
 
-let BASE_URL = "http://192.168.1.246"
+let BASE_URL = "http://192.168.1.74"
 
 //MARK: - Registration
 let SEND_PHONE_URL_REGISTRATION = "/registration/checkphone"

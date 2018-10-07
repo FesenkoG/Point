@@ -26,14 +26,17 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     let localStorage: ILocalStorage = LocalDataStorage()
     
     //MARK: - Varisbles
-    var editedProfileModel: EditedProfileModel!
-    var editedImageModel: EditedImageModel!
+    var editedProfileModel = EditedProfileModel()
+    var editedImageModel = EditedImageModel()
     let datePickerContainer = UIView()
     let datePicker = UIDatePicker()
     private lazy var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+        editedProfileModel.token = token
+        editedImageModel.token = token
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         initialRetrieving()
         setupGestureRecognizers()
@@ -44,13 +47,13 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         requestSender.send(config: RequestFactory.SettingsRequests.getEditProfileConfig(newProfile: editedProfileModel)) { (result) in
             switch result {
             case .error(let error):
-                print(error)
+                self.showErrorAlert(error)
             case .success(let result):
                 if result {
                     self.requestSender.send(config: RequestFactory.SettingsRequests.getEditImageConfig(newImage: self.editedImageModel), completionHandler: { (result) in
                         switch result {
                         case .error(let error):
-                            print(error)
+                            self.showErrorAlert(error)
                         case .success(let result):
                             if result {
                                 self.navigationController?.popViewController(animated: true)
@@ -177,12 +180,10 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         editedProfileModel.myGender = userInfo.myGender
         editedProfileModel.nickname = userInfo.nickname
         editedProfileModel.telephone = userInfo.telephoneHash
-        editedProfileModel.token = ""
         editedProfileModel.yourAge = userInfo.yourAge
         editedProfileModel.yourGender = userInfo.yourGender
         
         editedImageModel.image = userInfo.image
-        editedImageModel.token = ""
     }
     
     private func initialScreenSetup() {

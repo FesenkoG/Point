@@ -16,7 +16,7 @@ struct EditImageRequest: IRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: ["payload": newImage], options: [])
+            request.httpBody = try JSONEncoder().encode(RequestPayload<EditedImageModel>(payload: newImage))
         } catch {
             print(error)
         }

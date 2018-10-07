@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EditedProfileModel: Encodable {
+struct EditedProfileModel: Codable {
     var token: String = ""
     var telephone: String = ""
     var nickname: String = ""
