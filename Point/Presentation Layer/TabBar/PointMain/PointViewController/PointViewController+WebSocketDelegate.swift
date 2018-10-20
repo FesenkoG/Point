@@ -15,7 +15,7 @@ extension PointViewController: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print(error)
+        self.showErrorAlert(error?.localizedDescription ?? "Error!")
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

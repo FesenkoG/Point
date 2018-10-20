@@ -35,10 +35,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We need your location to find people nearby</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location to find people nearby</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need a camera to let you take a picture</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>TabBar</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

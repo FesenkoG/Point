@@ -12,6 +12,7 @@ import CoreData
 protocol ILocalStorage {
     func saveUser(user: UserData, completion: @escaping (Error?) -> Void)
     func getUserInfo() -> UserData?
+    func getUserToken() -> String?
 }
 
 class LocalDataStorage: ILocalStorage {
@@ -75,6 +76,11 @@ class LocalDataStorage: ILocalStorage {
         }
     }
     
+    func getUserToken() -> String? {
+        return UserDefaults.standard.string(forKey: "token")
+    }
+    
+    //MARK: - Private methods
     private func getUserFetchRequest() -> NSFetchRequest<User> {
         return User.fetchRequest()
     }

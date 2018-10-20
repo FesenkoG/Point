@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -30,6 +31,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var editedImageModel = EditedImageModel()
     let datePickerContainer = UIView()
     let datePicker = UIDatePicker()
+    var chooseImageAlert: UIAlertController!
     private lazy var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -68,7 +70,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     //TODO: - Animation
     @objc func didTapPhoto() {
         imagePicker.delegate = self
-        let changeUserImage = UIAlertController(title: "Выбрать фотографию", message: "Как бы вы хотели выбрать фотографию для своего профиля?", preferredStyle: .actionSheet)
+        chooseImageAlert = UIAlertController(title: "Выбрать фотографию", message: "Как бы вы хотели выбрать фотографию для своего профиля?", preferredStyle: .actionSheet)
         let galleryAction = UIAlertAction(title: "Взять из галереи", style: .default) { (buttonTapped) in
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 self.imagePicker.allowsEditing = false
@@ -88,10 +90,21 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
-        changeUserImage.addAction(galleryAction)
-        changeUserImage.addAction(photoAction)
-        present(changeUserImage, animated: true, completion: nil)
+        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+            DispatchQueue.main.async {
+                if response {
+                    self.chooseImageAlert.addAction(photoAction)
+                }
+                self.chooseImageAlert.addAction(galleryAction)
+                self.present(self.chooseImageAlert, animated: true, completion: {
+                    self.chooseImageAlert.view.superview?.subviews[0].isUserInteractionEnabled = true
+                    self.chooseImageAlert.view.superview?.subviews[0].addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(self.dismissView)))
+                })
+            }
+        }
+        
     }
+    
     @IBAction func genderMaleButtonWasTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
         editedProfileModel.myGender = "1"
@@ -173,6 +186,10 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         datePickerContainer.removeFromSuperview()
     }
     
+    @objc func dismissView() {
+        chooseImageAlert.dismiss(animated: true, completion: nil)
+    }
+    
     //MARK: - Helper functions
     private func initialRetrieving() {
         guard let userInfo = self.localStorage.getUserInfo() else { return }
@@ -201,11 +218,13 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         userImageView.image = image
+        //TODO: - Bullshit
+        guard let data = UIImageJPEGRepresentation(image, 1.0) else { return }
         editedImageModel.image = UIImageJPEGRepresentation(image, 1.0)?.base64EncodedString() ?? ""
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -17,18 +17,19 @@ class PointViewController: UIViewController {
     @IBOutlet weak var helperTextLabel: UILabel!
     
     var socket: WebSocket!
+    var locationService: ILocationService = LocationService()
+    let localStorage: ILocalStorage = LocalDataStorage()
     var animate: Bool = false
+    var currentLocation: Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
-        socket = WebSocket(url: URL(string: "ws://192.168.1.74/search?token=\(token)&x=1&y=1")!)
         waitCircle.rotate360Degrees()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         pointButton.layer.cornerRadius = pointButton.bounds.height / 2
         pointButton.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
     }
@@ -36,8 +37,12 @@ class PointViewController: UIViewController {
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
         helperTextLabel.isHidden = !helperTextLabel.isHidden
-        socket.delegate = self
-        socket.connect()
+        locationService.delegate = self
+        locationService.startUpdatingLocation()
+        
+        // Ask user's permission for location management and then check his answer.
+        // In case of positive - start handling location and open the socket.
+        // Every time user steps 100 meters away from previous location renew the location.
         animateButton(sender: sender, animate: animate, withInterval: 2.5)
         
         //let matchVC = MatchViewController()
@@ -91,6 +96,32 @@ class PointViewController: UIViewController {
         sender.addSubview(view)
         return (view, scaledTransform)
     }
+    
+}
+
+extension PointViewController: LocationServiceDelegate {
+    func didChangeStatus(isAuthorized: Bool) {
+        
+    }
+    
+    func didChangeLocation(_ newLocation: Location) {
+        if currentLocation == nil {
+            currentLocation = newLocation
+            guard let token = localStorage.getUserToken() else { return }
+            guard let url = URL(string: "ws://192.168.1.74/search?token=\(token)&x=\(newLocation.longitude)&y=\(newLocation.latitude)") else { return }
+            socket = WebSocket(url: url)
+            socket.delegate = self
+            socket.connect()
+        } else {
+            locationService.updateUserLocation(latitude: newLocation.latitude, longitude: newLocation.longitude) { (error) in
+                if let error = error {
+                    self.showErrorAlert(error)
+                }
+            }
+        }
+        
+    }
+    
     
 }
 

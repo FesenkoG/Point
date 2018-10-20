@@ -70,6 +70,7 @@
 		66816590211ED81E00ADF58E /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6681658E211ED81E00ADF58E /* MatchViewController.xib */; };
 		66816594212051B000ADF58E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66816593212051B000ADF58E /* ConversationViewController.swift */; };
 		66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C725D421172C5B00F80CFD /* TabBar.storyboard */; };
+		66E23731217A7F9E00CED120 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E23730217A7F9E00CED120 /* LocationService.swift */; };
 		ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */; };
 		B219DC152153D44A0035BF94 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC142153D44A0035BF94 /* GradientView.swift */; };
 		B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC1C2157BCDF0035BF94 /* Extensions.swift */; };
@@ -147,6 +148,7 @@
 		6681658E211ED81E00ADF58E /* MatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
 		66816593212051B000ADF58E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		66C725D421172C5B00F80CFD /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		66E23730217A7F9E00CED120 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.debug.xcconfig"; sourceTree = "<group>"; };
 		B219DC142153D44A0035BF94 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B219DC1C2157BCDF0035BF94 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -191,7 +193,7 @@
 			children = (
 				000B707820F78055005DE14B /* AppDelegate.swift */,
 				666D473E2109049C000E5374 /* Presentation Layer */,
-				00F0B9962138208D00AC3013 /* ServiceLayer */,
+				66E2372F217A7F8900CED120 /* Service Layer */,
 				00F0B9972138209500AC3013 /* CoreLayer */,
 				66766D17211034A3008F5952 /* Network Layer */,
 				000B707F20F78057005DE14B /* Assets.xcassets */,
@@ -365,13 +367,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		00F0B9962138208D00AC3013 /* ServiceLayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ServiceLayer;
-			sourceTree = "<group>";
-		};
 		00F0B9972138209500AC3013 /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +518,14 @@
 				0089E681211B02270037AF60 /* Settings */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		66E2372F217A7F8900CED120 /* Service Layer */ = {
+			isa = PBXGroup;
+			children = (
+				66E23730217A7F9E00CED120 /* LocationService.swift */,
+			);
+			path = "Service Layer";
 			sourceTree = "<group>";
 		};
 		B2495E10215FEA58005B18F2 /* PointViewController */ = {
@@ -682,6 +685,7 @@
 				00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */,
 				B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */,
 				000B707B20F78055005DE14B /* MainViewController.swift in Sources */,
+				66E23731217A7F9E00CED120 /* LocationService.swift in Sources */,
 				00F0B9762137F07700AC3013 /* ChatsModel.swift in Sources */,
 				00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */,
 				00F0B9842137FEA500AC3013 /* GetFriendsRequest.swift in Sources */,
