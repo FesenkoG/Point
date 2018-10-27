@@ -77,13 +77,15 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //TODO: - check for message type
-        if indexPath.row == 0 {
+        let message = chat.messages[indexPath.row]
+        
+        if message.senderId == yourID {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingCell") as? IncomingCell else { return UITableViewCell() }
-            cell.configure(chat.messages[indexPath.row])
+            cell.configure(message)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "OutgoingCell") as? OutgoingCell else { return UITableViewCell() }
-            cell.configure(chat.messages[indexPath.row])
+            cell.configure(message)
             return cell
         }
         
@@ -119,6 +121,8 @@ extension ConversationViewController: WebSocketDelegate {
             let message = try JSONDecoder().decode(Message.self, from: data)
             chat.messages.append(message)
             tableView.reloadData()
+            let indexPathToScroll = IndexPath(row: chat.messages.count, section: 0)
+            tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
         } catch {
             print(error)
         }

@@ -71,6 +71,7 @@
 		66816594212051B000ADF58E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66816593212051B000ADF58E /* ConversationViewController.swift */; };
 		66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66C725D421172C5B00F80CFD /* TabBar.storyboard */; };
 		66E23731217A7F9E00CED120 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E23730217A7F9E00CED120 /* LocationService.swift */; };
+		66FB5C4E2184655B001EB227 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FB5C4D2184655B001EB227 /* SocketService.swift */; };
 		ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */; };
 		B219DC152153D44A0035BF94 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC142153D44A0035BF94 /* GradientView.swift */; };
 		B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC1C2157BCDF0035BF94 /* Extensions.swift */; };
@@ -149,6 +150,7 @@
 		66816593212051B000ADF58E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		66C725D421172C5B00F80CFD /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		66E23730217A7F9E00CED120 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		66FB5C4D2184655B001EB227 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.debug.xcconfig"; sourceTree = "<group>"; };
 		B219DC142153D44A0035BF94 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B219DC1C2157BCDF0035BF94 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				66E23730217A7F9E00CED120 /* LocationService.swift */,
+				66FB5C4D2184655B001EB227 /* SocketService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -701,6 +704,7 @@
 				00F0B9822137FC7200AC3013 /* SubmitFriendRequest.swift in Sources */,
 				00B17CD02114A7CB00EFC16C /* Constants.swift in Sources */,
 				00F0B9872137FF9E00AC3013 /* ChangeLocationRequest.swift in Sources */,
+				66FB5C4E2184655B001EB227 /* SocketService.swift in Sources */,
 				00F0B96321358F5200AC3013 /* ChatCell.swift in Sources */,
 				66766D2A211582D2008F5952 /* CreateAccountRequest.swift in Sources */,
 				666D4746210BA24E000E5374 /* Utils.swift in Sources */,
