@@ -55,7 +55,13 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        
+        socket?.disconnect()
+        if navigationController != nil {
+            navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func emojiButtonTapped(_ sender: Any) {
@@ -96,7 +102,9 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     }
 }
 
+
 extension ConversationViewController: WebSocketDelegate {
+    
     func websocketDidConnect(socket: WebSocketClient) {
         print(socket)
     }

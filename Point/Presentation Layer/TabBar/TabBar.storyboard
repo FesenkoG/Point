@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="POINT" translatesAutoresizingMaskIntoConstraints="NO" id="PaS-TD-Qae">
-                                        <rect key="frame" x="77" y="30" width="221" height="20"/>
+                                        <rect key="frame" x="151" y="30" width="73" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="pMy-aG-Ogz"/>
                                         </constraints>
@@ -108,7 +108,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3ep-w1-Ljq"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Home icon" id="Du5-mt-6VX"/>
+                    <navigationItem key="navigationItem" id="yaY-uC-JkF"/>
                     <connections>
                         <outlet property="buttonView" destination="2w6-Af-X3m" id="AxB-f3-TQE"/>
                         <outlet property="helperTextLabel" destination="OQA-zF-XzH" id="8ho-Fb-6o4"/>
@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TMk-Ec-qf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-223.19999999999999" y="-1168.0659670164919"/>
+            <point key="canvasLocation" x="716" y="-1168.0659670164919"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="UtG-m6-0Y7">
@@ -1101,7 +1101,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="B8R-LG-gmd" kind="relationship" relationship="viewControllers" id="BdP-ym-9M5"/>
-                        <segue destination="dfa-i3-59m" kind="relationship" relationship="viewControllers" id="8kM-jI-LNU"/>
+                        <segue destination="AxW-LQ-ZTH" kind="relationship" relationship="viewControllers" id="8kM-jI-LNU"/>
                         <segue destination="aaa-kW-dZA" kind="relationship" relationship="viewControllers" id="Rft-so-EXk"/>
                     </connections>
                 </tabBarController>
@@ -1612,6 +1612,24 @@
             </objects>
             <point key="canvasLocation" x="-498.39999999999998" y="-188.45577211394306"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oYH-UW-IdG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="AxW-LQ-ZTH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Home icon" id="Du5-mt-6VX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AIB-PD-ufA">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dfa-i3-59m" kind="relationship" relationship="rootViewController" id="AJ4-U1-Hvg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bgo-e1-C4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-223.19999999999999" y="-1168.0659670164919"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackButton" width="25" height="25"/>
@@ -1620,13 +1638,13 @@
         <image name="Ellipse-1" width="186" height="186"/>
         <image name="Home icon" width="47" height="46"/>
         <image name="NoMessages" width="150" height="150"/>
-        <image name="POINT" width="221" height="60"/>
+        <image name="POINT" width="73.666664123535156" height="20"/>
         <image name="Save" width="25" height="25"/>
         <image name="Send icon" width="42" height="39"/>
         <image name="Settings icon" width="32" height="32"/>
-        <image name="Smiles" width="26" height="27"/>
+        <image name="Smiles" width="26.666666030883789" height="27"/>
         <image name="Test" width="170" height="170"/>
-        <image name="background" width="250" height="444"/>
+        <image name="background" width="750" height="1334"/>
         <image name="selectedChatIcon.png" width="16" height="16"/>
         <image name="selectedSettingsIcon.png" width="16" height="16"/>
         <image name="uncheckedOk" width="18" height="14"/>

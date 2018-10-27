@@ -21,6 +21,8 @@ class MatchViewController: UIViewController {
     let user: UserData
     let socket: WebSocket
     
+    weak var pointNavigation: UINavigationController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //TODO : - Do it

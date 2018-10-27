@@ -26,7 +26,8 @@ extension MatchViewController: WebSocketDelegate {
             print("TODO: - Navigate to chat screen")
             guard let chatVC = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as? ConversationViewController else { return }
             chatVC.yourID = userID
-            self.present(chatVC, animated: true, completion: nil)
+            pointNavigation?.pushViewController(chatVC, animated: true)
+            self.dismiss(animated: false, completion: nil)
         case "false", "Flase":
             print("TODO: - Dismiss controller, switch to the next user.")
         default:
