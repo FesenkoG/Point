@@ -30,7 +30,7 @@ extension PointViewController: WebSocketDelegate {
             let dataToDecode = try JSONSerialization.data(withJSONObject: json as Any, options: [])
             let user = try JSONDecoder().decode(UserData.self, from: dataToDecode)
             let matchViewController = MatchViewController(userID: id, user: user, socket: self.socket)
-            matchViewController.navigationController = navigationController
+            matchViewController.pointNavigation = navigationController
             matchViewController.modalPresentationStyle = .custom
             self.present(matchViewController, animated: true, completion: nil)
         } catch {
