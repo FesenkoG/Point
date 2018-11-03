@@ -23,9 +23,10 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageTextView.delegate = self
         chat = Chat(chatId: "lala", chatmade: ChatMade(nick:"hui", id:"",photo:""), initDate: "lala", messages: [])
         guard let token = UserDefaults.standard.string(forKey: "token") else { return }
-        socket = WebSocket(url: URL(string: "ws://192.168.1.74/chat?token=\(token)&yourId=\(yourID ?? "0")")!)
+        socket = WebSocket(url: URL(string: "\(SOCKET_URL)/chat?token=\(token)&yourId=\(yourID ?? "0")")!)
         socket.delegate = self
         socket.connect()
         titleLabel.text = chat.chatmade.nick
@@ -139,4 +140,9 @@ extension ConversationViewController: WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print(String(data: data, encoding: .utf8))
     }
+}
+
+
+extension ConversationViewController: UITextViewDelegate {
+    
 }

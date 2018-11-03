@@ -108,7 +108,7 @@ extension PointViewController: LocationServiceDelegate {
         if currentLocation == nil {
             currentLocation = newLocation
             guard let token = localStorage.getUserToken() else { return }
-            guard let url = URL(string: "ws://192.168.1.74/search?token=\(token)&x=\(newLocation.longitude)&y=\(newLocation.latitude)") else { return }
+            guard let url = URL(string: "\(SOCKET_URL)/search?token=\(token)&x=\(newLocation.longitude)&y=\(newLocation.latitude)") else { return }
             socket = WebSocket(url: url)
             socket.delegate = self
             socket.connect()

@@ -16,6 +16,7 @@ struct EditImageRequest: IRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("gzip", forHTTPHeaderField: "Content-Encoding")
+        
         do {
             request.httpBody = try JSONEncoder().encode(RequestPayload<EditedImageModel>(payload: newImage))
         } catch {

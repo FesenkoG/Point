@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SIk-kh-XVR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SIk-kh-XVR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,7 +54,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on point to share your location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQA-zF-XzH">
-                                <rect key="frame" x="95.5" y="150.5" width="184" height="63"/>
+                                <rect key="frame" x="95.5" y="78.5" width="184" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="MRu-Fv-CW5"/>
                                     <constraint firstAttribute="width" constant="184" id="YQq-S9-22O"/>
@@ -64,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2w6-Af-X3m">
-                                <rect key="frame" x="40" y="233.5" width="295" height="295"/>
+                                <rect key="frame" x="40" y="161.5" width="295" height="295"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCY-uf-D8P">
                                         <rect key="frame" x="30" y="30" width="235" height="235"/>
@@ -92,6 +92,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2w6-Af-X3m" firstAttribute="centerY" secondItem="io6-Zh-s5M" secondAttribute="centerY" id="18F-id-wBW"/>
                             <constraint firstItem="g2F-zm-Tia" firstAttribute="leading" secondItem="3ep-w1-Ljq" secondAttribute="leading" id="4aw-sJ-Mov"/>
                             <constraint firstAttribute="bottom" secondItem="zaP-Ia-3Rr" secondAttribute="bottom" id="5WC-kY-D0k"/>
                             <constraint firstItem="zaP-Ia-3Rr" firstAttribute="top" secondItem="io6-Zh-s5M" secondAttribute="top" id="6Te-g3-vZF"/>
@@ -104,7 +105,6 @@
                             <constraint firstItem="OQA-zF-XzH" firstAttribute="centerX" secondItem="io6-Zh-s5M" secondAttribute="centerX" id="guO-nn-Kyb"/>
                             <constraint firstItem="g2F-zm-Tia" firstAttribute="top" secondItem="io6-Zh-s5M" secondAttribute="top" id="hpx-DQ-B7L"/>
                             <constraint firstItem="2w6-Af-X3m" firstAttribute="leading" secondItem="3ep-w1-Ljq" secondAttribute="leading" constant="40" id="lLE-DV-pjE"/>
-                            <constraint firstItem="OQA-zF-XzH" firstAttribute="top" secondItem="g2F-zm-Tia" secondAttribute="bottom" constant="84.5" id="r9x-UF-M3X"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3ep-w1-Ljq"/>
                     </view>
