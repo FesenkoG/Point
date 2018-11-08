@@ -12,6 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private let localStorage: ILocalStorage = LocalDataStorage()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -19,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().shadowRadius = 7
         UITabBar.appearance().shadowColor = UIColor.black
         UITabBar.appearance().shadowOpacity = 0.07
-        if let token = UserDefaults.standard.string(forKey: "token") {
+        if let token = localStorage.getUserToken() {
             let requestSender: IRequestSender = RequestSender()
             requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig(token: token)) { (result) in
                 switch result {

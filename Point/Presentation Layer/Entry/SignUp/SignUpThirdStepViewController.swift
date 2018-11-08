@@ -112,7 +112,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 case .error(let error):
                     self.showErrorAlert(error)
                 case .success(let res):
-                    UserDefaults.standard.set(res, forKey: "token")
+                    self.localStorage.saveUserToken(res)
                     self.requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig(token: res), completionHandler: { (result) in
                         switch result {
                         case .error(let error):

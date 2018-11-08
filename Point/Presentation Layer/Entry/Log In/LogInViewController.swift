@@ -94,7 +94,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                         if let error = error {
                             print(error)
                         } else {
-                            UserDefaults.standard.set(res.token, forKey: "token")
+                            self.localStorage.saveUserToken(res.token)
                             guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
                             mainTab.selectedIndex = 1
                             UIApplication.shared.keyWindow?.rootViewController = mainTab

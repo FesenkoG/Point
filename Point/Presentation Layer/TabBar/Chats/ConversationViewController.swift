@@ -21,11 +21,13 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     var yourID: String!
     var socket: WebSocket!
     
+    private let localStorage: ILocalStorage = LocalDataStorage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTextView.delegate = self
         chat = Chat(chatId: "lala", chatmade: ChatMade(nick:"hui", id:"",photo:""), initDate: "lala", messages: [])
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+        guard let token = localStorage.getUserToken() else { return }
         socket = WebSocket(url: URL(string: "\(SOCKET_URL)/chat?token=\(token)&yourId=\(yourID ?? "0")")!)
         socket.delegate = self
         socket.connect()

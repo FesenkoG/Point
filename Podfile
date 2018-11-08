@@ -6,5 +6,6 @@ target 'Point' do
   use_frameworks!
   pod 'PhoneNumberKit', '~> 2.1'
   pod 'Starscream', '~> 3.0.2'
+  pod 'KeychainSwift', '~> 13.0'
 
 end

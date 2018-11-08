@@ -8,14 +8,18 @@
 
 import Foundation
 import CoreData
+import KeychainSwift
 
 protocol ILocalStorage {
     func saveUser(user: UserData, completion: @escaping (Error?) -> Void)
     func getUserInfo() -> UserData?
     func getUserToken() -> String?
+    func saveUserToken(_ token: String)
 }
 
 class LocalDataStorage: ILocalStorage {
+    
+    private let keychain = KeychainSwift()
     
     lazy var container: NSPersistentContainer = NSPersistentContainer(name: "CoreDataModel")
     private lazy var mainContext = self.container.viewContext
@@ -77,7 +81,11 @@ class LocalDataStorage: ILocalStorage {
     }
     
     func getUserToken() -> String? {
-        return UserDefaults.standard.string(forKey: "token")
+        return keychain.get("token")
+    }
+    
+    func saveUserToken(_ token: String) {
+        keychain.set(token, forKey: "token")
     }
     
     //MARK: - Private methods

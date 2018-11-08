@@ -1,25 +1,29 @@
 PODS:
-  - PhoneNumberKit (2.1.0):
-    - PhoneNumberKit/PhoneNumberKitCore (= 2.1.0)
-    - PhoneNumberKit/UIKit (= 2.1.0)
-  - PhoneNumberKit/PhoneNumberKitCore (2.1.0)
-  - PhoneNumberKit/UIKit (2.1.0):
+  - KeychainSwift (13.0.0)
+  - PhoneNumberKit (2.5.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 2.5.0)
+    - PhoneNumberKit/UIKit (= 2.5.0)
+  - PhoneNumberKit/PhoneNumberKitCore (2.5.0)
+  - PhoneNumberKit/UIKit (2.5.0):
     - PhoneNumberKit/PhoneNumberKitCore
-  - Starscream (3.0.5)
+  - Starscream (3.0.6)
 
 DEPENDENCIES:
+  - KeychainSwift (~> 13.0)
   - PhoneNumberKit (~> 2.1)
   - Starscream (~> 3.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - KeychainSwift
     - PhoneNumberKit
     - Starscream
 
 SPEC CHECKSUMS:
-  PhoneNumberKit: 62003f40ff75315fd3738286558bc365365ac222
-  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
+  PhoneNumberKit: 32a1cd1e0aa9e950feb01886a22fd7386b8cf903
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: c8db88d91426d5d31643e0855e21c33a740980c0
+PODFILE CHECKSUM: 1122b88692a5f39f06a32a888e58310a52b2d16b
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.5.2

@@ -36,7 +36,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+        guard let token = localStorage.getUserToken() else { return }
         editedProfileModel.token = token
         editedImageModel.token = token
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
