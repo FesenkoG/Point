@@ -98,7 +98,7 @@ class LocalDataStorage: ILocalStorage {
         currentUserData.drink = user.drink
         currentUserData.eat = user.eat
         currentUserData.film = user.film
-        currentUserData.image = user.image
+        //currentUserData.image = user.image
         currentUserData.myAge = user.myAge
         currentUserData.myBio = user.myBio
         currentUserData.myGender = user.myGender
@@ -111,7 +111,7 @@ class LocalDataStorage: ILocalStorage {
     }
     
     private func convertToNaviteStruct(contextUser: User) -> UserData {
-        return UserData(telephoneHash: contextUser.telephoneHash ?? "", nickname: contextUser.nickname ?? "", myBio: contextUser.myBio ?? "", myAge: contextUser.myAge ?? "", myGender: contextUser.myGender ?? "", image: contextUser.image ?? "", yourGender: contextUser.yourGender ?? "", yourAge: contextUser.yourAge ?? "", eat: contextUser.eat ?? "", drink: contextUser.drink ?? "", film: contextUser.film ?? "", sport: contextUser.sport ?? "", date: contextUser.date ?? "", walk: contextUser.walk ?? "")
+        return UserData(telephoneHash: contextUser.telephoneHash ?? "", nickname: contextUser.nickname ?? "", myBio: contextUser.myBio ?? "", myAge: contextUser.myAge ?? "", myGender: contextUser.myGender ?? "", yourGender: contextUser.yourGender ?? "", yourAge: contextUser.yourAge ?? "", eat: contextUser.eat ?? "", drink: contextUser.drink ?? "", film: contextUser.film ?? "", sport: contextUser.sport ?? "", date: contextUser.date ?? "", walk: contextUser.walk ?? "")
     }
     
 }

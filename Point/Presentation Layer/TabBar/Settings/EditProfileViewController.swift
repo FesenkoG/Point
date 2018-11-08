@@ -200,7 +200,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         editedProfileModel.yourAge = userInfo.yourAge
         editedProfileModel.yourGender = userInfo.yourGender
         
-        editedImageModel.image = userInfo.image
+        //editedImageModel.image = userInfo.image
     }
     
     private func initialScreenSetup() {

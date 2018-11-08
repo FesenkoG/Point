@@ -36,6 +36,9 @@ class PointViewController: UIViewController {
     
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
+        if !animate {
+            socket.disconnect()
+        }
         helperTextLabel.isHidden = !helperTextLabel.isHidden
         locationService.delegate = self
         locationService.startUpdatingLocation()

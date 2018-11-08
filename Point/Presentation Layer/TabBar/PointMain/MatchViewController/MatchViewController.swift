@@ -28,9 +28,9 @@ class MatchViewController: UIViewController {
         //TODO : - Do it
         //userPhotoImageView.image = UIImage(data: <#T##Data#>)
         //TODO : - convert myAge to real age, not date of birth
-        if let imageData = Data(base64Encoded: user.image) {
-            userPhotoImageView.image = UIImage(data: imageData)
-        }
+//        if let imageData = Data(base64Encoded: user.image) {
+//            userPhotoImageView.image = UIImage(data: imageData)
+//        }
         userNicknameAndAgeLabel.text = user.nickname + ", " + user.myAge
         userBioLabel.text = user.myBio
     }

@@ -31,7 +31,6 @@ struct UserData: Codable {
     let myBio: String
     let myAge: String
     let myGender: String
-    let image: String
     let yourGender: String
     let yourAge: String
     let eat: String
