@@ -54,7 +54,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on point to share your location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQA-zF-XzH">
-                                <rect key="frame" x="95.5" y="78.5" width="184" height="63"/>
+                                <rect key="frame" x="95.5" y="98.5" width="184" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="MRu-Fv-CW5"/>
                                     <constraint firstAttribute="width" constant="184" id="YQq-S9-22O"/>
@@ -64,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2w6-Af-X3m">
-                                <rect key="frame" x="40" y="161.5" width="295" height="295"/>
+                                <rect key="frame" x="40" y="181.5" width="295" height="295"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCY-uf-D8P">
                                         <rect key="frame" x="30" y="30" width="235" height="235"/>
@@ -92,12 +92,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2w6-Af-X3m" firstAttribute="centerY" secondItem="io6-Zh-s5M" secondAttribute="centerY" id="18F-id-wBW"/>
+                            <constraint firstItem="2w6-Af-X3m" firstAttribute="centerY" secondItem="io6-Zh-s5M" secondAttribute="centerY" constant="20" id="18F-id-wBW"/>
                             <constraint firstItem="g2F-zm-Tia" firstAttribute="leading" secondItem="3ep-w1-Ljq" secondAttribute="leading" id="4aw-sJ-Mov"/>
                             <constraint firstAttribute="bottom" secondItem="zaP-Ia-3Rr" secondAttribute="bottom" id="5WC-kY-D0k"/>
                             <constraint firstItem="zaP-Ia-3Rr" firstAttribute="top" secondItem="io6-Zh-s5M" secondAttribute="top" id="6Te-g3-vZF"/>
                             <constraint firstItem="2w6-Af-X3m" firstAttribute="centerX" secondItem="io6-Zh-s5M" secondAttribute="centerX" id="6mi-CM-1pB"/>
                             <constraint firstItem="3ep-w1-Ljq" firstAttribute="trailing" secondItem="2w6-Af-X3m" secondAttribute="trailing" constant="40" id="DIP-nI-5CM"/>
+                            <constraint firstItem="OQA-zF-XzH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="g2F-zm-Tia" secondAttribute="bottom" constant="20" id="LKL-qn-eVe"/>
                             <constraint firstItem="2w6-Af-X3m" firstAttribute="top" secondItem="OQA-zF-XzH" secondAttribute="bottom" constant="20" id="S19-RV-BB4"/>
                             <constraint firstItem="zaP-Ia-3Rr" firstAttribute="leading" secondItem="3ep-w1-Ljq" secondAttribute="leading" id="Ur9-Yb-mMN"/>
                             <constraint firstItem="zaP-Ia-3Rr" firstAttribute="trailing" secondItem="3ep-w1-Ljq" secondAttribute="trailing" id="WOF-vM-xhQ"/>

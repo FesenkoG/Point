@@ -29,6 +29,7 @@ extension MatchViewController: WebSocketDelegate {
             pointNavigation?.pushViewController(chatVC, animated: true)
             self.dismiss(animated: false, completion: nil)
         case "false", "Flase":
+            self.dismiss(animated: false, completion: nil)
             print("TODO: - Dismiss controller, switch to the next user.")
         default:
             print("well, thats not good.")
@@ -38,6 +39,4 @@ extension MatchViewController: WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print(data)
     }
-    
-    
 }

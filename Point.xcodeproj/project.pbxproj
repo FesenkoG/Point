@@ -46,6 +46,10 @@
 		00F0B9942138134C00AC3013 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9932138134C00AC3013 /* Friend.swift */; };
 		00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B998213820AB00AC3013 /* LocalDataStorage.swift */; };
 		00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */; };
+		660D7A1B2195E7D200A46297 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660D7A192195E7D100A46297 /* Fabric.framework */; };
+		660D7A1C2195E7D200A46297 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660D7A1A2195E7D100A46297 /* Crashlytics.framework */; };
+		660D7A202195EBD400A46297 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D7A1E2195EBD400A46297 /* LaunchViewController.swift */; };
+		660D7A212195EBD400A46297 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 660D7A1F2195EBD400A46297 /* LaunchViewController.xib */; };
 		666D47312108E32F000E5374 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47302108E32F000E5374 /* RoundedButton.swift */; };
 		666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */; };
 		666D47362108EB00000E5374 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47352108EB00000E5374 /* LogInViewController.swift */; };
@@ -125,6 +129,10 @@
 		00F0B99B2138224500AC3013 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Point.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494E2C55FE84C5DA6A1DF2C6 /* Pods-Point.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.release.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.release.xcconfig"; sourceTree = "<group>"; };
+		660D7A192195E7D100A46297 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		660D7A1A2195E7D100A46297 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		660D7A1E2195EBD400A46297 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		660D7A1F2195EBD400A46297 /* LaunchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
 		666D47302108E32F000E5374 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		666D47352108EB00000E5374 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +174,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */,
+				660D7A1C2195E7D200A46297 /* Crashlytics.framework in Frameworks */,
+				660D7A1B2195E7D200A46297 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,12 +204,15 @@
 			isa = PBXGroup;
 			children = (
 				000B707820F78055005DE14B /* AppDelegate.swift */,
+				660D7A1A2195E7D100A46297 /* Crashlytics.framework */,
+				660D7A192195E7D100A46297 /* Fabric.framework */,
 				666D473E2109049C000E5374 /* Presentation Layer */,
 				66E2372F217A7F8900CED120 /* Service Layer */,
 				00F0B9972138209500AC3013 /* CoreLayer */,
 				66766D17211034A3008F5952 /* Network Layer */,
 				000B707F20F78057005DE14B /* Assets.xcassets */,
 				000B708120F78057005DE14B /* LaunchScreen.storyboard */,
+				660D7A1D2195EBB700A46297 /* LaunchViewController */,
 				000B708420F78057005DE14B /* Info.plist */,
 			);
 			path = Point;
@@ -395,6 +408,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		660D7A1D2195EBB700A46297 /* LaunchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				660D7A1E2195EBD400A46297 /* LaunchViewController.swift */,
+				660D7A1F2195EBD400A46297 /* LaunchViewController.xib */,
+			);
+			path = LaunchViewController;
+			sourceTree = "<group>";
+		};
 		666D472F2108E310000E5374 /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,6 +584,7 @@
 				000B707220F78055005DE14B /* Frameworks */,
 				000B707320F78055005DE14B /* Resources */,
 				11CFB44D4518A979DDB9D2C0 /* [CP] Embed Pods Frameworks */,
+				660D7A102195E29C00A46297 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -613,6 +636,7 @@
 				66C725D521172C5B00F80CFD /* TabBar.storyboard in Resources */,
 				000B708320F78057005DE14B /* LaunchScreen.storyboard in Resources */,
 				66816590211ED81E00ADF58E /* MatchViewController.xib in Resources */,
+				660D7A212195EBD400A46297 /* LaunchViewController.xib in Resources */,
 				000B708020F78057005DE14B /* Assets.xcassets in Resources */,
 				000B707E20F78055005DE14B /* Main.storyboard in Resources */,
 			);
@@ -642,6 +666,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Point/Pods-Point-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		660D7A102195E29C00A46297 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 46205f2381d650375d38e89c9ec1075ce097e5e3 3dd4bb1e6f42473c3806ae9029bff77fb82e1289c2f6ffc75c771e8981e53934\n";
 		};
 		E9E619F50AF932B443713783 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -693,6 +734,7 @@
 				66E23731217A7F9E00CED120 /* LocationService.swift in Sources */,
 				00F0B9762137F07700AC3013 /* ChatsModel.swift in Sources */,
 				00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */,
+				660D7A202195EBD400A46297 /* LaunchViewController.swift in Sources */,
 				00F0B9842137FEA500AC3013 /* GetFriendsRequest.swift in Sources */,
 				00B17CD82114ACB300EFC16C /* BlankResponceParser.swift in Sources */,
 				666D47312108E32F000E5374 /* RoundedButton.swift in Sources */,
@@ -793,7 +835,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -880,12 +922,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Point/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pointteam.Point;
+				PRODUCT_BUNDLE_IDENTIFIER = me.point.Point;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -899,12 +945,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Point/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pointteam.Point;
+				PRODUCT_BUNDLE_IDENTIFIER = me.point.Point;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
