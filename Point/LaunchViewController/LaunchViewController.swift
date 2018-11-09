@@ -89,8 +89,7 @@ class LaunchViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             newView.alpha = 1.0
         }) { (_) in
-            newView.removeFromSuperview()
-            UIApplication.shared.keyWindow?.rootViewController = vc
+            self.present(vc, animated: false, completion: nil)
         }
     }
     
