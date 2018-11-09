@@ -12,14 +12,17 @@ import Starscream
 class MatchViewController: UIViewController {
 
     @IBOutlet weak var clockView: RoundedView!
-    
     @IBOutlet weak var userPhotoImageView: CircleImage!
     @IBOutlet weak var userNicknameAndAgeLabel: UILabel!
+    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var userBioLabel: UILabel!
+    
+    
     // MARK: - Data for controller.
     let userID: String
-    let user: UserData
-    let socket: WebSocket
+    private let user: UserData
+    private let socket: WebSocket
     
     weak var pointNavigation: UINavigationController?
     
@@ -103,19 +106,36 @@ class MatchViewController: UIViewController {
         layer.beginTime = timeSincePause
     }
     
-    @IBAction func noButtonTapped(_ sender: Any) {
+    @IBAction func noButtonTapped(_ sender: UIButton) {
+        sender.isUserInteractionEnabled = false
         pauseAnimation(layer: clockView.layer)
+        animateHide(yesButton)
         socket.write(string: "false")
         
     }
-    @IBAction func yesButtonTapped(_ sender: Any) {
+    @IBAction func yesButtonTapped(_ sender: UIButton) {
+        sender.isUserInteractionEnabled = false
         pauseAnimation(layer: clockView.layer)
+        animateHide(noButton)
         socket.write(string: "true")
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
         socket.disconnect()
+    }
+    
+    
+    // MARK: - Private methods
+    
+    func animateHide(_ view: UIView) {
+        UIView.animate(withDuration: 0.5, animations: {
+            view.alpha = 0.0
+        }) { (_) in
+            UIView.animate(withDuration: 0.5, animations: {
+                view.isHidden = true
+            })
+        }
     }
     
 }
