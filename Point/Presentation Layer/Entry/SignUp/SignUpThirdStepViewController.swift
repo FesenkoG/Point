@@ -11,25 +11,32 @@ import PhoneNumberKit
 
 class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    //Constraints
+    // MARK: - Constraints
+    
     @IBOutlet weak var leftConstraint: NSLayoutConstraint!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var rightConstraint: NSLayoutConstraint!
     
-    //Outlets
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var privacyPolicyLabel: UILabel!
     @IBOutlet weak var privacyPolicyButton: UnderlinedButton!
     @IBOutlet weak var checkboxButton: RoundedButton!
     @IBOutlet weak var nextButton: RoundedButton!
     @IBOutlet weak var phoneCodeTextField: PhoneNumberTextField!
     @IBOutlet weak var errorLabel: UILabel!
-    //Variables
+    @IBOutlet weak var tryAgainButton: UIButton!
+    
+    // MARK: - Variables
+    
     var newUser: NewUserModel!
     var state: ScreenState = .sendPhone {
         didSet {
             switch state {
             case .sendPhone:
                 nextButton.isEnabled = true
+                tryAgainButton.isHidden = true
                 nextButton.backgroundColor = Colors.enabledButtonColor.color()
                 privacyPolicyButton.isHidden = true
                 privacyPolicyLabel.isHidden = true
@@ -40,6 +47,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 phoneCodeTextField.isPartialFormatterEnabled = true
             case .sendSms:
                 nextButton.setTitle("Go!", for: .normal)
+                tryAgainButton.isHidden = false
                 nextButton.isEnabled = false
                 nextButton.backgroundColor = Colors.disabledButtonColor.color()
                 checkboxButton.setImage(nil, for: .normal)
@@ -55,18 +63,23 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     }
     var phoneNumber: String!
     
-    //Utils
+    
+    // MARK: - Utils
+    
     let helper = Utils()
     let parser = PhoneNumberKit()
     
-    //Services
+    
+    // MARK: - Services
+    
     let requestSender: IRequestSender = RequestSender()
     let localStorage: ILocalStorage = LocalDataStorage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        state = .sendPhone
         self.hideKeyboardWhenTappedAround()
-       helper.setConstraints(left: leftConstraint, top: topConstraint, right: rightConstraint)
+        helper.setConstraints(left: leftConstraint, top: topConstraint, right: rightConstraint)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     @IBAction func backButtonTapped(_ sender: Any) {

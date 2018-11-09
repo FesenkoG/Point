@@ -53,6 +53,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        state = .sendPhone
         self.hideKeyboardWhenTappedAround()
         helper.setConstraints(left: leftConstraint, top: topConstraint, right: nil)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
