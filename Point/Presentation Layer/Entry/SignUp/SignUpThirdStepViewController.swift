@@ -75,6 +75,9 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     let requestSender: IRequestSender = RequestSender()
     let localStorage: ILocalStorage = LocalDataStorage()
     
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         state = .sendPhone
@@ -82,6 +85,10 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         helper.setConstraints(left: leftConstraint, top: topConstraint, right: rightConstraint)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
+    
+    
+    // MARK: - IBActions
+    
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -137,6 +144,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                                 } else {
                                     guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
                                     mainTab.selectedIndex = 1
+                                    self.configureTabBar(mainTab)
                                     UIApplication.shared.keyWindow?.rootViewController = mainTab
                                 }
                             })
@@ -153,8 +161,21 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         guard let loginController = helper.getLoginViewController() else { return }
         UIApplication.shared.keyWindow?.rootViewController = loginController
     }
+    
     @IBAction func tryAgainButtonTapped(_ sender: Any) {
         state = .sendPhone
+    }
+    
+    
+    // MARK: - Private methods
+    
+    private func configureTabBar(_ tabBarController: UITabBarController) {
+        let tabBar = tabBarController.tabBar
+        tabBar.shadowImage = UIImage()
+        tabBar.backgroundImage = UIImage()
+        tabBarController.viewControllers?.forEach({ (controller) in
+            controller.tabBarItem.setImageInsets()
+        })
     }
     
 }

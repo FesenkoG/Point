@@ -20,6 +20,7 @@ class PointViewController: UIViewController {
     var locationService: ILocationService = LocationService()
     let localStorage: ILocalStorage = LocalDataStorage()
     var animate: Bool = false
+    var isSearching: Bool = false
     var currentLocation: Location?
     
     override func viewDidLoad() {
@@ -108,7 +109,7 @@ extension PointViewController: LocationServiceDelegate {
     }
     
     func didChangeLocation(_ newLocation: Location) {
-        if currentLocation == nil {
+        if !isSearching {
             currentLocation = newLocation
             guard let token = localStorage.getUserToken() else { return }
             guard let url = URL(string: "\(SOCKET_URL)/search?token=\(token)&longitude=\(newLocation.longitude)&latitude=\(newLocation.latitude)") else { return }

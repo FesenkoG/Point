@@ -12,10 +12,12 @@ import Starscream
 extension PointViewController: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print(socket)
+        isSearching = true
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         self.showErrorAlert(error?.localizedDescription ?? "Error!")
+        isSearching = false
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
