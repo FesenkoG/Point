@@ -11,6 +11,9 @@ import AVFoundation
 
 class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet var ageButtons: [RoundedButton]!
     @IBOutlet var genderButtons: [UIButton]!
@@ -19,14 +22,21 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var myGenderButtons: [RoundedButton]!
     @IBOutlet weak var dateOfBirthButton: UIButton!
     @IBOutlet weak var userImageView: CircleImage!
+    
+    
     //MARK: Utils
+    
     let helper = Utils()
     
+    
     //MARK: - Services
-    let requestSender: IRequestSender = RequestSender()
+    
+    private let settingsService: ISettingsService = SettingsService()
     let localStorage: ILocalStorage = LocalDataStorage()
     
-    //MARK: - Varisbles
+    
+    //MARK: - Variables
+    
     var editedProfileModel = EditedProfileModel()
     var editedImageModel = EditedImageModel()
     let datePickerContainer = UIView()
@@ -46,14 +56,22 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     @IBAction func saveButtonWasTapped(_ sender: Any) {
-        requestSender.send(config: RequestFactory.SettingsRequests.getEditProfileConfig(newProfile: editedProfileModel)) { (result) in
+        
+        settingsService
+            .sendEditedProfile(model: editedProfileModel) { (result) in
+                
             switch result {
+                
             case .error(let error):
                 self.showErrorAlert(error)
             case .success(let result):
                 if result {
-                    self.requestSender.send(config: RequestFactory.SettingsRequests.getEditImageConfig(newImage: self.editedImageModel), completionHandler: { (result) in
+                    self.settingsService
+                        .sendEditedImage(model:
+                        self.editedImageModel, completion: { (result) in
+                            
                         switch result {
+                            
                         case .error(let error):
                             self.showErrorAlert(error)
                         case .success(let result):

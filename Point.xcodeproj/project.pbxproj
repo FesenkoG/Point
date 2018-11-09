@@ -50,6 +50,7 @@
 		660D7A1C2195E7D200A46297 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660D7A1A2195E7D100A46297 /* Crashlytics.framework */; };
 		660D7A202195EBD400A46297 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D7A1E2195EBD400A46297 /* LaunchViewController.swift */; };
 		660D7A212195EBD400A46297 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 660D7A1F2195EBD400A46297 /* LaunchViewController.xib */; };
+		660D7A232195FDEC00A46297 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D7A222195FDEC00A46297 /* SettingsService.swift */; };
 		666D47312108E32F000E5374 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47302108E32F000E5374 /* RoundedButton.swift */; };
 		666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */; };
 		666D47362108EB00000E5374 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47352108EB00000E5374 /* LogInViewController.swift */; };
@@ -133,6 +134,7 @@
 		660D7A1A2195E7D100A46297 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		660D7A1E2195EBD400A46297 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		660D7A1F2195EBD400A46297 /* LaunchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
+		660D7A222195FDEC00A46297 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		666D47302108E32F000E5374 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		666D47352108EB00000E5374 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 			children = (
 				66E23730217A7F9E00CED120 /* LocationService.swift */,
 				66FB5C4D2184655B001EB227 /* SocketService.swift */,
+				660D7A222195FDEC00A46297 /* SettingsService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */,
 				B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */,
 				000B707B20F78055005DE14B /* MainViewController.swift in Sources */,
+				660D7A232195FDEC00A46297 /* SettingsService.swift in Sources */,
 				66E23731217A7F9E00CED120 /* LocationService.swift in Sources */,
 				00F0B9762137F07700AC3013 /* ChatsModel.swift in Sources */,
 				00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */,
