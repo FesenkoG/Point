@@ -18,7 +18,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         noMessagesView.isHidden = chats.count > 0
         tableView.isHidden = !noMessagesView.isHidden
-        
     }
     
     

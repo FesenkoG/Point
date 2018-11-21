@@ -39,11 +39,7 @@ class PointViewController: UIViewController {
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
         if !animate {
-//            socket.write(string: "8")
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//                self.socket.disconnect()
-//            }
-//            socket.disconnect(forceTimeout: nil, closeCode: 8)
+            
             socket.disconnect()
             locationService.stopUpdatingLocation()
         } else {
@@ -170,7 +166,10 @@ extension PointViewController: WebSocketDelegate {
             let user = try JSONDecoder().decode(UserData.self, from: dataToDecode)
             let matchViewController = MatchViewController(userID: id, user: user, socket: self.socket)
             matchViewController.pointNavigation = navigationController
-            matchViewController.modalPresentationStyle = .custom
+            
+            matchViewController.modalPresentationStyle = .overCurrentContext
+            matchViewController.modalTransitionStyle = .crossDissolve
+            
             self.present(matchViewController, animated: true, completion: nil)
         } catch {
             print(error)

@@ -9,7 +9,7 @@
 import UIKit
 import Starscream
 
-class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ConversationViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -17,13 +17,23 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    
+    // MARK: - Public properties
+    
     var chat: Chat!
     var yourID: String!
     var socket: WebSocket!
     
+    
+    // MARK: - Private properties
+    
     private let localStorage: ILocalStorage = LocalDataStorage()
     
+    
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         messageTextView.delegate = self
         
@@ -36,12 +46,16 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         setupObservers()
     }
     
+    
+    
     private func setupObservers() {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    @objc func handleKeyboadNotification(notification: NSNotification) {
+    @objc private func handleKeyboadNotification(notification: NSNotification) {
+        
         if let userInfo = notification.userInfo {
             let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
             let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
@@ -58,35 +72,33 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    @IBAction func backButtonTapped(_ sender: Any) {
-        
+    @IBAction private func backButtonTapped(_ sender: Any) {
         socket?.disconnect()
-        if navigationController != nil {
-            navigationController?.popViewController(animated: true)
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
+        navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func emojiButtonTapped(_ sender: Any) {
-        
+    @IBAction private func emojiButtonTapped(_ sender: Any) {
+        // TODO: - ?
     }
     
-    @IBAction func sendMessageButtonTapped(_ sender: Any) {
+    @IBAction private func sendMessageButtonTapped(_ sender: Any) {
         guard let text = messageTextView.text else { return }
         socket.write(string: text)
         let msg = Message(id: "12", chatId: "12", senderId: "heh", text: text, date: "13.10.1997")
         chat.messages.append(msg)
         tableView.reloadData()
     }
+}
+
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
+extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
     
-    //MARK: - Table View Delegate/Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chat.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //TODO: - check for message type
         let message = chat.messages[indexPath.row]
         
         if message.senderId == yourID {
@@ -114,19 +126,11 @@ extension ConversationViewController: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print(error?.localizedDescription)
+        if let error = error {
+            showErrorAlert(error.localizedDescription)
+        }
     }
     
-    /*
-     приходящее сообщение
-     {
-     "id":"10",
-     "chatId":"1",
-     "senderId":"1",
-     "text":"1",
-     "date":"Wednesday, 08-Aug-18 05:32:17 MSK"
-     }
-    */
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         guard let data = text.data(using: .utf8) else { return }
         do {
@@ -136,12 +140,12 @@ extension ConversationViewController: WebSocketDelegate {
             let indexPathToScroll = IndexPath(row: chat.messages.count - 1, section: 0)
             tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
         } catch {
-            print(error)
+            showErrorAlert(error.localizedDescription)
         }
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print(String(data: data, encoding: .utf8))
+        
     }
 }
 
