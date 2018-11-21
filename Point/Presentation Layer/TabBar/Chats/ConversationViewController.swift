@@ -26,9 +26,10 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTextView.delegate = self
-        chat = Chat(chatId: "lala", chatmade: ChatMade(nick:"hui", id:"",photo:""), initDate: "lala", messages: [])
+        
         guard let token = localStorage.getUserToken() else { return }
-        socket = WebSocket(url: URL(string: "\(SOCKET_URL)/chat?token=\(token)&yourId=\(yourID ?? "0")")!)
+        guard let url = URL(string: "\(SOCKET_URL)/chat?token=\(token)&yourId=\(yourID ?? "0")") else { return }
+        socket = WebSocket(url: url)
         socket.delegate = self
         socket.connect()
         titleLabel.text = chat.chatmade.nick
@@ -132,7 +133,7 @@ extension ConversationViewController: WebSocketDelegate {
             let message = try JSONDecoder().decode(Message.self, from: data)
             chat.messages.append(message)
             tableView.reloadData()
-            let indexPathToScroll = IndexPath(row: chat.messages.count, section: 0)
+            let indexPathToScroll = IndexPath(row: chat.messages.count - 1, section: 0)
             tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
         } catch {
             print(error)

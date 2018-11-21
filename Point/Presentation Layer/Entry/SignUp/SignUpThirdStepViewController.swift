@@ -127,6 +127,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         case .sendSms:
             guard let sms = phoneCodeTextField.text, !sms.isEmpty else { return }
             newUser.sms = sms
+            
             self.requestSender.send(config: RequestFactory.RegistrasionRequests.getCreateAccountConfig(user: self.newUser)) { (result) in
                 switch result {
                 case .error(let error):

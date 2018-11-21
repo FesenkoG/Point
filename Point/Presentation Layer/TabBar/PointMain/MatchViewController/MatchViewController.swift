@@ -107,15 +107,16 @@ class MatchViewController: UIViewController {
     }
     
     @IBAction func noButtonTapped(_ sender: UIButton) {
-        sender.isUserInteractionEnabled = false
-        pauseAnimation(layer: clockView.layer)
+        //sender.isUserInteractionEnabled = false
+        //pauseAnimation(layer: clockView.layer)
         animateHide(yesButton)
         socket.write(string: "false")
+        self.dismiss(animated: true, completion: nil)
         
     }
     @IBAction func yesButtonTapped(_ sender: UIButton) {
-        sender.isUserInteractionEnabled = false
-        pauseAnimation(layer: clockView.layer)
+        //sender.isUserInteractionEnabled = false
+        //pauseAnimation(layer: clockView.layer)
         animateHide(noButton)
         socket.write(string: "true")
     }
@@ -145,5 +146,44 @@ extension MatchViewController: CAAnimationDelegate {
         if flag {
             dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+extension MatchViewController: WebSocketDelegate {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print(socket)
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let error = error {
+            showErrorAlert(error.localizedDescription)
+        }
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        let text = String(text.filter { !" \n\t\r".contains($0) })
+        
+        switch text {
+        case "false", "Flase":
+            self.dismiss(animated: false, completion: nil)
+        default:
+            guard let data = text.data(using: .utf8) else { return }
+            do {
+                let chat = try JSONDecoder().decode(Chat.self, from: data)
+                guard let chatVC = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as? ConversationViewController else { return }
+                chatVC.chat = chat
+                chatVC.yourID = userID
+                pointNavigation?.pushViewController(chatVC, animated: true)
+                self.dismiss(animated: false, completion: nil)
+            } catch {
+                showErrorAlert(error.localizedDescription)
+            }
+
+            
+        }
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print(data)
     }
 }

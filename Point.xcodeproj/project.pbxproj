@@ -80,8 +80,6 @@
 		ADF87BB193E3075A6DFBE9EB /* Pods_Point.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */; };
 		B219DC152153D44A0035BF94 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC142153D44A0035BF94 /* GradientView.swift */; };
 		B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DC1C2157BCDF0035BF94 /* Extensions.swift */; };
-		B2495E12215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2495E11215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift */; };
-		B2495E15215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2495E14215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift */; };
 		B2D43F442167B77600A5A5D1 /* SubmitSmsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D43F432167B77600A5A5D1 /* SubmitSmsRequest.swift */; };
 		B2E668CC214E74B400C3CC2D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E668CB214E74B400C3CC2D /* MessageView.swift */; };
 /* End PBXBuildFile section */
@@ -164,8 +162,6 @@
 		A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.debug.xcconfig"; sourceTree = "<group>"; };
 		B219DC142153D44A0035BF94 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B219DC1C2157BCDF0035BF94 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		B2495E11215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointViewController+WebSocketDelegate.swift"; sourceTree = "<group>"; };
-		B2495E14215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchViewController+WebSocketDelegate.swift"; sourceTree = "<group>"; };
 		B2D43F432167B77600A5A5D1 /* SubmitSmsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitSmsRequest.swift; sourceTree = "<group>"; };
 		B2E668CB214E74B400C3CC2D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -560,7 +556,6 @@
 			isa = PBXGroup;
 			children = (
 				0089E686211B093B0037AF60 /* PointViewController.swift */,
-				B2495E11215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift */,
 			);
 			path = PointViewController;
 			sourceTree = "<group>";
@@ -569,7 +564,6 @@
 			isa = PBXGroup;
 			children = (
 				6681658D211ED81E00ADF58E /* MatchViewController.swift */,
-				B2495E14215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift */,
 				6681658E211ED81E00ADF58E /* MatchViewController.xib */,
 			);
 			path = MatchViewController;
@@ -777,9 +771,7 @@
 				66766D2E211594C0008F5952 /* UserDataParser.swift in Sources */,
 				00B17CCE2114A7A300EFC16C /* SendPhoneRequest.swift in Sources */,
 				00B17CD42114AB9700EFC16C /* CheckTokenRequest.swift in Sources */,
-				B2495E12215FEA6F005B18F2 /* PointViewController+WebSocketDelegate.swift in Sources */,
 				666D473D2108FB72000E5374 /* UnderlinedButton.swift in Sources */,
-				B2495E15215FEBFC005B18F2 /* MatchViewController+WebSocketDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -85,6 +85,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    
     //TODO: - Animation
     @objc func didTapPhoto() {
         imagePicker.delegate = self
@@ -194,9 +195,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func dateChangedInDate(sender:UIDatePicker) {
-        //TODO: - DECIDE THE FORMAT AND SAVE IN IT HERE
-        //editedProfileModel.myAge = ""
+    @objc func dateChangedInDate(sender: UIDatePicker) {
+        editedProfileModel.myAge = String(describing: Int(sender.date.timeIntervalSince1970))
         dateOfBirthButton.setTitle(helper.dateFormatter.string(from: sender.date), for: .normal)
     }
 

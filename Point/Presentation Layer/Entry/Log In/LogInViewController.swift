@@ -72,7 +72,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                 requestSender.send(config: RequestFactory.AuthenticationRequest.getSendPhoneConfig(phone: phoneNumber)) { (result) in
                     switch result {
                     case .error(let error):
-                        print(error)
+                        self.showErrorAlert(error)
                     case .success(let res):
                         print(res)
                         if res { self.state = .sendSms }
@@ -80,7 +80,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
                 }
                 
             } catch {
-                print(error)
+                showErrorAlert(error.localizedDescription)
             }
             
         case .sendSms:
@@ -88,7 +88,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
             requestSender.send(config: RequestFactory.AuthenticationRequest.getSubmitSmsConfig(phone: phoneNumber, sms: sms)) { (result) in
                 switch result {
                 case .error(let error):
-                    print(error)
+                    self.showErrorAlert(error)
                     self.errorLabel.isHidden = false
                 case .success(let res):
                     self.localStorage.saveUser(user: res.0, completion: { (error) in

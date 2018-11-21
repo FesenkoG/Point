@@ -22,6 +22,7 @@ class PointViewController: UIViewController {
     var animate: Bool = false
     var isSearching: Bool = false
     var currentLocation: Location?
+    var isConnected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +39,22 @@ class PointViewController: UIViewController {
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
         if !animate {
+//            socket.write(string: "8")
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//                self.socket.disconnect()
+//            }
+//            socket.disconnect(forceTimeout: nil, closeCode: 8)
             socket.disconnect()
+            locationService.stopUpdatingLocation()
+        } else {
+            locationService.delegate = self
+            currentLocation = nil
+            isConnected = false
+            locationService.startUpdatingLocation()
         }
+        
         helperTextLabel.isHidden = !helperTextLabel.isHidden
-        locationService.delegate = self
-        locationService.startUpdatingLocation()
+        
         
         // Ask user's permission for location management and then check his answer.
         // In case of positive - start handling location and open the socket.
@@ -109,17 +121,22 @@ extension PointViewController: LocationServiceDelegate {
     }
     
     func didChangeLocation(_ newLocation: Location) {
-        if !isSearching {
+        if currentLocation == nil {
             currentLocation = newLocation
             guard let token = localStorage.getUserToken() else { return }
             guard let url = URL(string: "\(SOCKET_URL)/search?token=\(token)&longitude=\(newLocation.longitude)&latitude=\(newLocation.latitude)") else { return }
             socket = WebSocket(url: url)
             socket.delegate = self
             socket.connect()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.isConnected = true
+            }
         } else {
-            locationService.updateUserLocation(latitude: newLocation.latitude, longitude: newLocation.longitude) { (error) in
-                if let error = error {
-                    self.showErrorAlert(error)
+            if isConnected {
+                locationService.updateUserLocation(latitude: newLocation.latitude, longitude: newLocation.longitude) { (error) in
+                    if let error = error {
+                        self.showErrorAlert(error)
+                    }
                 }
             }
         }
@@ -128,3 +145,40 @@ extension PointViewController: LocationServiceDelegate {
 }
 
 
+extension PointViewController: WebSocketDelegate {
+    func websocketDidConnect(socket: WebSocketClient) {
+        print(socket)
+        isSearching = true
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let error = error {
+            self.showErrorAlert(error.localizedDescription)
+        }
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print(text)
+        do {
+            guard let data = text.data(using: .utf8) else { return }
+            guard var json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] else { return }
+            guard let id = json["id"] else { return }
+            print(id)
+            json["id"] = nil
+            print(json)
+            let dataToDecode = try JSONSerialization.data(withJSONObject: json as Any, options: [])
+            let user = try JSONDecoder().decode(UserData.self, from: dataToDecode)
+            let matchViewController = MatchViewController(userID: id, user: user, socket: self.socket)
+            matchViewController.pointNavigation = navigationController
+            matchViewController.modalPresentationStyle = .custom
+            self.present(matchViewController, animated: true, completion: nil)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print(data)
+    }
+    
+}

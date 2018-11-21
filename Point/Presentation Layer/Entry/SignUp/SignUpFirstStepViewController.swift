@@ -22,10 +22,9 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet var genderButtons: [RoundedButton]!
     @IBOutlet weak var dateOfBirthButton: UIButton!
+    
     //Utils
     let helper = Utils()
-    
-    //Services
     
     //Variables
     var userInfo: NewUserModel = NewUserModel()
@@ -43,6 +42,7 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -54,24 +54,27 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
         helper.setBetweenConstraint(betweenConstraint)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
+    
     @IBAction func maleButtonTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: genderButtons)
         if !nextButton.isEnabled { _ = checkIfDataValidOrNot() }
         userInfo.myGender = "1"
     }
+    
     @IBAction func femaleButtonTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: genderButtons)
         if !nextButton.isEnabled { _ = checkIfDataValidOrNot() }
         userInfo.myGender = "0"
     }
+    
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         if let (name, date) = checkIfDataValidOrNot() {
             userInfo.myAge = date
             userInfo.nickname = name
             performSegue(withIdentifier: "showSignUpSecondStep", sender: nil)
         }
-        
     }
+    
     @IBAction func chooseDateOfBirthButtonTapped(_ sender: UIButton) {
         
         datePickerContainer.frame = CGRect(x: 0.0, y: self.view.frame.height - 200, width: UIScreen.main.bounds.width, height: 200)
@@ -123,7 +126,7 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
             errorLabel.isHidden = true
             nextButton.isEnabled = true
             nextButton.backgroundColor = Colors.enabledButtonColor.color()
-            let finalDate = String(describing: dateOfBirth.timeIntervalSince1970)
+            let finalDate = String(describing: Int(dateOfBirth.timeIntervalSince1970))
             return (name, finalDate)
         }
         errorLabel.isHidden = false
@@ -140,7 +143,6 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
         }
         return true
     }
-    
 }
 
 
