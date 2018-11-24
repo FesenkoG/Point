@@ -38,6 +38,7 @@ class PointViewController: UIViewController {
     
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
+        waitCircle.isHidden = animate
         if !animate {
             
             socket.disconnect()
@@ -56,10 +57,6 @@ class PointViewController: UIViewController {
         // In case of positive - start handling location and open the socket.
         // Every time user steps 100 meters away from previous location renew the location.
         animateButton(sender: sender, animate: animate, withInterval: 2.5)
-        
-        //let matchVC = MatchViewController()
-        //matchVC.modalPresentationStyle = .custom
-        //present(matchVC, animated: true, completion: nil)
     }
     
     private func animateButton(sender: UIButton, animate: Bool, withInterval interval: Double) {
@@ -104,7 +101,8 @@ class PointViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
         view.layer.cornerRadius = view.bounds.height / 2
         let originalTransform = view.transform
-        let scaledTransform = originalTransform.scaledBy(x: 3.0, y: 3.0)
+        let scaledTransform = originalTransform.scaledBy(x: 2.0, y: 2.0)
+        view.alpha = 0.6
         sender.addSubview(view)
         return (view, scaledTransform)
     }
