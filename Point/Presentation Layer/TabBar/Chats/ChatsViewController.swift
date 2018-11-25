@@ -8,20 +8,65 @@
 
 import UIKit
 
-class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatsViewController: UIViewController {
+    
+    // MARK: - Properties
     
     @IBOutlet weak var noMessagesView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    
     var chats: [Chat] = []
+    
+    private let chatService: IChatService = ChatService()
+    private let localStorage: ILocalStorage = LocalDataStorage()
+    
+    
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureVisibility()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieveChats()
+    }
+    
+    
+    // MARK: - Private methods
+    
+    private func retrieveChats() {
+        guard let token = localStorage.getUserToken() else { return }
+        chatService.retrieveChatsForUser(withToken: token) { (result) in
+            switch result {
+            case .success(let chats):
+                self.chats = chats
+                self.tableView.reloadData()
+                self.configureVisibility()
+            case .error(let error):
+                self.showErrorAlert(error)
+                self.configureVisibility()
+            }
+        }
+        
+    }
+    
+    private func configureVisibility() {
         noMessagesView.isHidden = chats.count > 0
         tableView.isHidden = !noMessagesView.isHidden
     }
     
+    //MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let conversationViewController = segue.destination as? ConversationViewController, let chat = sender as? Chat {
+            conversationViewController.chat = chat
+        }
+    }
+}
+
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
+extension ChatsViewController: UITableViewDelegate,UITableViewDataSource {
     
-    //MARK: - Table View Delegate/Data Source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chats.count
     }
@@ -37,10 +82,4 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //MARK: - Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let conversationViewController = segue.destination as? ConversationViewController, let chat = sender as? Chat {
-            conversationViewController.chat = chat
-        }
-    }
 }

@@ -11,9 +11,9 @@ import Foundation
 struct SubmitSmsRequest: IRequest {
     var urlRequest: URLRequest?
     
-    init(phoneNumber: String, sms: String, type: LoginType) {
-        let urlTyped = type == .registration ? SUBMIT_SMS_URL_REGISTRATION : SUBMIT_SMS_URL_AUTHORISATION
-        guard let url = URL(string: BASE_URL + urlTyped) else { return }
+    init(phoneNumber: String, sms: String) {
+        
+        guard let url = URL(string: BASE_URL + SUBMIT_SMS_URL_AUTHORISATION) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         do {

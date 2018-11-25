@@ -51,6 +51,7 @@
 		660D7A202195EBD400A46297 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D7A1E2195EBD400A46297 /* LaunchViewController.swift */; };
 		660D7A212195EBD400A46297 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 660D7A1F2195EBD400A46297 /* LaunchViewController.xib */; };
 		660D7A232195FDEC00A46297 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D7A222195FDEC00A46297 /* SettingsService.swift */; };
+		661D481C21AA89480006D51A /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D481B21AA89480006D51A /* ChatService.swift */; };
 		666D47312108E32F000E5374 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47302108E32F000E5374 /* RoundedButton.swift */; };
 		666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */; };
 		666D47362108EB00000E5374 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47352108EB00000E5374 /* LogInViewController.swift */; };
@@ -133,6 +134,7 @@
 		660D7A1E2195EBD400A46297 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		660D7A1F2195EBD400A46297 /* LaunchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
 		660D7A222195FDEC00A46297 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		661D481B21AA89480006D51A /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		666D47302108E32F000E5374 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		666D47352108EB00000E5374 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -207,7 +209,6 @@
 				666D473E2109049C000E5374 /* Presentation Layer */,
 				66E2372F217A7F8900CED120 /* Service Layer */,
 				00F0B9972138209500AC3013 /* CoreLayer */,
-				66766D17211034A3008F5952 /* Network Layer */,
 				000B707F20F78057005DE14B /* Assets.xcassets */,
 				000B708120F78057005DE14B /* LaunchScreen.storyboard */,
 				660D7A1D2195EBB700A46297 /* LaunchViewController */,
@@ -383,8 +384,8 @@
 		00F0B9972138209500AC3013 /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
-				00F0B998213820AB00AC3013 /* LocalDataStorage.swift */,
-				00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */,
+				661D481D21AA8A0D0006D51A /* LocalStorage */,
+				66766D17211034A3008F5952 /* Network Layer */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -413,6 +414,15 @@
 				660D7A1F2195EBD400A46297 /* LaunchViewController.xib */,
 			);
 			path = LaunchViewController;
+			sourceTree = "<group>";
+		};
+		661D481D21AA8A0D0006D51A /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				00F0B998213820AB00AC3013 /* LocalDataStorage.swift */,
+				00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */,
+			);
+			path = LocalStorage;
 			sourceTree = "<group>";
 		};
 		666D472F2108E310000E5374 /* UI Elements */ = {
@@ -548,6 +558,7 @@
 				66E23730217A7F9E00CED120 /* LocationService.swift */,
 				66FB5C4D2184655B001EB227 /* SocketService.swift */,
 				660D7A222195FDEC00A46297 /* SettingsService.swift */,
+				661D481B21AA89480006D51A /* ChatService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -725,6 +736,7 @@
 				00F0B96C2137EB0700AC3013 /* EditImageRequest.swift in Sources */,
 				0089E68D211B1DA10037AF60 /* CircleImage.swift in Sources */,
 				0089E68F211B2DF40037AF60 /* EditProfileViewController.swift in Sources */,
+				661D481C21AA89480006D51A /* ChatService.swift in Sources */,
 				00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */,
 				B219DC1D2157BCDF0035BF94 /* Extensions.swift in Sources */,
 				000B707B20F78055005DE14B /* MainViewController.swift in Sources */,

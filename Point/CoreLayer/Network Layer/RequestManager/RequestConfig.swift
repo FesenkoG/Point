@@ -6,7 +6,6 @@
 //  Copyright © 2018 Георгий Фесенко. All rights reserved.
 //
 
-//MARK: - Done.
 struct RequestConfig<Parser> where Parser: IParser {
     let request: IRequest
     let parser: Parser

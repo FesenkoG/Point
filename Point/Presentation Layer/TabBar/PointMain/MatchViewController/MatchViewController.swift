@@ -173,7 +173,10 @@ extension MatchViewController: WebSocketDelegate {
                 guard let chatVC = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as? ConversationViewController else { return }
                 chatVC.chat = chat
                 chatVC.yourID = userID
-                pointNavigation?.pushViewController(chatVC, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    self.pointNavigation?.pushViewController(chatVC, animated: true)
+                }
+                
                 self.dismiss(animated: false, completion: nil)
             } catch {
                 showErrorAlert(error.localizedDescription)

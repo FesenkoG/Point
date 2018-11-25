@@ -30,5 +30,18 @@ struct Message: Decodable {
 struct ChatMade: Decodable {
     let nick: String
     let id: String
-    let photo: String
+}
+
+
+// MARK: - Sorting
+extension Sequence where Iterator.Element == Message {
+    
+    mutating func sort() {
+        self = sorted(by: { (lhs, rhs) -> Bool in
+            guard let lhsDate = Int(lhs.date) else { return false }
+            guard let rhsDate = Int(rhs.date) else { return false }
+            
+            return lhsDate < rhsDate
+        }) as! Self
+    }
 }

@@ -35,6 +35,7 @@ class ConversationViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        chat.messages.sort()
         messageTextView.delegate = self
         
         guard let token = localStorage.getUserToken() else { return }
@@ -84,7 +85,8 @@ class ConversationViewController: UIViewController {
     @IBAction private func sendMessageButtonTapped(_ sender: Any) {
         guard let text = messageTextView.text else { return }
         socket.write(string: text)
-        let msg = Message(id: "12", chatId: "12", senderId: "heh", text: text, date: "13.10.1997")
+        let currentDate = String(describing: Int(Date().timeIntervalSince1970))
+        let msg = Message(id: "2", chatId: chat.chatId, senderId: yourID, text: text, date: currentDate)
         chat.messages.append(msg)
         tableView.reloadData()
     }

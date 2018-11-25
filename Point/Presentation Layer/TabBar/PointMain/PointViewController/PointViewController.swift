@@ -20,7 +20,6 @@ class PointViewController: UIViewController {
     var locationService: ILocationService = LocationService()
     let localStorage: ILocalStorage = LocalDataStorage()
     var animate: Bool = false
-    var isSearching: Bool = false
     var currentLocation: Location?
     var isConnected: Bool = false
     
@@ -142,7 +141,6 @@ extension PointViewController: LocationServiceDelegate {
 extension PointViewController: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print(socket)
-        isSearching = true
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
