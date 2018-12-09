@@ -237,8 +237,11 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         userImageView.image = image
         //TODO: - Bullshit
-        guard let data = UIImageJPEGRepresentation(image, 1.0) else { return }
-        editedImageModel.image = UIImageJPEGRepresentation(image, 1.0)?.base64EncodedString() ?? ""
+        
+        ImageService().upload(image: image) { (url) in
+            print(url)
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     

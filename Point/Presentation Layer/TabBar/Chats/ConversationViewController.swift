@@ -28,6 +28,7 @@ class ConversationViewController: UIViewController {
     // MARK: - Private properties
     
     private let localStorage: ILocalStorage = LocalDataStorage()
+    private var userId: String?
     
     
     // MARK: - View lifecycle
@@ -45,6 +46,8 @@ class ConversationViewController: UIViewController {
         socket.connect()
         titleLabel.text = chat.chatmade.nick
         setupObservers()
+        
+        guard let userData = localStorage.getUserInfo() else { return }
     }
     
     
@@ -85,10 +88,14 @@ class ConversationViewController: UIViewController {
     @IBAction private func sendMessageButtonTapped(_ sender: Any) {
         guard let text = messageTextView.text else { return }
         socket.write(string: text)
+        messageTextView.text = ""
         let currentDate = String(describing: Int(Date().timeIntervalSince1970))
-        let msg = Message(id: "2", chatId: chat.chatId, senderId: yourID, text: text, date: currentDate)
+        
+        let msg = Message(id: "2", chatId: chat.chatId, senderId: "0", text: text, date: currentDate)
         chat.messages.append(msg)
         tableView.reloadData()
+        let indexPathToScroll = IndexPath(row: chat.messages.count - 1, section: 0)
+        tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
     }
 }
 

@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.8.0)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
   - KeychainSwift (13.0.0)
   - PhoneNumberKit (2.5.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 2.5.0)
@@ -9,21 +12,27 @@ PODS:
   - Starscream (3.0.6)
 
 DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage (~> 3.5)
   - KeychainSwift (~> 13.0)
   - PhoneNumberKit (~> 2.1)
   - Starscream (~> 3.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
     - KeychainSwift
     - PhoneNumberKit
     - Starscream
 
 SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   PhoneNumberKit: 32a1cd1e0aa9e950feb01886a22fd7386b8cf903
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: 1122b88692a5f39f06a32a888e58310a52b2d16b
+PODFILE CHECKSUM: 73acecd45443090027dcb729284681ad693f28fd
 
 COCOAPODS: 1.5.2

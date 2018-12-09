@@ -22,20 +22,38 @@ class MatchViewController: UIViewController {
     // MARK: - Data for controller.
     let userID: String
     private let user: UserData
-    private let socket: WebSocket
+    private var socket: WebSocket
+    private let imageService: IImageService = ImageService()
     
-    weak var pointNavigation: UINavigationController?
+    //weak var pointNavigation: UINavigationController?
+    weak var pointViewController: PointViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO : - Do it
-        //userPhotoImageView.image = UIImage(data: <#T##Data#>)
+
         //TODO : - convert myAge to real age, not date of birth
 //        if let imageData = Data(base64Encoded: user.image) {
 //            userPhotoImageView.image = UIImage(data: imageData)
 //        }
         userNicknameAndAgeLabel.text = user.nickname + ", " + user.myAge
         userBioLabel.text = user.myBio
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let token = LocalDataStorage().getUserToken() else { return }
+        let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(userID)"
+        
+        imageService.loadImage(url) { [weak self] (result) in
+            
+            switch result {
+            case .success(let image):
+                self?.userPhotoImageView.image = image
+            case .error(let error):
+                self?.showErrorAlert(error)
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -111,6 +129,8 @@ class MatchViewController: UIViewController {
         //pauseAnimation(layer: clockView.layer)
         animateHide(yesButton)
         socket.write(string: "false")
+        guard let pointViewController = pointViewController else { return }
+        pointViewController.socket.delegate = pointViewController
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -165,6 +185,8 @@ extension MatchViewController: WebSocketDelegate {
         
         switch text {
         case "false", "Flase":
+            guard let pointViewController = pointViewController else { return }
+            pointViewController.socket.delegate = pointViewController
             self.dismiss(animated: false, completion: nil)
         default:
             guard let data = text.data(using: .utf8) else { return }
@@ -174,7 +196,7 @@ extension MatchViewController: WebSocketDelegate {
                 chatVC.chat = chat
                 chatVC.yourID = userID
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    self.pointNavigation?.pushViewController(chatVC, animated: true)
+                    self.pointViewController?.navigationController?.pushViewController(chatVC, animated: true)
                 }
                 
                 self.dismiss(animated: false, completion: nil)

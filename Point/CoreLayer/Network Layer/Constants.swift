@@ -12,11 +12,10 @@ let BASE_URL = HTTP_SCHEME + CURRENT_URL
 let SOCKET_URL = SOCKET_SCHEME + CURRENT_URL
 let HTTP_SCHEME = "http://"
 let SOCKET_SCHEME = "ws://"
-let CURRENT_URL = "192.168.1.74:8000"
+let CURRENT_URL = "192.168.1.72:8000"
 
 //MARK: - Registration
 let SEND_PHONE_URL_REGISTRATION = "/registration/checkPhone"
-//let SUBMIT_SMS_URL_REGISTRATION = "/registration/submitsms"
 let CREATE_ACCOUNT_URL_REGISTRATION = "/registration/createAccount"
 
 //MARK: - Authorisation

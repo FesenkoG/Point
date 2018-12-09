@@ -35,12 +35,13 @@ class PointViewController: UIViewController {
         pointButton.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
     }
     
+    
     @IBAction func pointButtonTapped(_ sender: UIButton) {
         animate = !animate
         waitCircle.isHidden = animate
         if !animate {
             
-            socket.disconnect()
+            socket?.disconnect()
             locationService.stopUpdatingLocation()
         } else {
             locationService.delegate = self
@@ -161,7 +162,7 @@ extension PointViewController: WebSocketDelegate {
             let dataToDecode = try JSONSerialization.data(withJSONObject: json as Any, options: [])
             let user = try JSONDecoder().decode(UserData.self, from: dataToDecode)
             let matchViewController = MatchViewController(userID: id, user: user, socket: self.socket)
-            matchViewController.pointNavigation = navigationController
+            matchViewController.pointViewController = self
             
             matchViewController.modalPresentationStyle = .overCurrentContext
             matchViewController.modalTransitionStyle = .crossDissolve
