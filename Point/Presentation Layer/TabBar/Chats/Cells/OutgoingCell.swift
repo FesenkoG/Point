@@ -9,6 +9,7 @@
 import UIKit
 
 class OutgoingCell: UITableViewCell {
+    
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var messageView: MessageView!
@@ -16,7 +17,7 @@ class OutgoingCell: UITableViewCell {
     
     func configure(_ model: Message) {
         messageLabel.text = model.text
-        timeLabel.text = model.date
+        timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(model.date)
     }
     
 }

@@ -122,9 +122,9 @@ extension PointViewController: LocationServiceDelegate {
             socket = WebSocket(url: url)
             socket.delegate = self
             socket.connect()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                self.isConnected = true
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                self.isConnected = true
+//            }
         } else {
             if isConnected {
                 locationService.updateUserLocation(latitude: newLocation.latitude, longitude: newLocation.longitude) { (error) in
@@ -141,7 +141,7 @@ extension PointViewController: LocationServiceDelegate {
 
 extension PointViewController: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
-        print(socket)
+        self.isConnected = true
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {

@@ -30,12 +30,8 @@ class MatchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //TODO : - convert myAge to real age, not date of birth
-//        if let imageData = Data(base64Encoded: user.image) {
-//            userPhotoImageView.image = UIImage(data: imageData)
-//        }
-        userNicknameAndAgeLabel.text = user.nickname + ", " + user.myAge
+        
+        userNicknameAndAgeLabel.text = user.nickname + ", " + DateHelper.convertTimestampToAge(Int(user.myAge) ?? 0)
         userBioLabel.text = user.myBio
     }
     
@@ -57,7 +53,7 @@ class MatchViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        runAnimation()
+        //runAnimation()
     }
     
     init(userID: String, user: UserData, socket: WebSocket) {
@@ -143,6 +139,7 @@ class MatchViewController: UIViewController {
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        pointViewController?.animate = false
         socket.disconnect()
     }
     
@@ -161,11 +158,14 @@ class MatchViewController: UIViewController {
     
 }
 
+
+// MARK: - CAAnimationDelegate
 extension MatchViewController: CAAnimationDelegate {
+    
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if flag {
-            dismiss(animated: true, completion: nil)
-        }
+//        if flag {
+//            dismiss(animated: true, completion: nil)
+//        }
     }
 }
 
@@ -195,7 +195,8 @@ extension MatchViewController: WebSocketDelegate {
                 guard let chatVC = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as? ConversationViewController else { return }
                 chatVC.chat = chat
                 chatVC.yourID = userID
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                pointViewController?.animate = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.pointViewController?.navigationController?.pushViewController(chatVC, animated: true)
                 }
                 

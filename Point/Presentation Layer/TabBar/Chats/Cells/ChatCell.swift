@@ -18,6 +18,9 @@ class ChatCell: UITableViewCell {
     func configure(_ model: Chat) {
         nameLabel.text = model.chatmade.nick
         lastMessageLabel.text = model.messages.last?.text ?? "No messages yet."
-        timeLabel.text = model.messages.last?.date
+        guard let dateString = model.messages.last?.date,
+                let date = Int(dateString) else { return }
+        timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(date)
+
     }
 }

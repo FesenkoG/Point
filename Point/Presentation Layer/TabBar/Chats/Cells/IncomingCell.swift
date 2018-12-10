@@ -17,6 +17,6 @@ class IncomingCell: UITableViewCell {
     
     func configure(_ message: Message) {
         messageTextLabel.text = message.text
-        timeLabel.text = message.date
+        timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(message.date)
     }
 }
