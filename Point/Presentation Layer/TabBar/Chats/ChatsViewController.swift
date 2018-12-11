@@ -59,6 +59,7 @@ class ChatsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let conversationViewController = segue.destination as? ConversationViewController, let chat = sender as? Chat {
             conversationViewController.chat = chat
+            conversationViewController.isLoadFromMatchScreen = false
         }
     }
 }

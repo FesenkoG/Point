@@ -70,9 +70,19 @@ class Utils {
         
     }
     
+    func configureTabBar(_ tabBarController: UITabBarController) {
+        let tabBar = tabBarController.tabBar
+        tabBar.shadowImage = UIImage()
+        tabBar.backgroundImage = UIImage()
+        tabBarController.viewControllers?.forEach({ (controller) in
+            controller.tabBarItem.setImageInsets()
+        })
+    }
+    
 }
 
 extension UIViewController {
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

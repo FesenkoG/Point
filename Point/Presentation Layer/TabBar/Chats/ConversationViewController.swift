@@ -11,21 +11,22 @@ import Starscream
 
 class ConversationViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var messageTextView: UITextView!
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    
     // MARK: - Public properties
     
     var chat: Chat!
-    var yourID: String!
+    var yourID: String = "0"
     var socket: WebSocket!
+    var isLoadFromMatchScreen: Bool = true
     
     
     // MARK: - Private properties
+    
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var messageTextView: UITextView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var textInputView: UIView!
     
     private let localStorage: ILocalStorage = LocalDataStorage()
     private var userId: String?
@@ -39,15 +40,19 @@ class ConversationViewController: UIViewController {
         chat.messages.sort()
         messageTextView.delegate = self
         
-        guard let token = localStorage.getUserToken() else { return }
-        guard let url = URL(string: "\(SOCKET_URL)/chat?token=\(token)&yourId=\(yourID ?? "0")") else { return }
-        socket = WebSocket(url: url)
-        socket.delegate = self
-        socket.connect()
+        if isLoadFromMatchScreen {
+            guard let token = localStorage.getUserToken() else { return }
+            guard let url = URL(string: "\(SOCKET_URL)/chat?token=\(token)&yourId=\(yourID)") else { return }
+            socket = WebSocket(url: url)
+            socket.delegate = self
+            socket.connect()
+        } else {
+            textInputView.isHidden = true
+        }
+
         titleLabel.text = chat.chatmade.nick
         setupObservers()
         
-        guard let userData = localStorage.getUserInfo() else { return }
     }
     
     
@@ -82,7 +87,7 @@ class ConversationViewController: UIViewController {
     }
     
     @IBAction private func emojiButtonTapped(_ sender: Any) {
-        // TODO: - ?
+        messageTextView.becomeFirstResponder()
     }
     
     @IBAction private func sendMessageButtonTapped(_ sender: Any) {
@@ -160,5 +165,5 @@ extension ConversationViewController: WebSocketDelegate {
 
 
 extension ConversationViewController: UITextViewDelegate {
-    
+    // TODO: - Placeholder
 }

@@ -66,17 +66,17 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     
     // MARK: - Utils
     
-    let helper = Utils()
-    let parser = PhoneNumberKit()
+    private let helper = Utils()
+    private let parser = PhoneNumberKit()
     
     
     // MARK: - Services
     
-    let requestSender: IRequestSender = RequestSender()
-    let localStorage: ILocalStorage = LocalDataStorage()
+    private let requestSender: IRequestSender = RequestSender()
+    private let localStorage: ILocalStorage = LocalDataStorage()
     
     
-    // MARK: - Lifecycle
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,11 +89,11 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     
     // MARK: - IBActions
     
-    @IBAction func backButtonTapped(_ sender: Any) {
+    @IBAction private func  backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func checkboxButtonTapped(_ sender: RoundedButton) {
+    @IBAction private func checkboxButtonTapped(_ sender: RoundedButton) {
         //TODO: - set a proper image here
         if checkboxButton.image(for: .normal) == nil {
             checkboxButton.setImage(UIImage(named: "CheckedCheckBox"), for: .normal)
@@ -104,7 +104,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         nextButton.backgroundColor = checkboxButton.image(for: .normal) == nil ? Colors.disabledButtonColor.color() : Colors.enabledButtonColor.color()
     }
     
-    @IBAction func nextButtonTapped(_ sender: Any) {
+    @IBAction private func nextButtonTapped(_ sender: Any) {
         switch state {
         case .sendPhone:
             do {
@@ -145,7 +145,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                                 } else {
                                     guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
                                     mainTab.selectedIndex = 1
-                                    self.configureTabBar(mainTab)
+                                    self.helper.configureTabBar(mainTab)
                                     UIApplication.shared.keyWindow?.rootViewController = mainTab
                                 }
                             })
@@ -158,25 +158,13 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
         }
     }
     
-    @IBAction func loginButtonWasTapped(_ sender: Any) {
+    @IBAction private func loginButtonWasTapped(_ sender: Any) {
         guard let loginController = helper.getLoginViewController() else { return }
         UIApplication.shared.keyWindow?.rootViewController = loginController
     }
     
-    @IBAction func tryAgainButtonTapped(_ sender: Any) {
+    @IBAction private func tryAgainButtonTapped(_ sender: Any) {
         state = .sendPhone
-    }
-    
-    
-    // MARK: - Private methods
-    
-    private func configureTabBar(_ tabBarController: UITabBarController) {
-        let tabBar = tabBarController.tabBar
-        tabBar.shadowImage = UIImage()
-        tabBar.backgroundImage = UIImage()
-        tabBarController.viewControllers?.forEach({ (controller) in
-            controller.tabBarItem.setImageInsets()
-        })
     }
     
 }

@@ -1210,7 +1210,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! How are you doing? I hope you are all right!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQm-tK-vBl">
-                                                    <rect key="frame" x="93" y="37" width="211" height="38"/>
+                                                    <rect key="frame" x="93" y="37" width="266" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="38" id="C47-Ck-3tA"/>
                                                     </constraints>
@@ -1219,7 +1219,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSE-4w-cjs">
-                                                    <rect key="frame" x="274" y="15.5" width="30" height="14.5"/>
+                                                    <rect key="frame" x="329" y="15.5" width="30" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.69803921570000005" green="0.69019607839999997" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1477,7 +1477,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHu-Kq-geg" customClass="MessageView" customModule="Point" customModuleProvider="target">
-                                                    <rect key="frame" x="196.5" y="11" width="53.5" height="55"/>
+                                                    <rect key="frame" x="251.5" y="11" width="53.5" height="55"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVL-YQ-mj8">
                                                             <rect key="frame" x="8" y="8" width="37.5" height="26"/>
@@ -1509,7 +1509,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Test" translatesAutoresizingMaskIntoConstraints="NO" id="hfo-8R-Kx1" customClass="CircleImage" customModule="Point" customModuleProvider="target">
-                                                    <rect key="frame" x="268" y="26" width="40" height="40"/>
+                                                    <rect key="frame" x="323" y="26" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="kSF-c7-c7v"/>
                                                         <constraint firstAttribute="width" constant="40" id="pLg-aE-qJ0"/>
@@ -1564,6 +1564,7 @@
                         <outlet property="messageTextView" destination="9EA-eM-7Sm" id="2ag-Zv-LO5"/>
                         <outlet property="nameLabel" destination="5JL-tH-lH0" id="Dyz-RL-J3J"/>
                         <outlet property="tableView" destination="K1i-fD-fbK" id="Teg-9t-AyX"/>
+                        <outlet property="textInputView" destination="BMs-65-qgN" id="xFm-So-nJB"/>
                         <outlet property="titleLabel" destination="5JL-tH-lH0" id="fWD-zW-r10"/>
                     </connections>
                 </viewController>
