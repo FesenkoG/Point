@@ -16,7 +16,7 @@ struct ChangeLocationRequest: IRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: ["payload": ["token": token, "location": ["x": location.longitude, "y": location.latitude]]], options: [])
+            request.httpBody = try JSONSerialization.data(withJSONObject: ["payload": ["token": token, "location": location]], options: [])
         } catch {
             print(error)
         }
