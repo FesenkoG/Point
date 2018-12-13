@@ -28,7 +28,7 @@ class ConversationViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textInputView: UIView!
     
-    private let localStorage: ILocalStorage = LocalDataStorage()
+    private let localStorage: ILocalStorage = LocalStorage()
     private var userId: String?
     
     
@@ -37,8 +37,11 @@ class ConversationViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         chat.messages.sort()
+        
         messageTextView.delegate = self
+        messageTextView.setCoursorToTheBeginningOfTheLine()
         
         if isLoadFromMatchScreen {
             guard let token = localStorage.getUserToken() else { return }
@@ -49,13 +52,13 @@ class ConversationViewController: UIViewController {
         } else {
             textInputView.isHidden = true
         }
-
+        
         titleLabel.text = chat.chatmade.nick
         setupObservers()
-        
     }
     
     
+    // MARK: - Private methods
     
     private func setupObservers() {
         
@@ -92,12 +95,16 @@ class ConversationViewController: UIViewController {
     
     @IBAction private func sendMessageButtonTapped(_ sender: Any) {
         guard let text = messageTextView.text else { return }
-        socket.write(string: text)
-        messageTextView.text = ""
-        let currentDate = String(describing: Int(Date().timeIntervalSince1970))
         
+        socket.write(string: text)
+        
+        messageTextView.text = ""
+        
+        let currentDate = String(describing: Int(Date().timeIntervalSince1970))
+        // TODO: - ??? id, senderId ???
         let msg = Message(id: "2", chatId: chat.chatId, senderId: "0", text: text, date: currentDate)
         chat.messages.append(msg)
+        
         tableView.reloadData()
         let indexPathToScroll = IndexPath(row: chat.messages.count - 1, section: 0)
         tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
@@ -133,6 +140,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 
+// MARK: - WebSocketDelegate
 extension ConversationViewController: WebSocketDelegate {
     
     func websocketDidConnect(socket: WebSocketClient) {
@@ -164,6 +172,52 @@ extension ConversationViewController: WebSocketDelegate {
 }
 
 
+// MARK: - UITextViewDelegate
 extension ConversationViewController: UITextViewDelegate {
-    // TODO: - Placeholder
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        // Combine the textView text and the replacement text to
+        // create the updated text string
+        let currentText:String = textView.text
+        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
+        
+        // If updated text view will be empty, add the placeholder
+        // and set the cursor to the beginning of the text view
+        if updatedText.isEmpty {
+            
+            textView.text = "Type your message..."
+            textView.textColor = .lightGray
+            
+            textView.setCoursorToTheBeginningOfTheLine()
+        }
+            
+            // Else if the text view's placeholder is showing and the
+            // length of the replacement string is greater than 0, set
+            // the text color to black then set its text to the
+            // replacement string
+        else if textView.textColor == .lightGray && !text.isEmpty {
+            textView.textColor = .black
+            textView.text = text
+        }
+            
+            // For every other case, the text should change with the usual
+            // behavior...
+        else {
+            return true
+        }
+        
+        // ...otherwise return false since the updates have already
+        // been made
+        return false
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        
+        if self.view.window != nil {
+            if textView.textColor == .lightGray {
+                textView.setCoursorToTheBeginningOfTheLine()
+            }
+        }
+    }
 }

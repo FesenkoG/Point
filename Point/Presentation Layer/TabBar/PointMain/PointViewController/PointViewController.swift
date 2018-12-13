@@ -8,39 +8,61 @@
 
 import UIKit
 import Starscream
+import CoreLocation
 
 class PointViewController: UIViewController {
     
-    @IBOutlet weak var buttonView: UIView!
-    @IBOutlet weak var waitCircle: UIImageView!
-    @IBOutlet weak var pointButton: UIButton!
-    @IBOutlet weak var helperTextLabel: UILabel!
+    // MARK: - Private properties
+    
+    @IBOutlet private weak var buttonView: UIView!
+    @IBOutlet private weak var waitCircle: UIImageView!
+    @IBOutlet private weak var pointButton: UIButton!
+    @IBOutlet private weak var helperTextLabel: UILabel!
+
+    private var locationService: ILocationService = LocationService()
+    private let localStorage: ILocalStorage = LocalStorage()
+    private var currentLocation: Location?
+    private var isConnected: Bool = false
+    
+    
+    // MARK: - Public properties
     
     var socket: WebSocket!
-    var locationService: ILocationService = LocationService()
-    let localStorage: ILocalStorage = LocalDataStorage()
     var animate: Bool = false
-    var currentLocation: Location?
-    var isConnected: Bool = false
+    
+    
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        waitCircle.rotate360Degrees()
         
+        waitCircle.rotate360Degrees()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         pointButton.layer.cornerRadius = pointButton.bounds.height / 2
         pointButton.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
     }
     
     
-    @IBAction func pointButtonTapped(_ sender: UIButton) {
+    // MARK: - Private methods
+    
+    @IBAction private func pointButtonTapped(_ sender: UIButton) {
+        
+        if locationService.isPermissionObtained {
+            startAnimation()
+        } else {
+            locationService.requestPermission()
+        }
+    }
+    
+    private func startAnimation() {
+        
         animate = !animate
         waitCircle.isHidden = animate
         if !animate {
-            
             socket?.disconnect()
             locationService.stopUpdatingLocation()
         } else {
@@ -52,20 +74,16 @@ class PointViewController: UIViewController {
         
         helperTextLabel.isHidden = !helperTextLabel.isHidden
         
-        
-        // Ask user's permission for location management and then check his answer.
-        // In case of positive - start handling location and open the socket.
-        // Every time user steps 100 meters away from previous location renew the location.
-        animateButton(sender: sender, animate: animate, withInterval: 2.5)
+        animateButton(pointButton, animate: animate, withInterval: 2.5)
     }
     
-    private func animateButton(sender: UIButton, animate: Bool, withInterval interval: Double) {
+    private func animateButton(_ button: UIButton, animate: Bool, withInterval interval: Double) {
         let delay = interval / 4
         if animate {
-            let (view, transform) = getViewAndTransform(sender: sender)
-            let (view2, transform2) = getViewAndTransform(sender: sender)
-            let (view3, transform3) = getViewAndTransform(sender: sender)
-            let (view4, transform4) = getViewAndTransform(sender: sender)
+            let (view, transform) = getViewAndTransform(view: button)
+            let (view2, transform2) = getViewAndTransform(view: button)
+            let (view3, transform3) = getViewAndTransform(view: button)
+            let (view4, transform4) = getViewAndTransform(view: button)
             UIView.animate(withDuration: interval, delay: 0, options: .allowUserInteraction, animations: {
                 view.transform = transform
                 view.alpha = 0.0
@@ -89,29 +107,34 @@ class PointViewController: UIViewController {
                 })
             }) { (_) in
                 view.removeFromSuperview()
-                self.animateButton(sender: sender, animate: self.animate, withInterval: interval)
+                self.animateButton(button, animate: self.animate, withInterval: interval)
             }
         }
         
     }
     
-    private func getViewAndTransform(sender: UIButton) -> (view: UIView, transform: CGAffineTransform) {
-        let frame = CGRect(x: 0, y: 0, width: sender.frame.width, height: sender.frame.height)
-        let view = UIView(frame: frame)
-        view.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
-        view.layer.cornerRadius = view.bounds.height / 2
-        let originalTransform = view.transform
+    private func getViewAndTransform(view: UIButton) -> (view: UIView, transform: CGAffineTransform) {
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        let transformedView = UIView(frame: frame)
+        transformedView.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
+        transformedView.layer.cornerRadius = transformedView.bounds.height / 2
+        let originalTransform = transformedView.transform
         let scaledTransform = originalTransform.scaledBy(x: 2.0, y: 2.0)
-        view.alpha = 0.6
-        sender.addSubview(view)
-        return (view, scaledTransform)
+        transformedView.alpha = 0.6
+        view.addSubview(transformedView)
+        return (transformedView, scaledTransform)
     }
     
 }
 
+
+// MARK: - LocationServiceDelegate
 extension PointViewController: LocationServiceDelegate {
+    
     func didChangeStatus(isAuthorized: Bool) {
-        
+        if isAuthorized {
+            startAnimation()
+        }
     }
     
     func didChangeLocation(_ newLocation: Location) {
@@ -139,6 +162,7 @@ extension PointViewController: LocationServiceDelegate {
 }
 
 
+// MARK: - WebSocketDelegate
 extension PointViewController: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         self.isConnected = true
@@ -176,5 +200,4 @@ extension PointViewController: WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print(data)
     }
-    
 }

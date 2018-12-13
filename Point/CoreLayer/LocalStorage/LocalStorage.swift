@@ -1,5 +1,5 @@
 //
-//  LocalDataStorage.swift
+//  LocalStorage.swift
 //  Point
 //
 //  Created by Георгий Фесенко on 30/08/2018.
@@ -10,14 +10,7 @@ import Foundation
 import CoreData
 import KeychainSwift
 
-protocol ILocalStorage {
-    func saveUser(user: UserData, completion: @escaping (Error?) -> Void)
-    func getUserInfo() -> UserData?
-    func getUserToken() -> String?
-    func saveUserToken(_ token: String)
-}
-
-class LocalDataStorage: ILocalStorage {
+class LocalStorage: ILocalStorage {
     
     private let keychain = KeychainSwift()
     
@@ -31,6 +24,7 @@ class LocalDataStorage: ILocalStorage {
             }
         }
     }
+    
     
     //MARK: - This function either saves or rewrites data
     func saveUser(user: UserData, completion: @escaping (Error?) -> Void) {
@@ -88,7 +82,9 @@ class LocalDataStorage: ILocalStorage {
         keychain.set(token, forKey: "token")
     }
     
+    
     //MARK: - Private methods
+    
     private func getUserFetchRequest() -> NSFetchRequest<User> {
         return User.fetchRequest()
     }

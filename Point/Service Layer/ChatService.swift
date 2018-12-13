@@ -9,17 +9,18 @@
 import Foundation
 
 protocol IChatService {
-    func retrieveChatsForUser(withToken token: String, completion: @escaping (Result<[Chat]>) -> Void)
+    func retrieveChatsForUser(completion: @escaping (Result<[Chat]>) -> Void)
 }
 
 
 class ChatService: IChatService {
     
     private let requestSender: IRequestSender = RequestSender()
+    private let localStorage: ILocalStorage = LocalStorage()
     
-    func retrieveChatsForUser(withToken token: String,
-                              completion: @escaping (Result<[Chat]>) -> Void) {
-        
+    func retrieveChatsForUser(completion: @escaping (Result<[Chat]>) -> Void) {
+        guard let token = localStorage.getUserToken() else { return }
+
         requestSender.send(config: RequestFactory.ChatsRequests.getChatsHistoryConfig(token: token)) { (result) in
             switch result {
             case .success(let chatsModel):

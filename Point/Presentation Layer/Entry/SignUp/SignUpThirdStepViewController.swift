@@ -73,7 +73,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     // MARK: - Services
     
     private let requestSender: IRequestSender = RequestSender()
-    private let localStorage: ILocalStorage = LocalDataStorage()
+    private let localStorage: ILocalStorage = LocalStorage()
     
     
     // MARK: - View Lifecycle

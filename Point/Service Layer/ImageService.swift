@@ -52,7 +52,7 @@ class ImageService: IImageService {
         Alamofire.upload(multipartFormData: { (form) in
             form.append(data, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
             
-            guard let token = LocalDataStorage().getUserToken()?.data(using: .utf8) else { return }
+            guard let token = LocalStorage().getUserToken()?.data(using: .utf8) else { return }
             
             form.append(token, withName: "token")
         }, to: "\(BASE_URL)/profile/editImage", encodingCompletion: { result in

@@ -10,20 +10,20 @@ import UIKit
 
 class ChatsViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: - Private properties
     
-    @IBOutlet weak var noMessagesView: UIView!
-    @IBOutlet weak var tableView: UITableView!
-    var chats: [Chat] = []
+    @IBOutlet private weak var noMessagesView: UIView!
+    @IBOutlet private weak var tableView: UITableView!
     
+    private var chats: [Chat] = []
     private let chatService: IChatService = ChatService()
-    private let localStorage: ILocalStorage = LocalDataStorage()
     
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureVisibility()
     }
     
@@ -35,8 +35,8 @@ class ChatsViewController: UIViewController {
     // MARK: - Private methods
     
     private func retrieveChats() {
-        guard let token = localStorage.getUserToken() else { return }
-        chatService.retrieveChatsForUser(withToken: token) { (result) in
+        
+        chatService.retrieveChatsForUser { (result) in
             switch result {
             case .success(let chats):
                 self.chats = chats
@@ -55,7 +55,9 @@ class ChatsViewController: UIViewController {
         tableView.isHidden = !noMessagesView.isHidden
     }
     
+    
     //MARK: - Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let conversationViewController = segue.destination as? ConversationViewController, let chat = sender as? Chat {
             conversationViewController.chat = chat

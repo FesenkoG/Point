@@ -11,38 +11,34 @@ import AVFoundation
 
 class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    // MARK: - Private methods
     
-    // MARK: - Outlets
+    @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private var ageButtons: [RoundedButton]!
+    @IBOutlet private var genderButtons: [UIButton]!
+    @IBOutlet private var genderLabels: [UILabel]!
+    @IBOutlet private var genderOkImages: [UIImageView]!
+    @IBOutlet private var myGenderButtons: [RoundedButton]!
+    @IBOutlet private weak var dateOfBirthButton: UIButton!
+    @IBOutlet private weak var userImageView: CircleImage!
     
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet var ageButtons: [RoundedButton]!
-    @IBOutlet var genderButtons: [UIButton]!
-    @IBOutlet var genderLabels: [UILabel]!
-    @IBOutlet var genderOkImages: [UIImageView]!
-    @IBOutlet var myGenderButtons: [RoundedButton]!
-    @IBOutlet weak var dateOfBirthButton: UIButton!
-    @IBOutlet weak var userImageView: CircleImage!
-    
-    
-    //MARK: Utils
-    
-    let helper = Utils()
-    
-    
-    //MARK: - Services
-    
+    private let helper = Utils()
     private let settingsService: ISettingsService = SettingsService()
-    let localStorage: ILocalStorage = LocalDataStorage()
+    private let localStorage: ILocalStorage = LocalStorage()
+    private let imageService: IImageService = ImageService()
     
     
     //MARK: - Variables
     
-    var editedProfileModel = EditedProfileModel()
-    var editedImageModel = EditedImageModel()
-    let datePickerContainer = UIView()
-    let datePicker = UIDatePicker()
-    var chooseImageAlert: UIAlertController!
+    private var editedProfileModel = EditedProfileModel()
+    private var editedImageModel = EditedImageModel()
+    private let datePickerContainer = UIView()
+    private let datePicker = UIDatePicker()
+    private var chooseImageAlert: UIAlertController!
     private lazy var imagePicker = UIImagePickerController()
+    
+    
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +51,9 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    @IBAction func saveButtonWasTapped(_ sender: Any) {
+    // MARK: - Private methods
+    
+    @IBAction private func saveButtonWasTapped(_ sender: Any) {
         
         settingsService
             .sendEditedProfile(model: editedProfileModel) { (result) in
@@ -86,8 +84,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    //TODO: - Animation
-    @objc func didTapPhoto() {
+    @objc private func didTapPhoto() {
+        
         imagePicker.delegate = self
         chooseImageAlert = UIAlertController(title: "Выбрать фотографию", message: "Как бы вы хотели выбрать фотографию для своего профиля?", preferredStyle: .actionSheet)
         let galleryAction = UIAlertAction(title: "Взять из галереи", style: .default) { (buttonTapped) in
@@ -109,7 +107,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
-        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+        AVCaptureDevice.requestAccess(for: .video) { response in
             DispatchQueue.main.async {
                 if response {
                     self.chooseImageAlert.addAction(photoAction)
@@ -124,19 +122,18 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    @IBAction func genderMaleButtonWasTapped(_ sender: RoundedButton) {
+    @IBAction private func genderMaleButtonWasTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
         editedProfileModel.myGender = "1"
         
     }
     
-    @IBAction func genderFemaleButtonWasTapped(_ sender: RoundedButton) {
+    @IBAction private func genderFemaleButtonWasTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)
         editedProfileModel.myGender = "0"
     }
     
-    //Preferences
-    @IBAction func ageButtonTapped(_ sender: RoundedButton) {
+    @IBAction private func ageButtonTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: ageButtons)
         switch sender {
         case ageButtons[0]:
@@ -156,7 +153,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    @IBAction func preferredGenderButtonTapped(_ sender: UIButton) {
+    @IBAction private func preferredGenderButtonTapped(_ sender: UIButton) {
         guard let index = genderButtons.index(of: sender) else { return }
         helper.checkGenderButtons(index: index, images: genderOkImages, labels: genderLabels)
         switch Int(index) {
@@ -169,10 +166,10 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    @IBAction func chooseDateOfBirthWasTapped(_ sender: Any) {
+    @IBAction private func chooseDateOfBirthWasTapped(_ sender: Any) {
         datePickerContainer.frame = CGRect(x: 0.0, y: self.view.frame.height - 200, width: UIScreen.main.bounds.width, height: 200)
         datePicker.frame = CGRect(x: 0.0, y: 0, width: UIScreen.main.bounds.width, height: 200)
-        //TODO: - SET CURRENT AGE OF THE USER
+
         guard let date = Calendar.current.date(byAdding: .year, value: -18, to: Date()) else { return }
         datePicker.setDate(date, animated: true)
         datePicker.maximumDate = date
@@ -191,24 +188,23 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addSubview(datePickerContainer)
     }
     
-    @IBAction func backButtonTapped(_ sender: Any) {
+    @IBAction private func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func dateChangedInDate(sender: UIDatePicker) {
+    @objc private func dateChangedInDate(sender: UIDatePicker) {
         editedProfileModel.myAge = String(describing: Int(sender.date.timeIntervalSince1970))
         dateOfBirthButton.setTitle(helper.dateFormatter.string(from: sender.date), for: .normal)
     }
 
-    @objc func dismissPicker(sender: UIButton) {
+    @objc private func dismissPicker(sender: UIButton) {
         datePickerContainer.removeFromSuperview()
     }
     
-    @objc func dismissView() {
+    @objc private func dismissView() {
         chooseImageAlert.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - Helper functions
     private func initialRetrieving() {
         guard let userInfo = self.localStorage.getUserInfo() else { return }
         editedProfileModel.myAge = userInfo.myAge
@@ -218,7 +214,6 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         editedProfileModel.yourAge = userInfo.yourAge
         editedProfileModel.yourGender = userInfo.yourGender
         
-        //editedImageModel.image = userInfo.image
     }
     
     private func initialScreenSetup() {
@@ -232,13 +227,15 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 }
 
+
+// MARK: - UIImagePicketControllerDelegate
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         userImageView.image = image
-        //TODO: - Bullshit
         
-        ImageService().upload(image: image) { (url) in
+        imageService.upload(image: image) { (url) in
             print(url)
         }
         

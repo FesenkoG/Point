@@ -28,3 +28,11 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+
+extension UITextView {
+    
+    func setCoursorToTheBeginningOfTheLine() {
+        selectedTextRange = textRange(from: beginningOfDocument,
+                                               to: beginningOfDocument)
+    }
+}

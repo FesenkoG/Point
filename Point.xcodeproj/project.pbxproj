@@ -44,7 +44,7 @@
 		00F0B98F21380D4600AC3013 /* BlockedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B98E21380D4600AC3013 /* BlockedUser.swift */; };
 		00F0B9922138132500AC3013 /* GetFriendsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9912138132500AC3013 /* GetFriendsParser.swift */; };
 		00F0B9942138134C00AC3013 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B9932138134C00AC3013 /* Friend.swift */; };
-		00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B998213820AB00AC3013 /* LocalDataStorage.swift */; };
+		00F0B999213820AB00AC3013 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B998213820AB00AC3013 /* LocalStorage.swift */; };
 		00F0B99C2138224500AC3013 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */; };
 		660D7A1B2195E7D200A46297 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660D7A192195E7D100A46297 /* Fabric.framework */; };
 		660D7A1C2195E7D200A46297 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660D7A1A2195E7D100A46297 /* Crashlytics.framework */; };
@@ -54,6 +54,7 @@
 		661D481C21AA89480006D51A /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D481B21AA89480006D51A /* ChatService.swift */; };
 		661D482221BD2ED20006D51A /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D482121BD2ED20006D51A /* ImageService.swift */; };
 		661D482421BD95990006D51A /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D482321BD95980006D51A /* DateHelper.swift */; };
+		661D482621C2EC090006D51A /* ILocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D482521C2EC090006D51A /* ILocalStorage.swift */; };
 		666D47312108E32F000E5374 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47302108E32F000E5374 /* RoundedButton.swift */; };
 		666D47342108EAF3000E5374 /* SignUpFirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */; };
 		666D47362108EB00000E5374 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D47352108EB00000E5374 /* LogInViewController.swift */; };
@@ -127,7 +128,7 @@
 		00F0B98E21380D4600AC3013 /* BlockedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUser.swift; sourceTree = "<group>"; };
 		00F0B9912138132500AC3013 /* GetFriendsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFriendsParser.swift; sourceTree = "<group>"; };
 		00F0B9932138134C00AC3013 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
-		00F0B998213820AB00AC3013 /* LocalDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataStorage.swift; sourceTree = "<group>"; };
+		00F0B998213820AB00AC3013 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		00F0B99B2138224500AC3013 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2BEAD019FAF5B21E6DD05897 /* Pods_Point.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Point.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		494E2C55FE84C5DA6A1DF2C6 /* Pods-Point.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Point.release.xcconfig"; path = "Pods/Target Support Files/Pods-Point/Pods-Point.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		661D481B21AA89480006D51A /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		661D482121BD2ED20006D51A /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		661D482321BD95980006D51A /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		661D482521C2EC090006D51A /* ILocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILocalStorage.swift; sourceTree = "<group>"; };
 		666D47302108E32F000E5374 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		666D47332108EAF3000E5374 /* SignUpFirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFirstStepViewController.swift; sourceTree = "<group>"; };
 		666D47352108EB00000E5374 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -234,8 +236,8 @@
 		0089E684211B09210037AF60 /* PointMain */ = {
 			isa = PBXGroup;
 			children = (
-				B2495E13215FEBDD005B18F2 /* MatchViewController */,
 				B2495E10215FEA58005B18F2 /* PointViewController */,
+				B2495E13215FEBDD005B18F2 /* MatchViewController */,
 			);
 			path = PointMain;
 			sourceTree = "<group>";
@@ -423,10 +425,19 @@
 		661D481D21AA8A0D0006D51A /* LocalStorage */ = {
 			isa = PBXGroup;
 			children = (
-				00F0B998213820AB00AC3013 /* LocalDataStorage.swift */,
-				00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */,
+				661D482521C2EC090006D51A /* ILocalStorage.swift */,
+				00F0B998213820AB00AC3013 /* LocalStorage.swift */,
+				661D482721C2EC100006D51A /* CoreDataModel */,
 			);
 			path = LocalStorage;
+			sourceTree = "<group>";
+		};
+		661D482721C2EC100006D51A /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				00F0B99A2138224400AC3013 /* CoreDataModel.xcdatamodeld */,
+			);
+			path = CoreDataModel;
 			sourceTree = "<group>";
 		};
 		666D472F2108E310000E5374 /* UI Elements */ = {
@@ -755,7 +766,7 @@
 				660D7A232195FDEC00A46297 /* SettingsService.swift in Sources */,
 				66E23731217A7F9E00CED120 /* LocationService.swift in Sources */,
 				00F0B9762137F07700AC3013 /* ChatsModel.swift in Sources */,
-				00F0B999213820AB00AC3013 /* LocalDataStorage.swift in Sources */,
+				00F0B999213820AB00AC3013 /* LocalStorage.swift in Sources */,
 				660D7A202195EBD400A46297 /* LaunchViewController.swift in Sources */,
 				00F0B9842137FEA500AC3013 /* GetFriendsRequest.swift in Sources */,
 				00B17CD82114ACB300EFC16C /* BlankResponceParser.swift in Sources */,
@@ -796,6 +807,7 @@
 				00B17CCE2114A7A300EFC16C /* SendPhoneRequest.swift in Sources */,
 				00B17CD42114AB9700EFC16C /* CheckTokenRequest.swift in Sources */,
 				666D473D2108FB72000E5374 /* UnderlinedButton.swift in Sources */,
+				661D482621C2EC090006D51A /* ILocalStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

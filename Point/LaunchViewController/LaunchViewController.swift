@@ -12,7 +12,7 @@ class LaunchViewController: UIViewController {
     
     @IBOutlet weak var loadingView: UIView!
     
-    private let localStorage: ILocalStorage = LocalDataStorage()
+    private let localStorage: ILocalStorage = LocalStorage()
     
     override func viewDidLoad() {
         super.viewDidLoad()

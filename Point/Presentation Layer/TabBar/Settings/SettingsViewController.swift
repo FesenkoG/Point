@@ -10,22 +10,19 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    @IBOutlet weak var avatarImageView: CircleImage!
-    
-    
     // MARK: - Private properties
+
+    @IBOutlet weak var avatarImageView: CircleImage!
     
     private let imageService: IImageService = ImageService()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
+    
+    // MARK: - View lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let token = LocalDataStorage().getUserToken() else { return }
+        
+        guard let token = LocalStorage().getUserToken() else { return }
         let url = "\(BASE_URL)/getPhoto?&token=\(token)"
         
         imageService.loadImage(url) { [weak self](result) in
@@ -37,6 +34,5 @@ class SettingsViewController: UIViewController {
                 self?.showErrorAlert(error)
             }
         }
-        
     }
 }

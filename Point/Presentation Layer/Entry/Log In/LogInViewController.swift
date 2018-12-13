@@ -27,7 +27,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //Services
     let requestSender: IRequestSender = RequestSender()
-    let localStorage: ILocalStorage = LocalDataStorage()
+    let localStorage: ILocalStorage = LocalStorage()
     
     //Variables
     var state: ScreenState = .sendPhone {

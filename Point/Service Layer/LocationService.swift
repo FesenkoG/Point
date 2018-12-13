@@ -11,9 +11,12 @@ import CoreLocation
 
 protocol ILocationService {
     var delegate: LocationServiceDelegate? { get set }
+    var isPermissionObtained: Bool { get }
+    
     func updateUserLocation(latitude: String, longitude: String, completion: @escaping (String?) -> Void)
     func startUpdatingLocation()
     func stopUpdatingLocation()
+    func requestPermission()
     
 }
 
@@ -32,10 +35,9 @@ class LocationService: NSObject, ILocationService {
     
     override init() {
         locationManager = CLLocationManager()
-        locationManager.requestAlwaysAuthorization()
         
         requestSender = RequestSender()
-        localStorage = LocalDataStorage()
+        localStorage = LocalStorage()
         
         super.init()
         
@@ -68,6 +70,14 @@ class LocationService: NSObject, ILocationService {
     
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    func requestPermission() {
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    var isPermissionObtained: Bool {
+        return CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse
     }
 }
 

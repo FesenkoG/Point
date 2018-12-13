@@ -11,22 +11,27 @@ import Starscream
 
 class MatchViewController: UIViewController {
 
-    @IBOutlet weak var clockView: RoundedView!
-    @IBOutlet weak var userPhotoImageView: CircleImage!
-    @IBOutlet weak var userNicknameAndAgeLabel: UILabel!
-    @IBOutlet weak var yesButton: UIButton!
-    @IBOutlet weak var noButton: UIButton!
-    @IBOutlet weak var userBioLabel: UILabel!
+    // MARK: - Private properties
+
+    @IBOutlet private weak var clockView: RoundedView!
+    @IBOutlet private weak var userPhotoImageView: CircleImage!
+    @IBOutlet private weak var userNicknameAndAgeLabel: UILabel!
+    @IBOutlet private weak var yesButton: UIButton!
+    @IBOutlet private weak var noButton: UIButton!
+    @IBOutlet private weak var userBioLabel: UILabel!
     
-    
-    // MARK: - Data for controller.
-    let userID: String
+    private let userID: String
     private let user: UserData
     private var socket: WebSocket
     private let imageService: IImageService = ImageService()
     
-    //weak var pointNavigation: UINavigationController?
+    
+    // MARK: - Public properties
+    
     weak var pointViewController: PointViewController?
+    
+    
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +43,7 @@ class MatchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let token = LocalDataStorage().getUserToken() else { return }
+        guard let token = LocalStorage().getUserToken() else { return }
         let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(userID)"
         
         imageService.loadImage(url) { [weak self] (result) in
@@ -51,10 +56,14 @@ class MatchViewController: UIViewController {
             }
         }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //runAnimation()
     }
+    
+    
+    // MARK: - Initialization
     
     init(userID: String, user: UserData, socket: WebSocket) {
         self.userID = userID
@@ -67,6 +76,9 @@ class MatchViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    // MARK: - Private methods
     
     private func runAnimation() {
         
@@ -105,13 +117,13 @@ class MatchViewController: UIViewController {
     
     
     //Those functions may be helpful in future
-    func pauseAnimation(layer: CALayer){
+    private func pauseAnimation(layer: CALayer){
         let pausedTime = layer.convertTime(CACurrentMediaTime(), from: nil)
         layer.speed = 0.0
         layer.timeOffset = pausedTime
     }
     
-    func resumeAnimation(layer: CALayer){
+    private func resumeAnimation(layer: CALayer){
         let pausedTime = layer.timeOffset
         layer.speed = 1.0
         layer.timeOffset = 0.0
@@ -120,7 +132,7 @@ class MatchViewController: UIViewController {
         layer.beginTime = timeSincePause
     }
     
-    @IBAction func noButtonTapped(_ sender: UIButton) {
+    @IBAction private func noButtonTapped(_ sender: UIButton) {
         //sender.isUserInteractionEnabled = false
         //pauseAnimation(layer: clockView.layer)
         animateHide(yesButton)
@@ -130,23 +142,21 @@ class MatchViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
         
     }
-    @IBAction func yesButtonTapped(_ sender: UIButton) {
+    @IBAction private func yesButtonTapped(_ sender: UIButton) {
         //sender.isUserInteractionEnabled = false
         //pauseAnimation(layer: clockView.layer)
         animateHide(noButton)
         socket.write(string: "true")
     }
     
-    @IBAction func closeButtonTapped(_ sender: UIButton) {
+    @IBAction private func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
         pointViewController?.animate = false
         socket.disconnect()
     }
-    
-    
-    // MARK: - Private methods
-    
-    func animateHide(_ view: UIView) {
+
+    private func animateHide(_ view: UIView) {
+        
         UIView.animate(withDuration: 0.5, animations: {
             view.alpha = 0.0
         }) { (_) in
@@ -169,6 +179,8 @@ extension MatchViewController: CAAnimationDelegate {
     }
 }
 
+
+// MARK: - WebSocketDelegate
 extension MatchViewController: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print(socket)
