@@ -82,8 +82,8 @@ class SignUpFirstStepViewController: UIViewController, UIGestureRecognizerDelega
         guard let date = Calendar.current.date(byAdding: .year, value: -18, to: Date()) else { return }
         datePicker.setDate(date, animated: true)
         datePicker.maximumDate = date
-        datePicker.datePickerMode = UIDatePickerMode.date
-        datePicker.addTarget(self, action: #selector(dateChangedInDate), for: UIControlEvents.valueChanged)
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.addTarget(self, action: #selector(dateChangedInDate), for: UIControl.Event.valueChanged)
         datePickerContainer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         datePickerContainer.addSubview(datePicker)
         

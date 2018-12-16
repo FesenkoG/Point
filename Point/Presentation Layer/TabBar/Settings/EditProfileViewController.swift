@@ -173,8 +173,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         guard let date = Calendar.current.date(byAdding: .year, value: -18, to: Date()) else { return }
         datePicker.setDate(date, animated: true)
         datePicker.maximumDate = date
-        datePicker.datePickerMode = UIDatePickerMode.date
-        datePicker.addTarget(self, action: #selector(dateChangedInDate), for: UIControlEvents.valueChanged)
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.addTarget(self, action: #selector(dateChangedInDate), for: UIControl.Event.valueChanged)
         datePickerContainer.backgroundColor = UIColor.white
         datePickerContainer.addSubview(datePicker)
         
@@ -231,8 +231,11 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 // MARK: - UIImagePicketControllerDelegate
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else { return }
         userImageView.image = image
         
         imageService.upload(image: image) { (url) in
@@ -245,4 +248,14 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

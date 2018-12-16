@@ -62,17 +62,17 @@ class ConversationViewController: UIViewController {
     
     private func setupObservers() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func handleKeyboadNotification(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
-            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
-            let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
+            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+            let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
             bottomConstraint.constant = isKeyboardShowing ? -keyboardFrame!.height : 0
-            UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: 0, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
             }) { (completed) in
                 let number = self.chat.messages.count

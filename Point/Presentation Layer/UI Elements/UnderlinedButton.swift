@@ -15,7 +15,7 @@ class UnderlinedButton: UIButton {
             guard let title = self.titleLabel?.text else { return }
             let textRange = NSMakeRange(0, title.count)
             let attributedText = NSMutableAttributedString(string: title)
-            attributedText.addAttributes([NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue], range: textRange)
+            attributedText.addAttributes([NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: textRange)
             setAttributedTitle(attributedText, for: .normal)
         }
     }
@@ -28,7 +28,7 @@ class UnderlinedLabel: UILabel {
             guard let text = text else { return }
             let textRange = NSMakeRange(0, text.count)
             let attributedText = NSMutableAttributedString(string: text)
-            attributedText.addAttributes([NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue], range: textRange)
+            attributedText.addAttributes([NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: textRange)
             // Add other attributes if needed
             self.attributedText = attributedText
         }
