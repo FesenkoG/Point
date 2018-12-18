@@ -109,6 +109,17 @@ class ConversationViewController: UIViewController {
         let indexPathToScroll = IndexPath(row: chat.messages.count - 1, section: 0)
         tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
     }
+    
+    private func showDisconnectAlert() {
+        let alertController = UIAlertController(title: "Oh no :(", message: "Your partner has just leaved the chat, try to be a better person next time", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok...", style: .default) { [weak self] (_) in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 
@@ -148,8 +159,11 @@ extension ConversationViewController: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        
         if let error = error {
             showErrorAlert(error.localizedDescription)
+        } else {
+            showDisconnectAlert()
         }
     }
     
@@ -167,7 +181,7 @@ extension ConversationViewController: WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        
+        print(data)
     }
 }
 
