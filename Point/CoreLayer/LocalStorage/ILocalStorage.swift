@@ -13,4 +13,5 @@ protocol ILocalStorage {
     func getUserInfo() -> UserData?
     func getUserToken() -> String?
     func saveUserToken(_ token: String)
+    func clearUserInfo()
 }

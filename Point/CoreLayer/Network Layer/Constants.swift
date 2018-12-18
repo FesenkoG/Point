@@ -12,7 +12,7 @@ let BASE_URL = HTTP_SCHEME + CURRENT_URL
 let SOCKET_URL = SOCKET_SCHEME + CURRENT_URL
 let HTTP_SCHEME = "http://"
 let SOCKET_SCHEME = "ws://"
-let CURRENT_URL = "192.168.1.72:8000"
+let CURRENT_URL = "ec2-3-17-34-171.us-east-2.compute.amazonaws.com:8000"
 
 //MARK: - Registration
 let SEND_PHONE_URL_REGISTRATION = "/registration/checkPhone"

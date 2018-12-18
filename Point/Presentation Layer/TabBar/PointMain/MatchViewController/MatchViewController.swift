@@ -151,7 +151,7 @@ class MatchViewController: UIViewController {
     
     @IBAction private func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-        pointViewController?.animate = false
+        pointViewController?.changeAnimationState()
         socket.disconnect()
     }
 
@@ -207,7 +207,7 @@ extension MatchViewController: WebSocketDelegate {
                 guard let chatVC = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController") as? ConversationViewController else { return }
                 chatVC.chat = chat
                 chatVC.yourID = userID
-                pointViewController?.animate = false
+                pointViewController?.changeAnimationState()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.pointViewController?.navigationController?.pushViewController(chatVC, animated: true)
                 }

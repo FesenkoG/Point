@@ -21,17 +21,18 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet private var myGenderButtons: [RoundedButton]!
     @IBOutlet private weak var dateOfBirthButton: UIButton!
     @IBOutlet private weak var userImageView: CircleImage!
+    @IBOutlet private weak var userNameLabel: UILabel!
     
     private let helper = Utils()
     private let settingsService: ISettingsService = SettingsService()
     private let localStorage: ILocalStorage = LocalStorage()
     private let imageService: IImageService = ImageService()
+    private let userService: IUserService = UserService()
     
     
     //MARK: - Variables
     
     private var editedProfileModel = EditedProfileModel()
-    private var editedImageModel = EditedImageModel()
     private let datePickerContainer = UIView()
     private let datePicker = UIDatePicker()
     private var chooseImageAlert: UIAlertController!
@@ -44,7 +45,6 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         guard let token = localStorage.getUserToken() else { return }
         editedProfileModel.token = token
-        editedImageModel.token = token
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         initialRetrieving()
         setupGestureRecognizers()
@@ -58,28 +58,15 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         settingsService
             .sendEditedProfile(model: editedProfileModel) { (result) in
                 
-            switch result {
-                
-            case .error(let error):
-                self.showErrorAlert(error)
-            case .success(let result):
-                if result {
-                    self.settingsService
-                        .sendEditedImage(model:
-                        self.editedImageModel, completion: { (result) in
-                            
-                        switch result {
-                            
-                        case .error(let error):
-                            self.showErrorAlert(error)
-                        case .success(let result):
-                            if result {
-                                self.navigationController?.popViewController(animated: true)
-                            }
-                        }
-                    })
+                switch result {
+                    
+                case .error(let error):
+                    self.showErrorAlert(error)
+                case .success(let result):
+                    if result {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
-            }
         }
     }
     
@@ -192,6 +179,15 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func exitButtonTapped(_ sender: Any) {
+        
+        localStorage.clearUserInfo()
+        
+        let vc = helper.getSignUpViewController()
+        UIApplication.shared.keyWindow?.rootViewController = vc
+    }
+    
+    
     @objc private func dateChangedInDate(sender: UIDatePicker) {
         editedProfileModel.myAge = String(describing: Int(sender.date.timeIntervalSince1970))
         dateOfBirthButton.setTitle(helper.dateFormatter.string(from: sender.date), for: .normal)
@@ -206,18 +202,92 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     private func initialRetrieving() {
-        guard let userInfo = self.localStorage.getUserInfo() else { return }
-        editedProfileModel.myAge = userInfo.myAge
-        editedProfileModel.myGender = userInfo.myGender
-        editedProfileModel.nickname = userInfo.nickname
-        editedProfileModel.telephone = userInfo.telephoneHash
-        editedProfileModel.yourAge = userInfo.yourAge
-        editedProfileModel.yourGender = userInfo.yourGender
         
-    }
-    
-    private func initialScreenSetup() {
-        
+        userService.retrieveUserData { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let userInfo):
+                
+                self.editedProfileModel.myAge = userInfo.myAge
+                self.editedProfileModel.myGender = userInfo.myGender
+                self.editedProfileModel.nickname = userInfo.nickname
+                self.editedProfileModel.telephone = userInfo.telephoneHash
+                self.editedProfileModel.yourAge = userInfo.yourAge
+                self.editedProfileModel.yourGender = userInfo.yourGender
+                
+                self.userNameLabel.text = userInfo.nickname
+                
+                guard let timeInterval = TimeInterval(userInfo.myAge) else { return }
+                let date = Date(timeIntervalSince1970: timeInterval)
+                self.dateOfBirthButton.setTitle(self.helper.dateFormatter.string(from: date), for: .normal)
+                
+                
+                // My gender buttons
+                switch userInfo.myGender {
+                    
+                case "1":
+                    guard let maleButton = self.myGenderButtons.first  else { return }
+                    self.helper.checkAgeButtons(sender: maleButton,
+                                                otherButtons: self.myGenderButtons)
+                case "0":
+                    guard let femaleButton = self.myGenderButtons.last else { return }
+                    self.helper.checkAgeButtons(sender: femaleButton,
+                                                otherButtons: self.myGenderButtons)
+                default:
+                    break
+                }
+                
+                // Preferred gender buttons
+                var yourGenderSelectedIndex: Int
+                switch userInfo.yourGender {
+                case "1":
+                    yourGenderSelectedIndex = 0
+                case "0":
+                    yourGenderSelectedIndex = 1
+                default:
+                    yourGenderSelectedIndex = 2
+                }
+                
+                self.helper.checkGenderButtons(index: yourGenderSelectedIndex,
+                                               images: self.genderOkImages,
+                                               labels: self.genderLabels)
+                
+                //Preferred age buttons
+                var yourAgeSelectedIndex: Int
+                switch userInfo.yourAge {
+                case "18-22":
+                    yourAgeSelectedIndex = 0
+                case "23-27":
+                    yourAgeSelectedIndex = 1
+                case "28-35":
+                    yourAgeSelectedIndex = 2
+                case "36-45":
+                    yourAgeSelectedIndex = 3
+                case "46-99":
+                    yourAgeSelectedIndex = 4
+                default:
+                    yourAgeSelectedIndex = 5
+                }
+                
+                let ageSelectedButton = self.ageButtons[yourAgeSelectedIndex]
+                self.helper.checkAgeButtons(sender: ageSelectedButton, otherButtons: self.ageButtons)
+
+                // User image uploading
+                self.imageService.loadUserImage(completion: { (result) in
+                    
+                    switch result {
+                        
+                    case .success(let image):
+                        self.userImageView.image = image
+                    case .error(let error):
+                        self.showErrorAlert(error)
+                    }
+                })
+                
+            case .error(let error):
+                self.showErrorAlert(error)
+            }
+        }
     }
     
     private func setupGestureRecognizers() {
@@ -232,14 +302,18 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
         guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else { return }
         userImageView.image = image
         
-        imageService.upload(image: image) { (url) in
-            print(url)
+        imageService.upload(image: image) { (error) in
+            if let error = error?.localizedDescription {
+                self.showErrorAlert(error)
+            } else {
+                self.showErrorAlert("Photo successfully uploaded")
+            }
         }
         
         dismiss(animated: true, completion: nil)

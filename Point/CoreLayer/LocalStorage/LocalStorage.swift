@@ -82,6 +82,10 @@ class LocalStorage: ILocalStorage {
         keychain.set(token, forKey: "token")
     }
     
+    func clearUserInfo() {
+        keychain.delete("token")
+    }
+    
     
     //MARK: - Private methods
     

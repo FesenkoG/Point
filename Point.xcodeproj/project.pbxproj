@@ -75,6 +75,7 @@
 		66766D2A211582D2008F5952 /* CreateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66766D29211582D2008F5952 /* CreateAccountRequest.swift */; };
 		66766D2C21159338008F5952 /* UserCreationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66766D2B21159338008F5952 /* UserCreationParser.swift */; };
 		66766D2E211594C0008F5952 /* UserDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66766D2D211594C0008F5952 /* UserDataParser.swift */; };
+		667BA13B21C9714400F0895F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BA13A21C9714400F0895F /* UserService.swift */; };
 		6681658F211ED81E00ADF58E /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681658D211ED81E00ADF58E /* MatchViewController.swift */; };
 		66816590211ED81E00ADF58E /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6681658E211ED81E00ADF58E /* MatchViewController.xib */; };
 		66816594212051B000ADF58E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66816593212051B000ADF58E /* ConversationViewController.swift */; };
@@ -161,6 +162,7 @@
 		66766D29211582D2008F5952 /* CreateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountRequest.swift; sourceTree = "<group>"; };
 		66766D2B21159338008F5952 /* UserCreationParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreationParser.swift; sourceTree = "<group>"; };
 		66766D2D211594C0008F5952 /* UserDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataParser.swift; sourceTree = "<group>"; };
+		667BA13A21C9714400F0895F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		6681658D211ED81E00ADF58E /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		6681658E211ED81E00ADF58E /* MatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
 		66816593212051B000ADF58E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 				660D7A222195FDEC00A46297 /* SettingsService.swift */,
 				661D481B21AA89480006D51A /* ChatService.swift */,
 				661D482121BD2ED20006D51A /* ImageService.swift */,
+				667BA13A21C9714400F0895F /* UserService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				00F0B96321358F5200AC3013 /* ChatCell.swift in Sources */,
 				66766D2A211582D2008F5952 /* CreateAccountRequest.swift in Sources */,
 				666D4746210BA24E000E5374 /* Utils.swift in Sources */,
+				667BA13B21C9714400F0895F /* UserService.swift in Sources */,
 				666D47362108EB00000E5374 /* LogInViewController.swift in Sources */,
 				00F0B96E2137EB8B00AC3013 /* EditedImageModel.swift in Sources */,
 				00F0B9712137EE3F00AC3013 /* ChatsHistoryRequest.swift in Sources */,
@@ -953,8 +957,8 @@
 			baseConfigurationReference = A5EDDA6BF247C8D35F66AD39 /* Pods-Point.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -967,7 +971,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.point.Point;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = PointAdHoc;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -978,8 +982,8 @@
 			baseConfigurationReference = 494E2C55FE84C5DA6A1DF2C6 /* Pods-Point.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -992,7 +996,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.point.Point;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = PointAdHoc;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

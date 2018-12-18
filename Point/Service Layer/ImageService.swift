@@ -11,8 +11,9 @@ import AlamofireImage
 import Alamofire
 
 protocol IImageService {
+    func loadUserImage(completion: @escaping (Result<UIImage>) -> Void)
     func loadImage(_ url: URL, completion: @escaping (Result<UIImage>) -> Void)
-    func upload(image: UIImage, completion: (URL?) -> Void)
+    func upload(image: UIImage, completion: @escaping (Error?) -> Void)
 }
 
 extension IImageService {
@@ -44,7 +45,7 @@ class ImageService: IImageService {
         }
     }
     
-    func upload(image: UIImage, completion: (URL?) -> Void) {
+    func upload(image: UIImage, completion: @escaping (Error?) -> Void) {
         guard let data = image.jpegData(compressionQuality: 0.9) else {
             return
         }
@@ -55,15 +56,24 @@ class ImageService: IImageService {
             guard let token = LocalStorage().getUserToken()?.data(using: .utf8) else { return }
             
             form.append(token, withName: "token")
-        }, to: "\(BASE_URL)/profile/editImage", encodingCompletion: { result in
+        }, to: "\(BASE_URL + EDIT_PROFILE_IMAGE_URL_SETTINGS)", encodingCompletion: { result in
             switch result {
-            case .success(let upload, _, _):
-                upload.responseString { response in
-                    print(response.value)
-                }
+            case .success:
+                completion(nil)
+//                upload.responseString { response in
+//                    print(response.value)
+//                }
             case .failure(let encodingError):
-                print(encodingError)
+                completion(encodingError)
             }
         })
+    }
+    
+    func loadUserImage(completion: @escaping (Result<UIImage>) -> Void) {
+        
+        guard let token = LocalStorage().getUserToken() else { return }
+        let url = "\(BASE_URL)/getPhoto?&token=\(token)"
+        
+        loadImage(url, completion: completion)
     }
 }

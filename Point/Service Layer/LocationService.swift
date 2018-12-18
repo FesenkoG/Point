@@ -82,6 +82,7 @@ class LocationService: NSObject, ILocationService {
 }
 
 extension LocationService: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         delegate?.didChangeStatus(isAuthorized: status == .authorizedAlways)
     }
@@ -92,6 +93,10 @@ extension LocationService: CLLocationManagerDelegate {
         let longitude = String(format: "%f", lastLocation.coordinate.longitude)
         let location = Location(longitude: longitude, latitude: latitude)
         delegate?.didChangeLocation(location)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }
 

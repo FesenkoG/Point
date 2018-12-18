@@ -58,10 +58,21 @@ class PointViewController: UIViewController {
         }
     }
     
-    private func startAnimation() {
-        
+    func changeAnimationState() {
         animate = !animate
         waitCircle.isHidden = animate
+        helperTextLabel.isHidden = !helperTextLabel.isHidden
+    }
+    
+    func turnAnimationOn() {
+        animate = true
+        
+    }
+    
+    private func startAnimation() {
+        
+        changeAnimationState()
+
         if !animate {
             socket?.disconnect()
             locationService.stopUpdatingLocation()
@@ -72,7 +83,6 @@ class PointViewController: UIViewController {
             locationService.startUpdatingLocation()
         }
         
-        helperTextLabel.isHidden = !helperTextLabel.isHidden
         
         animateButton(pointButton, animate: animate, withInterval: 2.5)
     }
