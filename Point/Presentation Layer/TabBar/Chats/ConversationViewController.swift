@@ -27,7 +27,6 @@ class ConversationViewController: UIViewController {
     @IBOutlet private weak var messageTextView: UITextView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textInputView: UIView!
-    @IBOutlet weak var textInputViewHeightConstraint: NSLayoutConstraint!
     private let localStorage: ILocalStorage = LocalStorage()
     private var userId: String?
     
@@ -62,7 +61,6 @@ class ConversationViewController: UIViewController {
             socket.delegate = self
             socket.connect()
         } else {
-            textInputViewHeightConstraint.constant = 0
             textInputView.isHidden = true
         }
         

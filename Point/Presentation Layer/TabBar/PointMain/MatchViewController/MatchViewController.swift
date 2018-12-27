@@ -15,10 +15,15 @@ class MatchViewController: UIViewController {
 
     @IBOutlet private weak var clockView: RoundedView!
     @IBOutlet private weak var userPhotoImageView: CircleImage!
+    @IBOutlet weak var circleAroundImageView: CircleAroundImage!
     @IBOutlet private weak var userNicknameAndAgeLabel: UILabel!
     @IBOutlet private weak var yesButton: UIButton!
     @IBOutlet private weak var noButton: UIButton!
     @IBOutlet private weak var userBioLabel: UILabel!
+    
+    lazy var genderColor: UIColor = {
+        return user.myGender == "0" ? Colors.female.color() : Colors.male.color()
+    }()
     
     private let userID: String
     private let user: UserData
@@ -35,9 +40,10 @@ class MatchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        drawSelf()
         userNicknameAndAgeLabel.text = user.nickname + ", " + DateHelper.convertTimestampToAge(Int(user.myAge) ?? 0)
         userBioLabel.text = user.myBio
+        circleAroundImageView.strokeColor = genderColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +65,7 @@ class MatchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //runAnimation()
+        runAnimation()
     }
     
     
@@ -98,6 +104,7 @@ class MatchViewController: UIViewController {
         path.addLine(to: CGPoint(x: 0, y: forCurve))
         path.addCurve(to: CGPoint(x: forCurve, y: 0), controlPoint1: CGPoint(x: 0, y: 5), controlPoint2: CGPoint(x: 5, y: 0))
         path.addLine(to: CGPoint(x: witdh / 2, y: 0))
+        path.close()
         
         // create shape layer for that path
         let shapeLayer = CAShapeLayer()
@@ -113,6 +120,35 @@ class MatchViewController: UIViewController {
         animation.duration = 20
         animation.delegate = self
         shapeLayer.add(animation, forKey: "MyAnimation")
+    }
+    
+    private func drawSelf() {
+        let witdh = clockView.bounds.width
+        let height = clockView.bounds.height
+        let forCurve: CGFloat = 10
+        
+        //Configure path
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: witdh / 2, y: 0))
+        path.addLine(to: CGPoint(x: witdh - forCurve, y: 0))
+        path.addCurve(to: CGPoint(x: witdh, y: forCurve), controlPoint1: CGPoint(x: witdh - 5, y: 0), controlPoint2: CGPoint(x: witdh, y: 5))
+        path.addLine(to: CGPoint(x: witdh, y: height - forCurve))
+        path.addCurve(to: CGPoint(x: witdh - forCurve, y: height), controlPoint1: CGPoint(x: witdh, y: height - 5), controlPoint2: CGPoint(x: witdh - 5, y: height))
+        path.addLine(to: CGPoint(x: forCurve, y: height))
+        path.addCurve(to: CGPoint(x: 0, y: height - forCurve), controlPoint1: CGPoint(x: 5, y: height), controlPoint2: CGPoint(x: 0, y: height - 5))
+        path.addLine(to: CGPoint(x: 0, y: forCurve))
+        path.addCurve(to: CGPoint(x: forCurve, y: 0), controlPoint1: CGPoint(x: 0, y: 5), controlPoint2: CGPoint(x: 5, y: 0))
+        path.addLine(to: CGPoint(x: witdh / 2, y: 0))
+        path.close()
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        let color = genderColor.withAlphaComponent(0.4)
+        shapeLayer.strokeColor = color.cgColor
+        shapeLayer.lineWidth = 6
+        shapeLayer.path = path.cgPath
+        
+        clockView.layer.addSublayer(shapeLayer)
     }
     
     
@@ -135,8 +171,7 @@ class MatchViewController: UIViewController {
     @IBAction private func noButtonTapped(_ sender: UIButton) {
         //sender.isUserInteractionEnabled = false
         //pauseAnimation(layer: clockView.layer)
-        animateHide(yesButton)
-        socket.write(string: "false")
+        animateHide(yesButton, message: "false")
         guard let pointViewController = pointViewController else { return }
         pointViewController.socket.delegate = pointViewController
         self.dismiss(animated: true, completion: nil)
@@ -145,8 +180,7 @@ class MatchViewController: UIViewController {
     @IBAction private func yesButtonTapped(_ sender: UIButton) {
         //sender.isUserInteractionEnabled = false
         //pauseAnimation(layer: clockView.layer)
-        animateHide(noButton)
-        socket.write(string: "true")
+        animateHide(noButton, message: "true")
     }
     
     @IBAction private func closeButtonTapped(_ sender: UIButton) {
@@ -155,13 +189,15 @@ class MatchViewController: UIViewController {
         socket.disconnect()
     }
 
-    private func animateHide(_ view: UIView) {
+    private func animateHide(_ view: UIView, message: String) {
         
         UIView.animate(withDuration: 0.5, animations: {
             view.alpha = 0.0
         }) { (_) in
             UIView.animate(withDuration: 0.5, animations: {
                 view.isHidden = true
+            }, completion: { [weak self] _ in
+                self?.socket.write(string: message)
             })
         }
     }
@@ -173,9 +209,9 @@ class MatchViewController: UIViewController {
 extension MatchViewController: CAAnimationDelegate {
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-//        if flag {
-//            dismiss(animated: true, completion: nil)
-//        }
+        if flag {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
 

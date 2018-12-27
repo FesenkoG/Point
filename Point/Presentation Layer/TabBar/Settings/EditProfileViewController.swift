@@ -21,7 +21,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet private var myGenderButtons: [RoundedButton]!
     @IBOutlet private weak var dateOfBirthButton: UIButton!
     @IBOutlet private weak var userImageView: CircleImage!
-    @IBOutlet private weak var userNameLabel: UILabel!
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var userBioTextView: UITextView!
     
     private let helper = Utils()
     private let settingsService: ISettingsService = SettingsService()
@@ -43,6 +44,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userBioTextView.backgroundColor = .clear
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapBackground)))
         guard let token = localStorage.getUserToken() else { return }
         editedProfileModel.token = token
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -54,7 +57,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Private methods
     
     @IBAction private func saveButtonWasTapped(_ sender: Any) {
-        
+        editedProfileModel.nickname = userNameTextField.text ?? "Nobody"
         settingsService
             .sendEditedProfile(model: editedProfileModel) { (result) in
                 
@@ -215,7 +218,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 self.editedProfileModel.yourAge = userInfo.yourAge
                 self.editedProfileModel.yourGender = userInfo.yourGender
                 
-                self.userNameLabel.text = userInfo.nickname
+                self.userNameTextField.text = userInfo.nickname
+                self.userBioTextView.text = "Глеб заблудовский ленивый мудак и пока что не сделал этот хэндлер."
                 
                 guard let timeInterval = TimeInterval(userInfo.myAge) else { return }
                 let date = Date(timeIntervalSince1970: timeInterval)
@@ -294,6 +298,11 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapPhoto))
         userImageView.addGestureRecognizer(tap)
         userImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func didTapBackground() {
+        userNameTextField.resignFirstResponder()
+        userBioTextView.resignFirstResponder()
     }
 }
 

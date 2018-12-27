@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchViewController" customModule="Point" customModuleProvider="target">
             <connections>
+                <outlet property="circleAroundImageView" destination="fIw-Aa-CQx" id="Oi0-zW-5At"/>
                 <outlet property="clockView" destination="6SO-4c-Iat" id="mZi-0P-CIy"/>
                 <outlet property="noButton" destination="nbk-7b-e1t" id="yJv-lX-aC9"/>
                 <outlet property="userBioLabel" destination="tFc-c2-V1N" id="Lab-SQ-eTf"/>
@@ -27,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEZ-Pm-Ynz">
-                    <rect key="frame" x="0.0" y="80" width="375" height="547"/>
+                    <rect key="frame" x="0.0" y="70" width="375" height="537"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3N-ow-R1b">
                             <rect key="frame" x="325" y="0.0" width="20" height="22"/>
@@ -46,7 +47,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SO-4c-Iat" customClass="RoundedView" customModule="Point" customModuleProvider="target">
-                            <rect key="frame" x="30" y="40.5" width="315" height="488.5"/>
+                            <rect key="frame" x="30" y="40.5" width="315" height="478.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIw-Aa-CQx" customClass="CircleAroundImage" customModule="Point" customModuleProvider="target">
                                     <rect key="frame" x="70" y="36" width="175" height="175"/>
@@ -88,17 +89,17 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="y1V-Xb-uLE">
-                                    <rect key="frame" x="30" y="312" width="255" height="156.5"/>
+                                    <rect key="frame" x="30" y="312" width="255" height="146.5"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbk-7b-e1t">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="156.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="127.5" height="146.5"/>
                                             <state key="normal" image="RejectIcon"/>
                                             <connections>
                                                 <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="5sG-Ng-xpo"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be5-BK-1qk">
-                                            <rect key="frame" x="127.5" y="0.0" width="127.5" height="156.5"/>
+                                            <rect key="frame" x="127.5" y="0.0" width="127.5" height="146.5"/>
                                             <state key="normal" image="AcceptIcon"/>
                                             <connections>
                                                 <action selector="yesButtonTapped:" destination="-1" eventType="touchUpInside" id="yho-nd-81t"/>
@@ -145,9 +146,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="nEZ-Pm-Ynz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="63k-9L-IG5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nEZ-Pm-Ynz" secondAttribute="bottom" constant="40" id="MTF-4i-100"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nEZ-Pm-Ynz" secondAttribute="bottom" constant="60" id="MTF-4i-100"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nEZ-Pm-Ynz" secondAttribute="trailing" id="dSz-9S-E5H"/>
-                <constraint firstItem="nEZ-Pm-Ynz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="xHL-HI-ifB"/>
+                <constraint firstItem="nEZ-Pm-Ynz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="xHL-HI-ifB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="34.5" y="53.5"/>

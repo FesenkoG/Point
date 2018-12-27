@@ -62,11 +62,11 @@ class PointViewController: UIViewController {
         animate = !animate
         waitCircle.isHidden = animate
         helperTextLabel.isHidden = !helperTextLabel.isHidden
-    }
-    
-    func turnAnimationOn() {
-        animate = true
-        
+        if !animate {
+            locationService.stopUpdatingLocation()
+        } else {
+            locationService.startUpdatingLocation()
+        }
     }
     
     private func startAnimation() {
@@ -199,7 +199,7 @@ extension PointViewController: WebSocketDelegate {
             matchViewController.pointViewController = self
             
             matchViewController.modalPresentationStyle = .overCurrentContext
-            matchViewController.modalTransitionStyle = .crossDissolve
+            matchViewController.modalTransitionStyle = .coverVertical
             
             self.present(matchViewController, animated: true, completion: nil)
         } catch {
