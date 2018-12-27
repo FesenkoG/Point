@@ -15,8 +15,11 @@ class IncomingCell: UITableViewCell {
     @IBOutlet weak var messageView: MessageView!
     @IBOutlet weak var timeLabel: UILabel!
     
-    func configure(_ message: Message) {
+    func configure(_ message: Message, imageUrl: URL?) {
         messageTextLabel.text = message.text
         timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(message.date)
+        
+        guard let url = imageUrl else { return }
+        personImageView.af_setImage(withURL: url)
     }
 }

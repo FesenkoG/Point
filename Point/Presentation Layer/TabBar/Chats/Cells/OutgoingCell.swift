@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class OutgoingCell: UITableViewCell {
     
@@ -15,9 +16,12 @@ class OutgoingCell: UITableViewCell {
     @IBOutlet weak var messageView: MessageView!
     @IBOutlet weak var personImageView: CircleImage!
     
-    func configure(_ model: Message) {
+    func configure(_ model: Message, imageUrl: URL?) {
         messageLabel.text = model.text
         timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(model.date)
+        
+        guard let url = imageUrl else { return }
+        personImageView.af_setImage(withURL: url)
     }
     
 }

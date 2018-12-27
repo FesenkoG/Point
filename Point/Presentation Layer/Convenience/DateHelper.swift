@@ -24,7 +24,7 @@ final class DateHelper {
     
     static func convertTimestampToHoursAndMinutes(_ timestamp: Int) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "mm:ss"
+        dateFormatter.dateFormat = "HH:mm"
         
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         return dateFormatter.string(from: date)

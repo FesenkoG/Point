@@ -76,4 +76,5 @@ class ImageService: IImageService {
         
         loadImage(url, completion: completion)
     }
+    
 }

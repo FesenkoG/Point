@@ -27,10 +27,22 @@ class ConversationViewController: UIViewController {
     @IBOutlet private weak var messageTextView: UITextView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textInputView: UIView!
-    
+    @IBOutlet weak var textInputViewHeightConstraint: NSLayoutConstraint!
     private let localStorage: ILocalStorage = LocalStorage()
     private var userId: String?
     
+    private lazy var myImageUrl: URL? = {
+        guard let token = LocalStorage().getUserToken() else { return nil }
+        let url = "\(BASE_URL)/getPhoto?&token=\(token)"
+        return URL(string: url)
+    }()
+    
+    private lazy var yourImageUrl: URL? = {
+        guard let token = LocalStorage().getUserToken() else { return nil }
+        let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(yourID)"
+        return URL(string: url)
+    }()
+
     
     // MARK: - View lifecycle
     
@@ -50,6 +62,7 @@ class ConversationViewController: UIViewController {
             socket.delegate = self
             socket.connect()
         } else {
+            textInputViewHeightConstraint.constant = 0
             textInputView.isHidden = true
         }
         
@@ -135,11 +148,11 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         
         if message.senderId == yourID {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingCell") as? IncomingCell else { return UITableViewCell() }
-            cell.configure(message)
+            cell.configure(message, imageUrl: yourImageUrl)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "OutgoingCell") as? OutgoingCell else { return UITableViewCell() }
-            cell.configure(message)
+            cell.configure(message, imageUrl: myImageUrl)
             return cell
         }
         

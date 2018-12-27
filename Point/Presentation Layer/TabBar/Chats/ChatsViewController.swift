@@ -17,6 +17,7 @@ class ChatsViewController: UIViewController {
     
     private var chats: [Chat] = []
     private let chatService: IChatService = ChatService()
+    private let localStorage: ILocalStorage = LocalStorage()
     
     
     // MARK: - View lifecycle
@@ -60,7 +61,17 @@ class ChatsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let conversationViewController = segue.destination as? ConversationViewController, let chat = sender as? Chat {
+            
+            var yourId: String?
+            
+            if chat.chatmade.nick != localStorage.getUserInfo()?.nickname {
+                yourId = chat.chatmade.id
+            } else {
+                yourId = chat.messages.first(where: { $0.senderId != chat.chatmade.id })?.senderId
+            }
+            
             conversationViewController.chat = chat
+            conversationViewController.yourID = yourId ?? "0"
             conversationViewController.isLoadFromMatchScreen = false
         }
     }
@@ -76,7 +87,20 @@ extension ChatsViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ChatCell else { return UITableViewCell() }
-        cell.configure(chats[indexPath.row])
+        
+        let chat = chats[indexPath.row]
+        
+        var yourId: String?
+        
+        if chat.chatmade.nick != localStorage.getUserInfo()?.nickname {
+            yourId = chat.chatmade.id
+        } else {
+            yourId = chat.messages.first(where: { $0.senderId != chat.chatmade.id })?.senderId
+        }
+        guard let token = localStorage.getUserToken() else { return UITableViewCell() }
+        let url = URL(string: "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(yourId ?? "0")")
+
+        cell.configure(chat, imageUrl: url)
         return cell
     }
     
