@@ -26,6 +26,12 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.height / 2
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         userService.retrieveUserData { [weak self] (result) in
             guard let self = self else { return }
             switch result {
