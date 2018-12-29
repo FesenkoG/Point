@@ -276,22 +276,18 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 let ageSelectedButton = self.ageButtons[yourAgeSelectedIndex]
                 self.helper.checkAgeButtons(sender: ageSelectedButton, otherButtons: self.ageButtons)
 
-                // User image uploading
-                self.imageService.loadUserImage(completion: { (result) in
-                    
-                    switch result {
-                        
-                    case .success(let image):
-                        self.userImageView.image = image
-                    case .error(let error):
-                        self.showErrorAlert(error)
-                    }
-                })
+                
                 
             case .error(let error):
                 self.showErrorAlert(error)
             }
         }
+        
+        // User image uploading
+        guard let token = LocalStorage().getUserToken() else { return }
+        let url = "\(BASE_URL)/getPhoto?&token=\(token)"
+        guard let imageUrl = URL(string: url) else { return }
+        self.userImageView.af_setImage(withURL: imageUrl)
     }
     
     private func setupGestureRecognizers() {

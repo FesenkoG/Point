@@ -46,7 +46,7 @@ class ImageService: IImageService {
     }
     
     func upload(image: UIImage, completion: @escaping (Error?) -> Void) {
-        guard let data = image.jpegData(compressionQuality: 0.9) else {
+        guard let data = image.jpegData(compressionQuality: 0.7) else {
             return
         }
 

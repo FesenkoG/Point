@@ -8,6 +8,7 @@
 
 import UIKit
 import Starscream
+import AlamofireImage
 
 class MatchViewController: UIViewController {
 
@@ -22,11 +23,11 @@ class MatchViewController: UIViewController {
     @IBOutlet private weak var userBioLabel: UILabel!
     
     lazy var genderColor: UIColor = {
-        return user.myGender == "0" ? Colors.female.color() : Colors.male.color()
+        return matchedUser.myGender == "0" ? Colors.female.color() : Colors.male.color()
     }()
-    
+    // TODO: - Убрать userId - это будет в user хранится
     private let userID: String
-    private let user: UserData
+    private let matchedUser: UserData
     private var socket: WebSocket
     private let imageService: IImageService = ImageService()
     
@@ -41,27 +42,46 @@ class MatchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         drawSelf()
-        userNicknameAndAgeLabel.text = user.nickname + ", " + DateHelper.convertTimestampToAge(Int(user.myAge) ?? 0)
-        userBioLabel.text = user.myBio
+        userNicknameAndAgeLabel.text = matchedUser.nickname + ", " + DateHelper.convertTimestampToAge(Int(matchedUser.myAge) ?? 0)
+        userBioLabel.text = matchedUser.myBio
         circleAroundImageView.strokeColor = genderColor
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         guard let token = LocalStorage().getUserToken() else { return }
         let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(userID)"
-        
-        imageService.loadImage(url) { [weak self] (result) in
-            
-            switch result {
-            case .success(let image):
-                self?.userPhotoImageView.image = image
-            case .error(let error):
-                self?.showErrorAlert(error)
-            }
+        guard let imageUrl = URL(string: url) else { return }
+        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.bounds.height / 2
+        self.userPhotoImageView.clipsToBounds = true
+        self.userPhotoImageView.af_setImage(withURL: imageUrl,
+                                            placeholderImage: nil,
+                                            filter: nil,
+                                            progress: { (progress) in
+                                                print(progress.fileCompletedCount)
+        }, progressQueue: DispatchQueue.main,
+           imageTransition: UIImageView.ImageTransition.crossDissolve(0.25),
+           runImageTransitionIfCached: true) { (data) in
+            print(data)
         }
     }
+//    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        guard let token = LocalStorage().getUserToken() else { return }
+//        let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(userID)"
+//        guard let imageUrl = URL(string: url) else { return }
+//        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.bounds.height / 2
+//        self.userPhotoImageView.clipsToBounds = true
+//        self.userPhotoImageView.af_setImage(withURL: imageUrl,
+//                                            placeholderImage: nil,
+//                                            filter: nil,
+//                                            progress: { (progress) in
+//            print(progress.fileCompletedCount)
+//        }, progressQueue: DispatchQueue.main,
+//           imageTransition: UIImageView.ImageTransition.crossDissolve(0.25),
+//           runImageTransitionIfCached: true) { (data) in
+//            print(data)
+//        }
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -71,9 +91,9 @@ class MatchViewController: UIViewController {
     
     // MARK: - Initialization
     
-    init(userID: String, user: UserData, socket: WebSocket) {
+    init(userID: String, matchedUser: UserData, socket: WebSocket) {
         self.userID = userID
-        self.user = user
+        self.matchedUser = matchedUser
         self.socket = socket
         super.init(nibName: nil, bundle: nil)
         socket.delegate = self
@@ -109,7 +129,7 @@ class MatchViewController: UIViewController {
         // create shape layer for that path
         let shapeLayer = CAShapeLayer()
         shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = user.myGender == "0" ? Colors.female.color().cgColor : Colors.male.color().cgColor
+        shapeLayer.strokeColor = genderColor.cgColor
         shapeLayer.lineWidth = 6
         shapeLayer.path = path.cgPath
         

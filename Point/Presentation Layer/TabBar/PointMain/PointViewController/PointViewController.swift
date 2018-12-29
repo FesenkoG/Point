@@ -23,12 +23,12 @@ class PointViewController: UIViewController {
     private let localStorage: ILocalStorage = LocalStorage()
     private var currentLocation: Location?
     private var isConnected: Bool = false
-    
+    private let shouldAnimate = ShouldAnimate()
+
     
     // MARK: - Public properties
     
     var socket: WebSocket!
-    var animate: Bool = false
     
     
     // MARK: - View lifecycle
@@ -47,6 +47,20 @@ class PointViewController: UIViewController {
     }
     
     
+    // MARK: - Public methods
+    
+    func changeAnimationState() {
+        shouldAnimate.animate = !shouldAnimate.animate
+        waitCircle.isHidden = shouldAnimate.animate
+        helperTextLabel.isHidden = !helperTextLabel.isHidden
+        if !shouldAnimate.animate {
+            locationService.stopUpdatingLocation()
+        } else {
+            locationService.startUpdatingLocation()
+        }
+    }
+    
+    
     // MARK: - Private methods
     
     @IBAction private func pointButtonTapped(_ sender: UIButton) {
@@ -58,22 +72,11 @@ class PointViewController: UIViewController {
         }
     }
     
-    func changeAnimationState() {
-        animate = !animate
-        waitCircle.isHidden = animate
-        helperTextLabel.isHidden = !helperTextLabel.isHidden
-        if !animate {
-            locationService.stopUpdatingLocation()
-        } else {
-            locationService.startUpdatingLocation()
-        }
-    }
-    
     private func startAnimation() {
         
         changeAnimationState()
 
-        if !animate {
+        if !shouldAnimate.animate {
             socket?.disconnect()
             locationService.stopUpdatingLocation()
         } else {
@@ -83,47 +86,32 @@ class PointViewController: UIViewController {
             locationService.startUpdatingLocation()
         }
         
-        
-        animateButton(pointButton, animate: animate, withInterval: 2.5)
+        recursivelyAnimate(shouldAnimate, sender: pointButton, duration: 4.0, numberOfAnimationsInTheRow: 5)
     }
     
-    private func animateButton(_ button: UIButton, animate: Bool, withInterval interval: Double) {
-        let delay = interval / 4
-        if animate {
-            let (view, transform) = getViewAndTransform(view: button)
-            let (view2, transform2) = getViewAndTransform(view: button)
-            let (view3, transform3) = getViewAndTransform(view: button)
-            let (view4, transform4) = getViewAndTransform(view: button)
-            UIView.animate(withDuration: interval, delay: 0, options: .allowUserInteraction, animations: {
-                view.transform = transform
+    private func recursivelyAnimate(_ shouldAnimate: ShouldAnimate,
+                                    sender: UIButton,
+                                    duration: Double,
+                                    numberOfAnimationsInTheRow: Int = 6) {
+        if shouldAnimate.animate {
+            let (view, transformation) = getViewAndTransform(view: sender)
+            let delay = duration / Double(numberOfAnimationsInTheRow)
+            UIView.animate(withDuration: duration, delay: 0, options: [.allowUserInteraction, .curveLinear], animations: {
+                view.transform = transformation
                 view.alpha = 0.0
-                UIView.animate(withDuration: interval, delay: delay, options: .allowUserInteraction, animations: {
-                    view2.transform = transform2
-                    view2.alpha = 0.0
-                }, completion: { (_) in
-                    view2.removeFromSuperview()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+                    self.recursivelyAnimate(shouldAnimate, sender: sender, duration: duration, numberOfAnimationsInTheRow: numberOfAnimationsInTheRow)
                 })
-                UIView.animate(withDuration: interval, delay: delay * 2, options: .allowUserInteraction, animations: {
-                    view3.transform = transform3
-                    view3.alpha = 0.0
-                }, completion: { (_) in
-                    view3.removeFromSuperview()
-                })
-                UIView.animate(withDuration: interval, delay: delay * 3, options: .allowUserInteraction, animations: {
-                    view4.transform = transform4
-                    view4.alpha = 0.0
-                }, completion: { (_) in
-                    view4.removeFromSuperview()
-                })
+                
             }) { (_) in
                 view.removeFromSuperview()
-                self.animateButton(button, animate: self.animate, withInterval: interval)
             }
         }
-        
     }
     
     private func getViewAndTransform(view: UIButton) -> (view: UIView, transform: CGAffineTransform) {
+        
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         let transformedView = UIView(frame: frame)
         transformedView.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
@@ -155,9 +143,6 @@ extension PointViewController: LocationServiceDelegate {
             socket = WebSocket(url: url)
             socket.delegate = self
             socket.connect()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                self.isConnected = true
-//            }
         } else {
             if isConnected {
                 locationService.updateUserLocation(latitude: newLocation.latitude, longitude: newLocation.longitude) { (error) in
@@ -185,17 +170,18 @@ extension PointViewController: WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
         do {
             guard let data = text.data(using: .utf8) else { return }
             guard var json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] else { return }
+            // Получаем айдишник пользователя, к которому хотим подконнектиться
+            // TODO: - Убрать это поле в дальнейшем
             guard let id = json["id"] else { return }
-            print(id)
             json["id"] = nil
-            print(json)
             let dataToDecode = try JSONSerialization.data(withJSONObject: json as Any, options: [])
-            let user = try JSONDecoder().decode(UserData.self, from: dataToDecode)
-            let matchViewController = MatchViewController(userID: id, user: user, socket: self.socket)
+            let matchedUser = try JSONDecoder().decode(UserData.self, from: dataToDecode)
+            let matchViewController = MatchViewController(userID: id,
+                                                          matchedUser: matchedUser,
+                                                          socket: self.socket)
             matchViewController.pointViewController = self
             
             matchViewController.modalPresentationStyle = .overCurrentContext
@@ -203,11 +189,16 @@ extension PointViewController: WebSocketDelegate {
             
             self.present(matchViewController, animated: true, completion: nil)
         } catch {
-            print(error)
+            showErrorAlert(error.localizedDescription)
         }
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print(data)
+        // TODO: - Don't know what it is
     }
+}
+
+
+class ShouldAnimate {
+    var animate: Bool = false
 }

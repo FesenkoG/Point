@@ -23,9 +23,9 @@ class SettingsViewController: UIViewController {
     
     // MARK: - View lifecycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        avatarImageView.layer.cornerRadius = avatarImageView.bounds.height / 2
         userService.retrieveUserData { [weak self] (result) in
             guard let self = self else { return }
             switch result {
@@ -40,14 +40,9 @@ class SettingsViewController: UIViewController {
             }
         }
         
-        imageService.loadUserImage { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let image):
-                self.avatarImageView.image = image
-            case .error(let error):
-                self.showErrorAlert(error)
-            }
-        }
+        guard let token = LocalStorage().getUserToken() else { return }
+        let url = "\(BASE_URL)/getPhoto?&token=\(token)"
+        guard let imageUrl = URL(string: url) else { return }
+        self.avatarImageView.af_setImage(withURL: imageUrl)
     }
 }
