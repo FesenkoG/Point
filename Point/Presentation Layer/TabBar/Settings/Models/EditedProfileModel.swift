@@ -10,8 +10,8 @@ import Foundation
 
 struct EditedProfileModel: Codable {
     var token: String = ""
-    var telephone: String = ""
     var nickname: String = ""
+    var myBio: String = ""
     var myAge: String = ""
     var myGender: String = ""
     var yourAge: String = "18-99"

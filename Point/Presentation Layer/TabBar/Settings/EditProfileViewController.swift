@@ -57,7 +57,8 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Private methods
     
     @IBAction private func saveButtonWasTapped(_ sender: Any) {
-        editedProfileModel.nickname = userNameTextField.text ?? "Nobody"
+        editedProfileModel.nickname = userNameTextField.text ?? "Self"
+        editedProfileModel.myBio = userBioTextView.text ?? ""
         settingsService
             .sendEditedProfile(model: editedProfileModel) { (result) in
                 
@@ -214,12 +215,12 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 self.editedProfileModel.myAge = userInfo.myAge
                 self.editedProfileModel.myGender = userInfo.myGender
                 self.editedProfileModel.nickname = userInfo.nickname
-                self.editedProfileModel.telephone = userInfo.telephoneHash
+                self.editedProfileModel.myBio = userInfo.myBio
                 self.editedProfileModel.yourAge = userInfo.yourAge
                 self.editedProfileModel.yourGender = userInfo.yourGender
                 
                 self.userNameTextField.text = userInfo.nickname
-                self.userBioTextView.text = "Глеб заблудовский ленивый мудак и пока что не сделал этот хэндлер."
+                self.userBioTextView.text = userInfo.myBio.isEmpty ? "Write a few words about yourself" : userInfo.myBio
                 
                 guard let timeInterval = TimeInterval(userInfo.myAge) else { return }
                 let date = Date(timeIntervalSince1970: timeInterval)

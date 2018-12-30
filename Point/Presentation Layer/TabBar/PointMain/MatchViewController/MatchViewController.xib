@@ -52,7 +52,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIw-Aa-CQx" customClass="CircleAroundImage" customModule="Point" customModuleProvider="target">
                                     <rect key="frame" x="70" y="36" width="175" height="175"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aJd-RI-qVc" customClass="CircleImage" customModule="Point" customModuleProvider="target">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aJd-RI-qVc" customClass="CircleImage" customModule="Point" customModuleProvider="target">
                                             <rect key="frame" x="4" y="4" width="167" height="167"/>
                                         </imageView>
                                     </subviews>
