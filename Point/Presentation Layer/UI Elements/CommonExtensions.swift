@@ -69,6 +69,6 @@ extension UIView {
 
 extension UITabBarItem {
     func setImageInsets() {
-        imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -12, right: 0)
+        imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -16, right: 0)
     }
 }

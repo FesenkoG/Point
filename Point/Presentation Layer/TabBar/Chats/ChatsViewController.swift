@@ -79,7 +79,7 @@ class ChatsViewController: UIViewController {
 
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
-extension ChatsViewController: UITableViewDelegate,UITableViewDataSource {
+extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chats.count

@@ -11,6 +11,8 @@ import Fabric
 import Crashlytics
 import Starscream
 
+let ApplicationWillTerminateNotification = Notification.Name("ApplicationWillTerminate")
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         window?.rootViewController = LaunchViewController()
         return true
+    }
+    
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        
+        NotificationCenter.default.post(Notification.init(name: ApplicationWillTerminateNotification))
     }
 }
 

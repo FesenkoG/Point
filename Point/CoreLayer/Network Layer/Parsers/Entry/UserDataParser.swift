@@ -26,7 +26,7 @@ struct UserDataParser: IParser {
 }
 
 struct UserData: Codable {
-    let telephoneHash: String
+    let phone: String
     let nickname: String
     let myBio: String
     let myAge: String

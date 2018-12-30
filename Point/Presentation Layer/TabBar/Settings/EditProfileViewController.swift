@@ -23,6 +23,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet private weak var userImageView: CircleImage!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userBioTextView: UITextView!
+    @IBOutlet weak var userPhoneNumberLabel: UILabel!
     
     private let helper = Utils()
     private let settingsService: ISettingsService = SettingsService()
@@ -221,6 +222,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 
                 self.userNameTextField.text = userInfo.nickname
                 self.userBioTextView.text = userInfo.myBio.isEmpty ? "Write a few words about yourself" : userInfo.myBio
+                self.userPhoneNumberLabel.text = userInfo.phone
                 
                 guard let timeInterval = TimeInterval(userInfo.myAge) else { return }
                 let date = Date(timeIntervalSince1970: timeInterval)

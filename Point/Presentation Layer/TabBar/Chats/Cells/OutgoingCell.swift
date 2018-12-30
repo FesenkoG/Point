@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import SkeletonView
 
 class OutgoingCell: UITableViewCell {
     
@@ -15,6 +16,7 @@ class OutgoingCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var messageView: MessageView!
     @IBOutlet weak var personImageView: CircleImage!
+    
     
     func configure(_ model: Message, imageUrl: URL?) {
         messageLabel.text = model.text

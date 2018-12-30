@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class IncomingCell: UITableViewCell {
     
@@ -14,6 +15,7 @@ class IncomingCell: UITableViewCell {
     @IBOutlet weak var messageTextLabel: UILabel!
     @IBOutlet weak var messageView: MessageView!
     @IBOutlet weak var timeLabel: UILabel!
+    
     
     func configure(_ message: Message, imageUrl: URL?) {
         messageTextLabel.text = message.text

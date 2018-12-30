@@ -106,6 +106,7 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
+    
     @IBAction func signUpButtonWasPressed(_ sender: Any) {
         UIApplication.shared.keyWindow?.rootViewController = helper.getSignUpViewController()
     }

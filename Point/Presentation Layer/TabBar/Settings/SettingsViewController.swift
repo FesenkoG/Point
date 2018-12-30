@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import SkeletonView
 
 class SettingsViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var userBioLabel: UILabel!
     @IBOutlet weak var userPhoneNumberLabel: UILabel!
+    @IBOutlet weak var circleView: CircleAroundImage!
     
     // Privacy
     @IBOutlet private weak var friendsView: UIView!
@@ -30,11 +32,14 @@ class SettingsViewController: UIViewController {
     private let imageService: IImageService = ImageService()
     private let userService: IUserService = UserService()
     
+    private lazy var skeletonableViews: [UIView] = [circleView, userNameLabel, userBioLabel, userPhoneNumberLabel]
+    
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         configureGestureRecognizers()
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.height / 2
@@ -52,10 +57,21 @@ class SettingsViewController: UIViewController {
                 
             case .success(let userData):
                 
-                self.userNameLabel.text = userData.nickname
-                if !userData.myBio.isEmpty {
-                    self.userBioLabel.text = userData.myBio
-                }
+                // TODO: - This is not good
+                guard let token = LocalStorage().getUserToken() else { return }
+                let url = "\(BASE_URL)/getPhoto?&token=\(token)"
+                guard let imageUrl = URL(string: url) else { return }
+                self.avatarImageView.af_setImage(withURL: imageUrl, completion: { _ in
+                    
+                    self.userNameLabel.text = userData.nickname
+                    if !userData.myBio.isEmpty {
+                        self.userBioLabel.text = userData.myBio
+                    }
+                    self.userPhoneNumberLabel.text = userData.phone
+                    self.skeletonableViews.forEach {
+                        $0.hideSkeleton()
+                    }
+                })
                 
             case .error(let error):
                 self.showErrorAlert(error)
@@ -63,11 +79,17 @@ class SettingsViewController: UIViewController {
             }
         }
         
-        // TODO: - This is not good
-        guard let token = LocalStorage().getUserToken() else { return }
-        let url = "\(BASE_URL)/getPhoto?&token=\(token)"
-        guard let imageUrl = URL(string: url) else { return }
-        self.avatarImageView.af_setImage(withURL: imageUrl)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        skeletonableViews.forEach {
+            $0.showAnimatedGradientSkeleton()
+        }
+        
+        circleView.layer.cornerRadius = circleView.bounds.height / 2
+        circleView.clipsToBounds = true
     }
     
     

@@ -29,6 +29,7 @@ class ConversationViewController: UIViewController {
     @IBOutlet private weak var textInputView: UIView!
     private let localStorage: ILocalStorage = LocalStorage()
     private var userId: String?
+    private var shouldShowDisconnectAlert: Bool = true
     
     private lazy var myImageUrl: URL? = {
         guard let token = LocalStorage().getUserToken() else { return nil }
@@ -48,6 +49,7 @@ class ConversationViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapBackground)))
         
         chat.messages.sort()
         
@@ -68,6 +70,10 @@ class ConversationViewController: UIViewController {
         setupObservers()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     // MARK: - Private methods
     
@@ -75,6 +81,7 @@ class ConversationViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboadNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillTerminate), name: ApplicationWillTerminateNotification, object: nil)
     }
     
     @objc private func handleKeyboadNotification(notification: NSNotification) {
@@ -95,7 +102,12 @@ class ConversationViewController: UIViewController {
         }
     }
     
+    @objc private func applicationWillTerminate() {
+        socket?.disconnect()
+    }
+    
     @IBAction private func backButtonTapped(_ sender: Any) {
+        shouldShowDisconnectAlert = false
         socket?.disconnect()
         navigationController?.popViewController(animated: true)
     }
@@ -119,6 +131,10 @@ class ConversationViewController: UIViewController {
         tableView.reloadData()
         let indexPathToScroll = IndexPath(row: chat.messages.count - 1, section: 0)
         tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
+    }
+    
+    @objc private func didTapBackground() {
+        textInputView.resignFirstResponder()
     }
     
     private func showDisconnectAlert() {
@@ -173,7 +189,7 @@ extension ConversationViewController: WebSocketDelegate {
         
         if let error = error {
             showErrorAlert(error.localizedDescription)
-        } else {
+        } else if shouldShowDisconnectAlert {
             showDisconnectAlert()
         }
     }

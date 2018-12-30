@@ -41,7 +41,6 @@ class MatchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        drawSelf()
         userNicknameAndAgeLabel.text = matchedUser.nickname + ", " + DateHelper.convertTimestampToAge(Int(matchedUser.myAge) ?? 0)
         userBioLabel.text = matchedUser.myBio
         circleAroundImageView.strokeColor = genderColor
@@ -49,8 +48,6 @@ class MatchViewController: UIViewController {
         guard let token = LocalStorage().getUserToken() else { return }
         let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(userID)"
         guard let imageUrl = URL(string: url) else { return }
-        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.bounds.height / 2
-        self.userPhotoImageView.clipsToBounds = true
         self.userPhotoImageView.af_setImage(withURL: imageUrl,
                                             placeholderImage: nil,
                                             filter: nil,
@@ -62,6 +59,7 @@ class MatchViewController: UIViewController {
             print(data)
         }
     }
+    
 //    
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -85,6 +83,10 @@ class MatchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        drawSelf()
+        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.bounds.height / 2
+        self.userPhotoImageView.clipsToBounds = true
+        
         runAnimation()
     }
     
@@ -249,7 +251,7 @@ extension MatchViewController: WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        let text = String(text.filter { !" \n\t\r".contains($0) })
+        let text = String(text.filter { !"\n\t\r".contains($0) })
         
         switch text {
         case "false", "Flase":

@@ -9,5 +9,6 @@ target 'Point' do
   pod 'KeychainSwift', '~> 13.0'
   pod 'AlamofireImage', '~> 3.5'
   pod 'Alamofire'
+  pod 'SkeletonView'
   
 end

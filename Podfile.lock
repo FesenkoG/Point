@@ -9,6 +9,7 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (2.5.0)
   - PhoneNumberKit/UIKit (2.5.0):
     - PhoneNumberKit/PhoneNumberKitCore
+  - SkeletonView (1.4.1)
   - Starscream (3.0.6)
 
 DEPENDENCIES:
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.5)
   - KeychainSwift (~> 13.0)
   - PhoneNumberKit (~> 2.1)
+  - SkeletonView
   - Starscream (~> 3.0.2)
 
 SPEC REPOS:
@@ -24,6 +26,7 @@ SPEC REPOS:
     - AlamofireImage
     - KeychainSwift
     - PhoneNumberKit
+    - SkeletonView
     - Starscream
 
 SPEC CHECKSUMS:
@@ -31,8 +34,9 @@ SPEC CHECKSUMS:
   AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   PhoneNumberKit: 32a1cd1e0aa9e950feb01886a22fd7386b8cf903
+  SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: 73acecd45443090027dcb729284681ad693f28fd
+PODFILE CHECKSUM: a0ca51b3b51cc28dffb2ae05fb642db2b6758043
 
 COCOAPODS: 1.5.2

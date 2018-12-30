@@ -37,6 +37,7 @@ class PointViewController: UIViewController {
         super.viewDidLoad()
         
         waitCircle.rotate360Degrees()
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillTerminate), name: ApplicationWillTerminateNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +45,10 @@ class PointViewController: UIViewController {
         
         pointButton.layer.cornerRadius = pointButton.bounds.height / 2
         pointButton.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.4039215686, blue: 0.5764705882, alpha: 1)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -70,6 +75,10 @@ class PointViewController: UIViewController {
         } else {
             locationService.requestPermission()
         }
+    }
+    
+    @objc private func applicationWillTerminate() {
+        socket?.disconnect()
     }
     
     private func startAnimation() {
