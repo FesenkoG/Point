@@ -49,7 +49,7 @@ class MatchViewController: UIViewController {
         let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(userID)"
         guard let imageUrl = URL(string: url) else { return }
         self.userPhotoImageView.af_setImage(withURL: imageUrl,
-                                            placeholderImage: nil,
+                                            placeholderImage: UIImage.placeholderImage(),
                                             filter: nil,
                                             progress: { (progress) in
                                                 print(progress.fileCompletedCount)
@@ -59,27 +59,6 @@ class MatchViewController: UIViewController {
             print(data)
         }
     }
-    
-//    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        guard let token = LocalStorage().getUserToken() else { return }
-//        let url = "\(BASE_URL)/getPhoto?&token=\(token)&userId=\(userID)"
-//        guard let imageUrl = URL(string: url) else { return }
-//        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.bounds.height / 2
-//        self.userPhotoImageView.clipsToBounds = true
-//        self.userPhotoImageView.af_setImage(withURL: imageUrl,
-//                                            placeholderImage: nil,
-//                                            filter: nil,
-//                                            progress: { (progress) in
-//            print(progress.fileCompletedCount)
-//        }, progressQueue: DispatchQueue.main,
-//           imageTransition: UIImageView.ImageTransition.crossDissolve(0.25),
-//           runImageTransitionIfCached: true) { (data) in
-//            print(data)
-//        }
-//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

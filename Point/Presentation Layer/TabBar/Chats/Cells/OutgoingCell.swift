@@ -23,7 +23,7 @@ class OutgoingCell: UITableViewCell {
         timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(model.date)
         
         guard let url = imageUrl else { return }
-        personImageView.af_setImage(withURL: url)
+        personImageView.af_setImage(withURL: url, placeholderImage: UIImage.placeholderImage())
     }
     
 }

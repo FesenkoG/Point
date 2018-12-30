@@ -46,8 +46,16 @@ class SettingsViewController: UIViewController {
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        skeletonableViews.forEach {
+            $0.showAnimatedGradientSkeleton()
+        }
+        
+        circleView.layer.cornerRadius = circleView.bounds.height / 2
+        circleView.clipsToBounds = true
         
         userService.retrieveUserData { [weak self] (result) in
             
@@ -61,7 +69,7 @@ class SettingsViewController: UIViewController {
                 guard let token = LocalStorage().getUserToken() else { return }
                 let url = "\(BASE_URL)/getPhoto?&token=\(token)"
                 guard let imageUrl = URL(string: url) else { return }
-                self.avatarImageView.af_setImage(withURL: imageUrl, completion: { _ in
+                self.avatarImageView.af_setImage(withURL: imageUrl, placeholderImage: UIImage.placeholderImage(), completion: { _ in
                     
                     self.userNameLabel.text = userData.nickname
                     if !userData.myBio.isEmpty {
@@ -78,18 +86,6 @@ class SettingsViewController: UIViewController {
                 
             }
         }
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        skeletonableViews.forEach {
-            $0.showAnimatedGradientSkeleton()
-        }
-        
-        circleView.layer.cornerRadius = circleView.bounds.height / 2
-        circleView.clipsToBounds = true
     }
     
     

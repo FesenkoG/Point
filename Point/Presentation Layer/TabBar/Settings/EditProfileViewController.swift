@@ -290,7 +290,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         guard let token = LocalStorage().getUserToken() else { return }
         let url = "\(BASE_URL)/getPhoto?&token=\(token)"
         guard let imageUrl = URL(string: url) else { return }
-        self.userImageView.af_setImage(withURL: imageUrl)
+        self.userImageView.af_setImage(withURL: imageUrl,placeholderImage: UIImage.placeholderImage())
     }
     
     private func setupGestureRecognizers() {

@@ -26,6 +26,6 @@ class ChatCell: UITableViewCell {
         timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(date)
         
         guard let url = imageUrl else { return }
-        avatarImageView.af_setImage(withURL: url)
+        avatarImageView.af_setImage(withURL: url, placeholderImage: UIImage.placeholderImage())
     }
 }

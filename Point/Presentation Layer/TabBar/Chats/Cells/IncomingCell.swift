@@ -22,6 +22,6 @@ class IncomingCell: UITableViewCell {
         timeLabel.text = DateHelper.convertTimestampToHoursAndMinutes(message.date)
         
         guard let url = imageUrl else { return }
-        personImageView.af_setImage(withURL: url)
+        personImageView.af_setImage(withURL: url, placeholderImage: UIImage.placeholderImage())
     }
 }

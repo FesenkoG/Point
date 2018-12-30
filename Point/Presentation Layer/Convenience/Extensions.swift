@@ -36,3 +36,9 @@ extension UITextView {
                                                to: beginningOfDocument)
     }
 }
+
+extension UIImage {
+    static func placeholderImage() -> UIImage? {
+        return UIImage(named: "Portrait_Placeholder")
+    }
+}
