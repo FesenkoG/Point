@@ -53,6 +53,7 @@ platform :ios do
       include_bitcode: false
     )
     upload_to_testflight
+    clean_all
   end
 
   private_lane :prepare_app_for_build do
