@@ -42,6 +42,12 @@ platform :ios do
       scheme: "Point",
       clean: true,
       xcargs: settings_to_override,
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: {
+          BUNDLE_ID => PROV_PROFILE
+        }
+      }
       output_name: "Point.ipa",
       include_symbols: true,
       include_bitcode: false
