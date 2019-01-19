@@ -65,6 +65,12 @@ platform :ios do
 
     automatic_code_signing(
       path: 'Point.xcodeproj',
+      use_automatic_signing: true
+    )
+
+    automatic_code_signing(
+      path: 'Point.xcodeproj',
+      targets: ['Point'],
       use_automatic_signing: false
     )
 
