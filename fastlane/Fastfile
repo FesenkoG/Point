@@ -22,6 +22,7 @@ PROV_PROFILE = "match AppStore me.point.Point"
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :testflight_beta do |options|
+    setup_travis
     prepare_app_for_build
 
     upd_build_number = latest_testflight_build_number(version: options[:version], app_identifier: BUNDLE_ID) + 1
