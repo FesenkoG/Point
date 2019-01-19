@@ -4,7 +4,7 @@ xcode_project: Point.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Point
 xcode_destination: platform=iOS Simulator, OS=11.4, name=iPhone X
 before_install:
-  - gem update --system
-  - bundle install
+  - xcode-select --install
+  - brew cask install fastlane
 script:
   - fastlane testflight_beta version:1.0
