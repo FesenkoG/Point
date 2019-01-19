@@ -47,7 +47,7 @@ platform :ios do
         provisioningProfiles: {
           BUNDLE_ID => PROV_PROFILE
         }
-      }
+      },
       output_name: "Point.ipa",
       include_symbols: true,
       include_bitcode: false
