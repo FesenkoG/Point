@@ -61,7 +61,7 @@ platform :ios do
   private_lane :prepare_app_for_build do
     ensure_git_status_clean
 
-    sh "pod install"
+    sh "pod update"
 
     automatic_code_signing(
       path: 'Point.xcodeproj',
