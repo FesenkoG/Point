@@ -15,7 +15,7 @@
 
 default_platform(:ios)
 
-TEAD_ID = "U8FZ3UYF69"
+TEAM_ID = "U8FZ3UYF69"
 BUNDLE_ID = "me.point.Point"
 PROV_PROFILE_DEV = "PointDistribution"
 
