@@ -17,14 +17,14 @@ default_platform(:ios)
 
 TEAM_ID = "U8FZ3UYF69"
 BUNDLE_ID = "me.point.Point"
-PROV_PROFILE_DEV = "PointDistribution"
+PROV_PROFILE = "PointDistribution"
 
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :testflight_beta do |options|
     prepare_app_for_build
 
-    upd_build_number = latest_testflight_build_number(version: options[:version], app_identifier: BUNDLE_ID_DEV) + 1
+    upd_build_number = latest_testflight_build_number(version: options[:version], app_identifier: BUNDLE_ID) + 1
 
     increment_build_number(
       build_number: upd_build_number
@@ -32,7 +32,7 @@ platform :ios do
 
     settings_to_override = {
       :BUNDLE_IDENTIFIER => BUNDLE_ID,
-      :PROVISIONING_PROFILE_SPECIFIER => PROV_PROFILE_DEV,
+      :PROVISIONING_PROFILE_SPECIFIER => PROV_PROFILE,
       :DEVELOPMENT_TEAM => TEAM_ID
     }
 
