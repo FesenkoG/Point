@@ -37,6 +37,13 @@ platform :ios do
       :CODE_SIGN_IDENTITY => "iPhone Distribution"
     }
 
+    match(
+      type: "appstore",
+      git_branch: "master",
+      app_identifier: BUNDLE_ID,
+      team_id: TEAM_ID
+    )
+
     gym(
       workspace: "Point.xcworkspace",
       scheme: "Point",
