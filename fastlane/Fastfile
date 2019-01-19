@@ -1,0 +1,77 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+TEAD_ID = "U8FZ3UYF69"
+BUNDLE_ID = "me.point.Point"
+PROV_PROFILE_DEV = "PointDistribution"
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :testflight_beta do
+    prepare_app_for_build
+
+    upd_build_number = latest_testflight_build_number(version: options[:version], app_identifier: BUNDLE_ID_DEV) + 1
+
+    increment_build_number(
+      build_number: upd_build_number
+    )
+
+    settings_to_override = {
+      :BUNDLE_IDENTIFIER => BUNDLE_ID,
+      :PROVISIONING_PROFILE_SPECIFIER => PROV_PROFILE_DEV,
+      :DEVELOPMENT_TEAM => TEAM_ID
+    }
+
+    gym(
+      workspace: "Point.xcworkspace",
+      scheme: "Point",
+      clean: true,
+      xcargs: settings_to_override,
+      output_name: "Point.ipa",
+      include_symbols: true,
+      include_bitcode: false
+    )
+    upload_to_testflight
+  end
+
+  private_lane :prepare_app_for_build do
+    ensure_git_status_clean
+
+    sh "pod install"
+
+    automatic_code_signing(
+      path: 'Point.xcodeproj',
+      use_automatic_signing: false
+    )
+
+    update_project_team(
+      path: "Point.xcodeproj",
+      teamid: TEAM_ID
+    )
+  end
+
+  private_lane :clean_all do
+    clean_build_artifacts
+    clear_derived_data
+    reset_git_repo(force: true)
+  end
+
+
+  error do |lane, exception|
+     reset_git_repo
+  end
+end
