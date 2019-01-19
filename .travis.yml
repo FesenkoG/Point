@@ -5,5 +5,6 @@ xcode_scheme: Point
 xcode_destination: platform=iOS Simulator, OS=11.4, name=iPhone X
 before_install:
   - sudo gem install fastlane -NV
+  - sudo gem install cocoapods --pre
 script:
   - fastlane testflight_beta version:1.0
