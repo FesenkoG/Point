@@ -8,3 +8,7 @@ before_install:
   - sudo gem install cocoapods --pre
 script:
   - fastlane testflight_beta version:1.0
+branches:
+  only:
+    - release
+    - master
