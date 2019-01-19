@@ -4,7 +4,6 @@ xcode_project: Point.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Point
 xcode_destination: platform=iOS Simulator, OS=11.4, name=iPhone X
 before_install:
-  - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  - brew cask install fastlane
+  - sudo gem install fastlane -NV
 script:
   - fastlane testflight_beta version:1.0
