@@ -39,7 +39,10 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        skeletonableViews.forEach {
+            $0.showAnimatedGradientSkeleton()
+        }
         
         configureGestureRecognizers()
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.height / 2
@@ -50,9 +53,7 @@ class SettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        skeletonableViews.forEach {
-            $0.showAnimatedGradientSkeleton()
-        }
+
         
         circleView.layer.cornerRadius = circleView.bounds.height / 2
         circleView.clipsToBounds = true
