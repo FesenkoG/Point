@@ -54,6 +54,8 @@ platform :ios do
       include_symbols: true,
       include_bitcode: false
     )
+    add_git_tag(tag: "#{version}(#{upd_build_number})")
+    push_git_tags
     upload_to_testflight
     clean_all
   end
