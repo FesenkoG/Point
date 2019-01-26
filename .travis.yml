@@ -7,7 +7,7 @@ before_install:
   - sudo gem install fastlane -NV
   - sudo gem install cocoapods --pre
 script:
-  - fastlane testflight_beta version:1.0
+  - fastlane fabric version:1.0
 branches:
   only:
     - release
