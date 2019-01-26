@@ -106,9 +106,9 @@ class SettingsViewController: UIViewController {
     
     @objc private func didTapContactUs() {
         
-        let email = "foo@bar.com"
+        let url = URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSexP7BXXxTbnmhHio3sjzE6oHCP2ZoknP6CgByb26uiDhlOKA/viewform")
         
-        if let url = URL(string: "mailto:\(email)") {
+        if let url = url {
             UIApplication.shared.open(url)
         }
     }

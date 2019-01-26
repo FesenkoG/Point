@@ -36,6 +36,8 @@ class PointViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationService.delegate = self
+
         waitCircle.rotate360Degrees()
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillTerminate), name: ApplicationWillTerminateNotification, object: nil)
     }
@@ -89,7 +91,6 @@ class PointViewController: UIViewController {
             socket?.disconnect()
             locationService.stopUpdatingLocation()
         } else {
-            locationService.delegate = self
             currentLocation = nil
             isConnected = false
             locationService.startUpdatingLocation()
@@ -138,10 +139,25 @@ class PointViewController: UIViewController {
 // MARK: - LocationServiceDelegate
 extension PointViewController: LocationServiceDelegate {
     
+    func showChangeSettingsAlert() {
+            let alert = UIAlertController(title: "Would you like to use our app?", message: "Please, go to settings and give needed permissions for location", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Go to settings", style: .default) { (action) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }
+            
+            let noAction = UIAlertAction(title: "No", style: .cancel)
+            
+            alert.addAction(okAction)
+            alert.addAction(noAction)
+            
+            present(alert, animated: true, completion: nil)
+    }
+    
     func didChangeStatus(isAuthorized: Bool) {
-        if isAuthorized {
-            startAnimation()
-        }
+//        if isAuthorized {
+//            startAnimation()
+//        }
     }
     
     func didChangeLocation(_ newLocation: Location) {

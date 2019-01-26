@@ -1,0 +1,138 @@
+
+/* Class = "UILabel"; text = "Messages"; ObjectID = "0c6-8Q-IQZ"; */
+"0c6-8Q-IQZ.text" = "Сообщения";
+
+/* Class = "UITextField"; text = "asdasd"; ObjectID = "1yB-Ag-P5m"; */
+"1yB-Ag-P5m.text" = "asdasd";
+
+/* Class = "UILabel"; text = "Rate the app"; ObjectID = "3pn-Uq-9V6"; */
+"3pn-Uq-9V6.text" = "Оцените приложение";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "5JL-tH-lH0"; */
+"5JL-tH-lH0.text" = "Name";
+
+/* Class = "UILabel"; text = "Age"; ObjectID = "81L-2e-VVK"; */
+"81L-2e-VVK.text" = "Возраст";
+
+/* Class = "UILabel"; text = "Edit Profile"; ObjectID = "9vr-tn-VJA"; */
+"9vr-tn-VJA.text" = "Редактирование профиля";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "Beg-8y-y3q"; */
+"Beg-8y-y3q.text" = "О нас";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "IQU-7A-jEd"; */
+"IQU-7A-jEd.text" = "Уведомления";
+
+/* Class = "UILabel"; text = "+7 999 999 99 99"; ObjectID = "IX0-up-ZTX"; */
+"IX0-up-ZTX.text" = "+7 999 999 99 99";
+
+/* Class = "UIButton"; normalTitle = "Female"; ObjectID = "KKY-i9-HUG"; */
+"KKY-i9-HUG.normalTitle" = "Женщина";
+
+/* Class = "UILabel"; text = "Tap on point to share your location"; ObjectID = "OQA-zF-XzH"; */
+"OQA-zF-XzH.text" = "Жми!";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "Piu-jH-s0U"; */
+"Piu-jH-s0U.text" = "Политика конфиденциальности";
+
+/* Class = "UILabel"; text = "+7 999 999 99 99"; ObjectID = "Pz0-IJ-ovw"; */
+"Pz0-IJ-ovw.text" = "+7 999 999 99 99";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "Qgc-jV-tf3"; */
+"Qgc-jV-tf3.text" = "Пол";
+
+/* Class = "UILabel"; text = "General"; ObjectID = "VCb-DC-rTO"; */
+"VCb-DC-rTO.text" = "Основное";
+
+/* Class = "UILabel"; text = "11:20"; ObjectID = "W8e-Mb-kwL"; */
+"W8e-Mb-kwL.text" = "11:20";
+
+/* Class = "UILabel"; text = "Female"; ObjectID = "XDl-lJ-vf4"; */
+"XDl-lJ-vf4.text" = "Женщина";
+
+/* Class = "UIButton"; normalTitle = "28 - 35"; ObjectID = "XZH-sG-M6j"; */
+"XZH-sG-M6j.normalTitle" = "28 - 35";
+
+/* Class = "UILabel"; text = "Friends"; ObjectID = "ad3-Pe-zgY"; */
+"ad3-Pe-zgY.text" = "Друзья";
+
+/* Class = "UILabel"; text = "All genders"; ObjectID = "bO9-Lh-yjY"; */
+"bO9-Lh-yjY.text" = "Все";
+
+/* Class = "UILabel"; text = "Male"; ObjectID = "dN4-Ir-H9g"; */
+"dN4-Ir-H9g.text" = "Мужчина";
+
+/* Class = "UILabel"; text = "12:13"; ObjectID = "dSE-4w-cjs"; */
+"dSE-4w-cjs.text" = "12:13";
+
+/* Class = "UIButton"; normalTitle = "All ages"; ObjectID = "dTt-QS-Qy4"; */
+"dTt-QS-Qy4.normalTitle" = "Все";
+
+/* Class = "UILabel"; text = "Privacy"; ObjectID = "dZc-2N-Z9I"; */
+"dZc-2N-Z9I.text" = "Основное";
+
+/* Class = "UILabel"; text = "Arisha"; ObjectID = "dyI-go-hs3"; */
+"dyI-go-hs3.text" = "Arisha";
+
+/* Class = "UIButton"; normalTitle = "18 - 22"; ObjectID = "flm-6X-9Tf"; */
+"flm-6X-9Tf.normalTitle" = "18 - 22";
+
+/* Class = "UILabel"; text = "Oops!"; ObjectID = "fro-Ik-cZt"; */
+"fro-Ik-cZt.text" = "Так так так!";
+
+/* Class = "UILabel"; text = "Date of birth"; ObjectID = "frx-RT-jip"; */
+"frx-RT-jip.text" = "Дата рождения";
+
+/* Class = "UIButton"; normalTitle = "13.10.1997"; ObjectID = "gRv-US-gtn"; */
+"gRv-US-gtn.normalTitle" = "13.10.1997";
+
+/* Class = "UILabel"; text = "You do not have any messages yet"; ObjectID = "isq-YO-Yvz"; */
+"isq-YO-Yvz.text" = "У вас пока нет ни единого сообщения";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m0H-Is-Brh"; */
+"m0H-Is-Brh.text" = "Label";
+
+/* Class = "UILabel"; text = "Hello! How are you doing? I hope you are all right!"; ObjectID = "mQm-tK-vBl"; */
+"mQm-tK-vBl.text" = "Hello! How are you doing? I hope you are all right!";
+
+/* Class = "UILabel"; text = "Here will be a small bio describing a person in just a fwe wprds"; ObjectID = "mtE-Vx-fYZ"; */
+"mtE-Vx-fYZ.text" = "Here will be a small bio describing a person in just a fwe wprds";
+
+/* Class = "UILabel"; text = "Preferences"; ObjectID = "nIj-2i-d4H"; */
+"nIj-2i-d4H.text" = "Предпочтения";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nVL-YQ-mj8"; */
+"nVL-YQ-mj8.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Male"; ObjectID = "ovE-OA-wNN"; */
+"ovE-OA-wNN.normalTitle" = "Мужчина";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "rcO-C7-uCX"; */
+"rcO-C7-uCX.text" = "Пол";
+
+/* Class = "UITextView"; text = "Bio"; ObjectID = "s9f-d1-wfY"; */
+"s9f-d1-wfY.text" = "Bio";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "sfr-xo-wSr"; */
+"sfr-xo-wSr.text" = "Настройки";
+
+/* Class = "UIButton"; normalTitle = "Sign Out"; ObjectID = "sqR-o3-4HM"; */
+"sqR-o3-4HM.normalTitle" = "Выйти";
+
+/* Class = "UIButton"; normalTitle = "36 - 45"; ObjectID = "v7M-Rr-U2R"; */
+"v7M-Rr-U2R.normalTitle" = "36 - 45";
+
+/* Class = "UILabel"; text = "Contact us"; ObjectID = "vY1-PH-8mB"; */
+"vY1-PH-8mB.text" = "Свяжитесь с нами";
+
+/* Class = "UILabel"; text = "Markus"; ObjectID = "vmB-BT-jHu"; */
+"vmB-BT-jHu.text" = "Markus";
+
+/* Class = "UIButton"; normalTitle = "23 - 27"; ObjectID = "xxY-CR-quv"; */
+"xxY-CR-quv.normalTitle" = "23 - 27";
+
+/* Class = "UIButton"; normalTitle = "46+"; ObjectID = "yrX-zh-EnB"; */
+"yrX-zh-EnB.normalTitle" = "46+";
+
+/* Class = "UILabel"; text = "11:20"; ObjectID = "z8b-7q-zod"; */
+"z8b-7q-zod.text" = "11:20";
