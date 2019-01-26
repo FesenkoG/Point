@@ -91,10 +91,9 @@ platform :ios do
     )
 
     crashlytics(
-      crashlytics_path: "./Pods/Crashlytics/Crashlytics.framework", # path to your Crashlytics submit binary.
+      crashlytics_path: "./Crashlytics.framework/submit",
       api_token: ENV["FABRIC_API_KEY"],
-      build_secret: ENV["FABRIC_BUILD_SECRET"],
-      ipa_path: "./Point.ipa"
+      build_secret: ENV["FABRIC_BUILD_SECRET"]
     )
 
     clean_all
