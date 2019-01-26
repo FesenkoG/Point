@@ -78,7 +78,10 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc private func didTapPhoto() {
         
+        userImageView.isUserInteractionEnabled = false
+        
         imagePicker.delegate = self
+        
         chooseImageAlert = UIAlertController(title: "Выбрать фотографию", message: "Как бы вы хотели выбрать фотографию для своего профиля?", preferredStyle: .actionSheet)
         let galleryAction = UIAlertAction(title: "Взять из галереи", style: .default) { (buttonTapped) in
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -99,20 +102,55 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
-        AVCaptureDevice.requestAccess(for: .video) { response in
+        
+        let configureAlert = { (isCameraAllowed: Bool) in
             DispatchQueue.main.async {
-                if response {
+                if isCameraAllowed {
                     self.chooseImageAlert.addAction(photoAction)
                 }
                 self.chooseImageAlert.addAction(galleryAction)
-                self.present(self.chooseImageAlert, animated: true, completion: {
-                    self.chooseImageAlert.view.superview?.subviews[0].isUserInteractionEnabled = true
-                    self.chooseImageAlert.view.superview?.subviews[0].addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(self.dismissView)))
-                })
+                self.userImageView.isUserInteractionEnabled = true
+                
+                self.present(self.chooseImageAlert,
+                             animated: true,
+                             completion: nil)
             }
         }
         
+        let cameraUsageStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch cameraUsageStatus {
+            
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: configureAlert)
+        case .restricted:
+            configureAlert(false)
+        case .denied:
+            userImageView.isUserInteractionEnabled = true
+            showAskForSettingsChangeAlert(completion: configureAlert)
+        case .authorized:
+            configureAlert(true)
+        }
+        
     }
+    
+    private func showAskForSettingsChangeAlert(completion: @escaping (Bool) -> Void) {
+        let alert = UIAlertController(title: "Would you like to capture a photo?", message: "Please, go to settings and give needed permissions", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Go to settings", style: .default) { (action) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+            completion(false)
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     @IBAction private func genderMaleButtonWasTapped(_ sender: RoundedButton) {
         helper.checkAgeButtons(sender: sender, otherButtons: myGenderButtons)

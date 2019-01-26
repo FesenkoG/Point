@@ -1,0 +1,153 @@
+
+/* Class = "UILabel"; text = "Age"; ObjectID = "12S-q0-nV2"; */
+"12S-q0-nV2.text" = "Age";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "2vI-cz-NIG"; */
+"2vI-cz-NIG.normalTitle" = "Log In";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "3mH-ph-SLU"; */
+"3mH-ph-SLU.normalTitle" = "Next";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "4bW-7N-2B3"; */
+"4bW-7N-2B3.text" = "Sign Up";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "4ie-FW-l6w"; */
+"4ie-FW-l6w.text" = "Gender";
+
+/* Class = "UIButton"; normalTitle = "28 - 35"; ObjectID = "5Br-BU-vyH"; */
+"5Br-BU-vyH.normalTitle" = "28 - 35";
+
+/* Class = "UILabel"; text = "Male"; ObjectID = "7Iz-ob-nyH"; */
+"7Iz-ob-nyH.text" = "Male";
+
+/* Class = "UILabel"; text = "Already have an account?"; ObjectID = "8Fj-ea-5m1"; */
+"8Fj-ea-5m1.text" = "Already have an account?";
+
+/* Class = "UILabel"; text = "Don't have an account?"; ObjectID = "8PJ-zf-T4e"; */
+"8PJ-zf-T4e.text" = "Don't have an account?";
+
+/* Class = "UILabel"; text = "All genders"; ObjectID = "8UO-Ee-RDf"; */
+"8UO-Ee-RDf.text" = "All genders";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "AAi-FS-Pmz"; */
+"AAi-FS-Pmz.normalTitle" = "Sign Up";
+
+/* Class = "UIButton"; normalTitle = "Try again"; ObjectID = "BeZ-mf-6zU"; */
+"BeZ-mf-6zU.normalTitle" = "Try again";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "GYb-KF-jcV"; */
+"GYb-KF-jcV.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "GZr-NG-DBm"; */
+"GZr-NG-DBm.text" = "Sign Up";
+
+/* Class = "UILabel"; text = "Already have an account?"; ObjectID = "IhI-Lt-YUj"; */
+"IhI-Lt-YUj.text" = "Already have an account?";
+
+/* Class = "UILabel"; text = "Please, fill all the fields"; ObjectID = "Jz4-m8-3Vg"; */
+"Jz4-m8-3Vg.text" = "Please, fill all the fields";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "Lu4-Hu-eRS"; */
+"Lu4-Hu-eRS.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "Already have an account?"; ObjectID = "Piy-QR-rjl"; */
+"Piy-QR-rjl.text" = "Already have an account?";
+
+/* Class = "UILabel"; text = "Who are you looking for?"; ObjectID = "QIM-zV-Krj"; */
+"QIM-zV-Krj.text" = "Who are you looking for?";
+
+/* Class = "UILabel"; text = "Female"; ObjectID = "QMv-z6-ZVz"; */
+"QMv-z6-ZVz.text" = "Female";
+
+/* Class = "UILabel"; text = "Date of birth"; ObjectID = "QO2-J9-RTX"; */
+"QO2-J9-RTX.text" = "Date of birth";
+
+/* Class = "UILabel"; text = "Fill in your personal information"; ObjectID = "QOj-XU-4hw"; */
+"QOj-XU-4hw.text" = "Fill in your personal information";
+
+/* Class = "UILabel"; text = "The easiest way to meet friends nearby"; ObjectID = "TIU-YU-WJ3"; */
+"TIU-YU-WJ3.text" = "The easiest way to meet friends nearby";
+
+/* Class = "UIButton"; normalTitle = "Female"; ObjectID = "Tr1-A2-2YA"; */
+"Tr1-A2-2YA.normalTitle" = "Female";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "XAQ-tb-3vl"; */
+"XAQ-tb-3vl.text" = "Gender";
+
+/* Class = "UIButton"; normalTitle = "All ages"; ObjectID = "a2p-L6-s9p"; */
+"a2p-L6-s9p.normalTitle" = "All ages";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "aVW-AW-Fqv"; */
+"aVW-AW-Fqv.normalTitle" = "Next";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "b3b-FU-jur"; */
+"b3b-FU-jur.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Log In"; ObjectID = "cQy-tw-ck2"; */
+"cQy-tw-ck2.text" = "Log In";
+
+/* Class = "UILabel"; text = "Invalid code"; ObjectID = "d11-Wk-5gH"; */
+"d11-Wk-5gH.text" = "Invalid code";
+
+/* Class = "UITextField"; placeholder = "Phone number"; ObjectID = "ePl-5g-lbw"; */
+"ePl-5g-lbw.placeholder" = "Phone number";
+
+/* Class = "UIButton"; normalTitle = "18 - 22"; ObjectID = "fnW-fv-h1o"; */
+"fnW-fv-h1o.normalTitle" = "18 - 22";
+
+/* Class = "UILabel"; text = "Please, fill all the fields"; ObjectID = "fqx-yl-xgg"; */
+"fqx-yl-xgg.text" = "Please, fill all the fields";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "fsh-Dg-LlK"; */
+"fsh-Dg-LlK.placeholder" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Try again"; ObjectID = "kOQ-Z6-cOO"; */
+"kOQ-Z6-cOO.normalTitle" = "Try again";
+
+/* Class = "UILabel"; text = "Sign in with your phone number"; ObjectID = "kqd-Kb-wUx"; */
+"kqd-Kb-wUx.text" = "Sign in with your phone number";
+
+/* Class = "UITextField"; placeholder = "Phone number"; ObjectID = "l7V-05-b8p"; */
+"l7V-05-b8p.placeholder" = "Phone number";
+
+/* Class = "UILabel"; text = "Invalid code"; ObjectID = "lfk-qe-bwE"; */
+"lfk-qe-bwE.text" = "Invalid code";
+
+/* Class = "UILabel"; text = "Verification"; ObjectID = "nk5-zl-vQn"; */
+"nk5-zl-vQn.text" = "Verification";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "qBE-bg-DT0"; */
+"qBE-bg-DT0.normalTitle" = "Sign Up";
+
+/* Class = "UIButton"; normalTitle = "13.10.1997"; ObjectID = "qNu-rp-FMb"; */
+"qNu-rp-FMb.normalTitle" = "13.10.1997";
+
+/* Class = "UILabel"; text = "I have read and agree to the"; ObjectID = "qjE-2d-hac"; */
+"qjE-2d-hac.text" = "I have read and agree to the";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "rFy-es-Bta"; */
+"rFy-es-Bta.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "rsE-cb-2hj"; */
+"rsE-cb-2hj.text" = "Sign Up";
+
+/* Class = "UIButton"; normalTitle = "Get a verification code"; ObjectID = "s70-hp-XRD"; */
+"s70-hp-XRD.normalTitle" = "Get a verification code";
+
+/* Class = "UIButton"; normalTitle = "46+"; ObjectID = "spA-64-H0T"; */
+"spA-64-H0T.normalTitle" = "46+";
+
+/* Class = "UIButton"; normalTitle = "Privacy Policy"; ObjectID = "tNL-zz-aim"; */
+"tNL-zz-aim.normalTitle" = "Privacy Policy";
+
+/* Class = "UIButton"; normalTitle = "Male"; ObjectID = "tnm-yv-gpR"; */
+"tnm-yv-gpR.normalTitle" = "Male";
+
+/* Class = "UIButton"; normalTitle = "36 - 45"; ObjectID = "uN1-a1-vn6"; */
+"uN1-a1-vn6.normalTitle" = "36 - 45";
+
+/* Class = "UIButton"; normalTitle = "Get a verification code"; ObjectID = "yQ4-Gz-hy1"; */
+"yQ4-Gz-hy1.normalTitle" = "Get a verification code";
+
+/* Class = "UIButton"; normalTitle = "23 - 27"; ObjectID = "yxf-s8-7wS"; */
+"yxf-s8-7wS.normalTitle" = "23 - 27";

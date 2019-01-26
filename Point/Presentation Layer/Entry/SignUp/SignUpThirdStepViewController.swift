@@ -42,7 +42,8 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 privacyPolicyLabel.isHidden = true
                 checkboxButton.isHidden = true
                 nextButton.setTitle("Get a verification code", for: .normal)
-                phoneCodeTextField.text = ""
+                phoneCodeTextField.text = "+7"
+                phoneCodeTextField.maxDigits = 10
                 phoneCodeTextField.placeholder = "Phone number"
                 phoneCodeTextField.isPartialFormatterEnabled = true
             case .sendSms:
@@ -54,6 +55,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 checkboxButton.isHidden = false
                 privacyPolicyLabel.isHidden = false
                 privacyPolicyButton.isHidden = false
+                phoneCodeTextField.delegate = phoneCodeTextFieldDelegate
                 phoneCodeTextField.text = ""
                 phoneCodeTextField.isPartialFormatterEnabled = false
                 phoneCodeTextField.placeholder = "Verification code"
@@ -74,6 +76,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
     
     private let requestSender: IRequestSender = RequestSender()
     private let localStorage: ILocalStorage = LocalStorage()
+    private let phoneCodeTextFieldDelegate = PhoneCodeTextFieldDelegate()
     
     
     // MARK: - View Lifecycle

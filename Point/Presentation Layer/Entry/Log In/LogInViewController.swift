@@ -26,8 +26,10 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
     let parser = PhoneNumberKit()
     
     //Services
+    
     let requestSender: IRequestSender = RequestSender()
     let localStorage: ILocalStorage = LocalStorage()
+    private let phoneCodeTextFieldDelegate = PhoneCodeTextFieldDelegate()
     
     //Variables
     var state: ScreenState = .sendPhone {
@@ -36,12 +38,14 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
             case .sendPhone:
                 tryAgainButton.isHidden = true
                 nextButton.setTitle("Get a verification code", for: .normal)
-                phoneNumberCodeTextField.text = ""
+                phoneNumberCodeTextField.text = "+7"
+                phoneNumberCodeTextField.maxDigits = 10
                 phoneNumberCodeTextField.placeholder = "Phone number"
                 errorLabel.isHidden = true
             case .sendSms:
                 nextButton.setTitle("Go!", for: .normal)
                 tryAgainButton.isHidden = false
+                phoneNumberCodeTextField.delegate = phoneCodeTextFieldDelegate
                 phoneNumberCodeTextField.text = ""
                 phoneNumberCodeTextField.isPartialFormatterEnabled = false
                 phoneNumberCodeTextField.placeholder = "Verification code"

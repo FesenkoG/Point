@@ -23,6 +23,7 @@ protocol ILocationService {
 protocol LocationServiceDelegate: class {
     func didChangeStatus(isAuthorized: Bool)
     func didChangeLocation(_ newLocation: Location)
+    func showChangeSettingsAlert()
 }
 
 class LocationService: NSObject, ILocationService {
@@ -73,11 +74,27 @@ class LocationService: NSObject, ILocationService {
     }
     
     func requestPermission() {
-        locationManager.requestAlwaysAuthorization()
+        let status = CLLocationManager.authorizationStatus()
+        
+        switch status {
+            
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+        case .restricted:
+            break
+        case .denied:
+            delegate?.showChangeSettingsAlert()
+        case .authorizedAlways:
+            break
+        case .authorizedWhenInUse:
+            break
+        }
+        
     }
     
     var isPermissionObtained: Bool {
-        return CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+        let status = CLLocationManager.authorizationStatus()
+        return status == .authorizedAlways || status == .authorizedWhenInUse
     }
 }
 
