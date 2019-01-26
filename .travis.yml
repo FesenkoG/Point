@@ -4,25 +4,9 @@ xcode_project: Point.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Point
 xcode_destination: platform=iOS Simulator, OS=11.4, name=iPhone X
 
-stages:
-  - name: fabric_beta
-    if: branch = develop
-  - testflight_beta
-    if: branch = release
-
-before_install:
-  - sudo gem install fastlane -NV
-  - sudo gem install cocoapods --pre
-
-fabric_job:
-  stage: fabric_beta
-  script:
-    - fastlane fabric
-testflight_job:
-  stage: testflight_beta
-  script:
-    - fastlane testflight_beta version:1.0
-
+script:
+  - if [ $TRAVIS_BRANCH = "develop"]; then fastlane fabric; fi;
+  - if [ $TRAVIS_BRANCH = "release"]; then fastlane testflight_beta version:1.0; fi
 branches:
   only:
     - develop
