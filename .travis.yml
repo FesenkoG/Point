@@ -6,9 +6,9 @@ xcode_destination: platform=iOS Simulator, OS=11.4, name=iPhone X
 
 stages:
   - name: fabric_beta
-    if: branch=develop
+    if: branch = develop
   - testflight_beta
-    if: branch=release
+    if: branch = release
 
 before_install:
   - sudo gem install fastlane -NV
