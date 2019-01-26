@@ -3,7 +3,9 @@ osx_image: xcode10
 xcode_project: Point.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Point
 xcode_destination: platform=iOS Simulator, OS=11.4, name=iPhone X
-
+before_install:
+  - sudo gem install fastlane -NV
+  - sudo gem install cocoapods --pre
 script:
   - sh build.sh
 branches:
