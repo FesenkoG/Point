@@ -37,18 +37,18 @@ class LogInViewController: UIViewController, UIGestureRecognizerDelegate {
             switch state {
             case .sendPhone:
                 tryAgainButton.isHidden = true
-                nextButton.setTitle("Get a verification code", for: .normal)
+                nextButton.setTitle("Get a verification code".localized, for: .normal)
                 phoneNumberCodeTextField.text = "+7"
                 phoneNumberCodeTextField.maxDigits = 10
-                phoneNumberCodeTextField.placeholder = "Phone number"
+                phoneNumberCodeTextField.placeholder = "Phone number".localized
                 errorLabel.isHidden = true
             case .sendSms:
-                nextButton.setTitle("Go!", for: .normal)
+                nextButton.setTitle("Go!".localized, for: .normal)
                 tryAgainButton.isHidden = false
                 phoneNumberCodeTextField.delegate = phoneCodeTextFieldDelegate
                 phoneNumberCodeTextField.text = ""
                 phoneNumberCodeTextField.isPartialFormatterEnabled = false
-                phoneNumberCodeTextField.placeholder = "Verification code"
+                phoneNumberCodeTextField.placeholder = "Verification code".localized
                 errorLabel.isHidden = true
             }
         }

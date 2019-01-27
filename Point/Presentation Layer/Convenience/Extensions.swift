@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - UIImageView
 extension UIImageView {
     func rotate360Degrees(duration: CFTimeInterval = 3) {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -20,6 +21,7 @@ extension UIImageView {
     }
 }
 
+// MARK: - UIViewController
 extension UIViewController {
     func showErrorAlert(_ message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .actionSheet)
@@ -29,6 +31,7 @@ extension UIViewController {
     }
 }
 
+// MARK: - UITextView
 extension UITextView {
     
     func setCoursorToTheBeginningOfTheLine() {
@@ -37,8 +40,16 @@ extension UITextView {
     }
 }
 
+// MARK: - UIImage
 extension UIImage {
     static func placeholderImage() -> UIImage? {
         return UIImage(named: "Portrait_Placeholder")
+    }
+}
+
+extension String {
+    
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
     }
 }

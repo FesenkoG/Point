@@ -41,13 +41,13 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 privacyPolicyButton.isHidden = true
                 privacyPolicyLabel.isHidden = true
                 checkboxButton.isHidden = true
-                nextButton.setTitle("Get a verification code", for: .normal)
+                nextButton.setTitle("Get a verification code".localized, for: .normal)
                 phoneCodeTextField.text = "+7"
                 phoneCodeTextField.maxDigits = 10
-                phoneCodeTextField.placeholder = "Phone number"
+                phoneCodeTextField.placeholder = "Phone number".localized
                 phoneCodeTextField.isPartialFormatterEnabled = true
             case .sendSms:
-                nextButton.setTitle("Go!", for: .normal)
+                nextButton.setTitle("Go!".localized, for: .normal)
                 tryAgainButton.isHidden = false
                 nextButton.isEnabled = false
                 nextButton.backgroundColor = Colors.disabledButtonColor.color()
@@ -58,7 +58,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 phoneCodeTextField.delegate = phoneCodeTextFieldDelegate
                 phoneCodeTextField.text = ""
                 phoneCodeTextField.isPartialFormatterEnabled = false
-                phoneCodeTextField.placeholder = "Verification code"
+                phoneCodeTextField.placeholder = "Verification code".localized
                 newUser.phone = phoneNumber
             }
         }

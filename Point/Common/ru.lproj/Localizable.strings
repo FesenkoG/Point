@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Point
+
+  Created by Георгий Фесенко on 27/01/2019.
+  Copyright © 2019 Георгий Фесенко. All rights reserved.
+*/
+
+
+"Get a verification code" = "Получить код подтверждения";
+"Go!" = "Отправить";
+"Verification code" = "Код подтверждения";
+"Phone number" = "Номер телефона";
