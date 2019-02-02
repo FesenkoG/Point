@@ -75,15 +75,17 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         editedProfileModel.nickname = userNameTextField.text ?? "Self"
         editedProfileModel.myBio = userBioTextView.text ?? ""
         settingsService
-            .sendEditedProfile(model: editedProfileModel) { (result) in
-                
+            .sendEditedProfile(model: editedProfileModel) { [weak self] (result) in
+                guard let self = self else { return }
                 switch result {
                     
                 case .error(let error):
                     self.showAlert(message: error)
                 case .success(let result):
                     if result {
-                        self.navigationController?.popViewController(animated: true)
+                        self.showAlert(title: "Success", message: "Your data has been successfully uploaded to the server", action: {
+                            self.navigationController?.popViewController(animated: true)
+                        })
                     }
                 }
         }
@@ -403,14 +405,16 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+        return input.rawValue
+    }
 }
 
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
 
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
-}
