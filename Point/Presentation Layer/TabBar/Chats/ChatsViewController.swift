@@ -44,7 +44,7 @@ class ChatsViewController: UIViewController {
                 self.tableView.reloadData()
                 self.configureVisibility()
             case .error(let error):
-                self.showErrorAlert(error)
+                self.showAlert(message: error)
                 self.configureVisibility()
             }
         }

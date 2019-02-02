@@ -268,7 +268,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VM9-vM-Y1N">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="414"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jf-Ed-aCZ">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jf-Ed-aCZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZc-2N-Z9I">
@@ -286,7 +286,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwZ-En-2AU">
-                                                <rect key="frame" x="0.0" y="210" width="375" height="25"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Beg-8y-y3q">
                                                         <rect key="frame" x="168.5" y="4" width="38.5" height="17"/>
@@ -302,7 +302,7 @@
                                                     <constraint firstItem="Beg-8y-y3q" firstAttribute="centerY" secondItem="qwZ-En-2AU" secondAttribute="centerY" id="vNn-H0-ljY"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLP-Nh-LPd">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLP-Nh-LPd">
                                                 <rect key="frame" x="50" y="41" width="275" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad3-Pe-zgY">
@@ -329,7 +329,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="z8B-FX-yPZ"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLV-QM-Xep">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLV-QM-Xep">
                                                 <rect key="frame" x="50" y="91" width="275" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQU-7A-jEd">
@@ -356,7 +356,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="fV3-ag-0Kf" secondAttribute="bottom" id="jg3-ix-Og1"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QU-C0-LCH">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QU-C0-LCH">
                                                 <rect key="frame" x="50" y="141" width="275" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Piu-jH-s0U">
@@ -374,7 +374,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3I-IL-XC0">
-                                                <rect key="frame" x="50" y="251" width="275" height="50"/>
+                                                <rect key="frame" x="50" y="41" width="275" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vY1-PH-8mB">
                                                         <rect key="frame" x="16" y="15" width="83.5" height="20.5"/>
@@ -401,7 +401,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0c-NR-0hp">
-                                                <rect key="frame" x="50" y="301" width="275" height="50"/>
+                                                <rect key="frame" x="50" y="91" width="275" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate the app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pn-Uq-9V6">
                                                         <rect key="frame" x="16" y="15" width="97.5" height="20.5"/>
@@ -437,7 +437,7 @@
                                             <constraint firstItem="zLV-QM-Xep" firstAttribute="trailing" secondItem="qLP-Nh-LPd" secondAttribute="trailing" id="pbu-Sg-Zsr"/>
                                             <constraint firstItem="l0c-NR-0hp" firstAttribute="leading" secondItem="h3I-IL-XC0" secondAttribute="leading" id="peV-Df-lbh"/>
                                             <constraint firstItem="9QU-C0-LCH" firstAttribute="trailing" secondItem="zLV-QM-Xep" secondAttribute="trailing" id="pjN-n9-ZmQ"/>
-                                            <constraint firstItem="qwZ-En-2AU" firstAttribute="top" secondItem="9QU-C0-LCH" secondAttribute="bottom" constant="19" id="rvO-mr-ssm"/>
+                                            <constraint firstItem="qwZ-En-2AU" firstAttribute="top" secondItem="VM9-vM-Y1N" secondAttribute="top" id="rvO-mr-ssm"/>
                                             <constraint firstItem="qLP-Nh-LPd" firstAttribute="top" secondItem="4Jf-Ed-aCZ" secondAttribute="bottom" constant="16" id="sBR-1S-RGZ"/>
                                             <constraint firstItem="4Jf-Ed-aCZ" firstAttribute="top" secondItem="VM9-vM-Y1N" secondAttribute="top" id="tKJ-7S-ojq"/>
                                             <constraint firstItem="qwZ-En-2AU" firstAttribute="leading" secondItem="VM9-vM-Y1N" secondAttribute="leading" id="tkW-7C-x2i"/>
@@ -1016,8 +1016,8 @@
                                                     <action selector="exitButtonTapped:" destination="0PM-zE-7dL" eventType="touchUpInside" id="UCg-xa-tCp"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="asdasd" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1yB-Ag-P5m">
-                                                <rect key="frame" x="153" y="227" width="69" height="24"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1yB-Ag-P5m">
+                                                <rect key="frame" x="159" y="227" width="57" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="egC-Br-npl"/>
                                                 </constraints>
@@ -1025,7 +1025,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Bio" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="s9f-d1-wfY">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Description" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="s9f-d1-wfY">
                                                 <rect key="frame" x="50" y="267" width="275" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.69803921570000005" green="0.69019607839999997" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

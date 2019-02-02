@@ -225,7 +225,7 @@ extension MatchViewController: WebSocketDelegate {
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if let error = error {
-            showErrorAlert(error.localizedDescription)
+            showAlert(message: error.localizedDescription)
         }
     }
     
@@ -251,7 +251,7 @@ extension MatchViewController: WebSocketDelegate {
                 
                 self.dismiss(animated: false, completion: nil)
             } catch {
-                showErrorAlert(error.localizedDescription)
+                showAlert(message: error.localizedDescription)
             }
 
             

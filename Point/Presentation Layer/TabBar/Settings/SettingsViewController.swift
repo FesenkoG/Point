@@ -83,7 +83,7 @@ class SettingsViewController: UIViewController {
                 })
                 
             case .error(let error):
-                self.showErrorAlert(error)
+                self.showAlert(message: error)
                 
             }
         }

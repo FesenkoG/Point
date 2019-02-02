@@ -172,7 +172,7 @@ extension PointViewController: LocationServiceDelegate {
             if isConnected {
                 locationService.updateUserLocation(latitude: newLocation.latitude, longitude: newLocation.longitude) { (error) in
                     if let error = error {
-                        self.showErrorAlert(error)
+                        self.showAlert(message: error)
                     }
                 }
             }
@@ -190,7 +190,7 @@ extension PointViewController: WebSocketDelegate {
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if let error = error {
-            self.showErrorAlert(error.localizedDescription)
+            self.showAlert(message: error.localizedDescription)
         }
     }
     
@@ -214,7 +214,7 @@ extension PointViewController: WebSocketDelegate {
             
             self.present(matchViewController, animated: true, completion: nil)
         } catch {
-            showErrorAlert(error.localizedDescription)
+            showAlert(message: error.localizedDescription)
         }
     }
     
