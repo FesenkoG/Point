@@ -116,7 +116,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 requestSender.send(config: RequestFactory.RegistrasionRequests.getSendPhoneConfig(phone: phoneNumber)) { (result) in
                     switch result {
                     case .error(let error):
-                        self.showErrorAlert(error)
+                        self.showAlert(message: error)
                     case .success(let res):
                         print(res)
                         if res { self.state = .sendSms }
@@ -124,7 +124,7 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
                 }
                 
             } catch {
-                self.showErrorAlert(error.localizedDescription)
+                self.showAlert(message: error.localizedDescription)
             }
             
         case .sendSms:
@@ -134,17 +134,17 @@ class SignUpThirdStepViewController: UIViewController, UIGestureRecognizerDelega
             self.requestSender.send(config: RequestFactory.RegistrasionRequests.getCreateAccountConfig(user: self.newUser)) { (result) in
                 switch result {
                 case .error(let error):
-                    self.showErrorAlert(error)
+                    self.showAlert(message: error)
                 case .success(let res):
                     self.localStorage.saveUserToken(res)
                     self.requestSender.send(config: RequestFactory.AuthenticationRequest.getAuthByTokenConfig(token: res), completionHandler: { (result) in
                         switch result {
                         case .error(let error):
-                            self.showErrorAlert(error)
+                            self.showAlert(message: error)
                         case .success(let res):
                             self.localStorage.saveUser(user: res.0, completion: { (error) in
                                 if let error = error {
-                                    self.showErrorAlert(error.localizedDescription)
+                                    self.showAlert(message: error.localizedDescription)
                                 } else {
                                     guard let mainTab = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
                                     mainTab.selectedIndex = 1

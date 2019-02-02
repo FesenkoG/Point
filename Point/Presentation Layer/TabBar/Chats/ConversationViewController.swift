@@ -188,7 +188,7 @@ extension ConversationViewController: WebSocketDelegate {
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         
         if let error = error {
-            showErrorAlert(error.localizedDescription)
+            showAlert(message: error.localizedDescription)
         } else if shouldShowDisconnectAlert {
             showDisconnectAlert()
         }
@@ -203,7 +203,7 @@ extension ConversationViewController: WebSocketDelegate {
             let indexPathToScroll = IndexPath(row: chat.messages.count - 1, section: 0)
             tableView.scrollToRow(at: indexPathToScroll, at: .bottom, animated: true)
         } catch {
-            showErrorAlert(error.localizedDescription)
+            showAlert(message: error.localizedDescription)
         }
     }
     

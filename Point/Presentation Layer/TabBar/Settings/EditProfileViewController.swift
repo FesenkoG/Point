@@ -11,7 +11,7 @@ import AVFoundation
 
 class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    // MARK: - Private methods
+    // MARK: - Private properties
     
     @IBOutlet private weak var saveButton: UIButton!
     @IBOutlet private var ageButtons: [RoundedButton]!
@@ -40,11 +40,25 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     private var chooseImageAlert: UIAlertController!
     private lazy var imagePicker = UIImagePickerController()
     
+//    private lazy var skeletonableViews: [UIView] = {
+//        var result = [UIView]()
+//        
+//        result.append(contentsOf: [userImageView, userNameTextField, userBioTextView, userPhoneNumberLabel])
+//
+//        return result
+//        
+//    }()
+    
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        skeletonableViews.forEach {
+//            $0.showAnimatedGradientSkeleton()
+//        }
+        
         userBioTextView.backgroundColor = .clear
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapBackground)))
         guard let token = localStorage.getUserToken() else { return }
@@ -66,7 +80,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 switch result {
                     
                 case .error(let error):
-                    self.showErrorAlert(error)
+                    self.showAlert(message: error)
                 case .success(let result):
                     if result {
                         self.navigationController?.popViewController(animated: true)
@@ -102,6 +116,10 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel) { (buttonTapped) in
+            
+        }
+        
         
         let configureAlert = { (isCameraAllowed: Bool) in
             DispatchQueue.main.async {
@@ -109,11 +127,17 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                     self.chooseImageAlert.addAction(photoAction)
                 }
                 self.chooseImageAlert.addAction(galleryAction)
+                self.chooseImageAlert.addAction(cancelAction)
+                
                 self.userImageView.isUserInteractionEnabled = true
                 
-                self.present(self.chooseImageAlert,
-                             animated: true,
-                             completion: nil)
+                if let popoverController = self.chooseImageAlert.popoverPresentationController {
+                    popoverController.sourceView = self.view
+                    popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                    popoverController.permittedArrowDirections = []
+                }
+                
+                self.present(self.chooseImageAlert, animated: true, completion: nil)
             }
         }
         
@@ -224,10 +248,21 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func exitButtonTapped(_ sender: Any) {
         
-        localStorage.clearUserInfo()
+        let alertController = UIAlertController(title: "Выход", message: "Вы уверенны что хотите выйти?", preferredStyle: .alert)
         
-        let vc = helper.getSignUpViewController()
-        UIApplication.shared.keyWindow?.rootViewController = vc
+        let actionOk = UIAlertAction(title: "Да", style: .default) { (aciton) in
+            self.localStorage.clearUserInfo()
+            
+            let vc = self.helper.getSignUpViewController()
+            UIApplication.shared.keyWindow?.rootViewController = vc
+        }
+        
+        let actionCancel = UIAlertAction(title: "Нет", style: .cancel, handler: nil)
+        
+        alertController.addActions(actions: actionOk, actionCancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+
     }
     
     
@@ -320,7 +355,7 @@ class EditProfileViewController: UIViewController, UIGestureRecognizerDelegate {
                 
                 
             case .error(let error):
-                self.showErrorAlert(error)
+                self.showAlert(message: error)
             }
         }
         
@@ -356,9 +391,9 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         
         imageService.upload(image: image) { (error) in
             if let error = error?.localizedDescription {
-                self.showErrorAlert(error)
+                self.showAlert(message: error)
             } else {
-                self.showErrorAlert("Photo successfully uploaded")
+                self.showAlert(title: "Success", message: "Photo successfully uploaded")
             }
         }
         

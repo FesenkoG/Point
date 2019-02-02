@@ -28,7 +28,7 @@ class LaunchViewController: UIViewController {
                 case .error(let error):
                     guard let startViewController = self.getStartViewController() else { return }
                     self.animateTransition(toViewController: startViewController)
-                    startViewController.showErrorAlert(error)
+                    startViewController.showAlert(message: error)
                 case .success(let res):
                     print(res.0)
                     guard let viewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as? UITabBarController else { return }
