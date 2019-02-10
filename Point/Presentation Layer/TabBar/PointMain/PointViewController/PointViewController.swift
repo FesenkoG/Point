@@ -184,11 +184,13 @@ extension PointViewController: LocationServiceDelegate {
 
 // MARK: - WebSocketDelegate
 extension PointViewController: WebSocketDelegate {
+    
     func websocketDidConnect(socket: WebSocketClient) {
         self.isConnected = true
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        self.isConnected = false
         if let error = error {
             self.showAlert(message: error.localizedDescription)
         }

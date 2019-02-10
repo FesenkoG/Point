@@ -219,6 +219,7 @@ extension MatchViewController: CAAnimationDelegate {
 
 // MARK: - WebSocketDelegate
 extension MatchViewController: WebSocketDelegate {
+    
     func websocketDidConnect(socket: WebSocketClient) {
         print(socket)
     }
@@ -236,7 +237,7 @@ extension MatchViewController: WebSocketDelegate {
         case "false", "Flase":
             guard let pointViewController = pointViewController else { return }
             pointViewController.socket.delegate = pointViewController
-            self.dismiss(animated: false, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         default:
             guard let data = text.data(using: .utf8) else { return }
             do {
