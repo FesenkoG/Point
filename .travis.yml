@@ -6,7 +6,15 @@ xcode_destination: platform=iOS Simulator, OS=11.4, name=iPhone X
 before_install:
   - sudo gem install fastlane -NV
   - sudo gem install cocoapods --pre
+  - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  - brew install node
+  - sudo npm install -g appium --unsafe-perm=true --allow-root
+  - sudo pip install Appium-Python-Client
+  - pip install -U pytest
+  - brew install carthage
+
 script:
+  - xcodebuild -sdk iphonesimulator11.4
   - sh build.sh
 branches:
   only:
