@@ -12,9 +12,7 @@ before_install:
   - sudo pip install Appium-Python-Client
   - pip install -U pytest
   - brew upgrade carthage
-
 script:
-  - xcodebuild -sdk iphonesimulator12.0
   - sh build.sh
 branches:
   only:
