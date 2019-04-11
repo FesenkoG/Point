@@ -11,7 +11,7 @@ before_install:
   - sudo npm install -g appium --unsafe-perm=true --allow-root
   - sudo pip install Appium-Python-Client
   - pip install -U pytest
-  - brew install carthage
+  - brew upgrade carthage
 
 script:
   - xcodebuild -sdk iphonesimulator11.4
