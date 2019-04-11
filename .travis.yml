@@ -18,5 +18,6 @@ script:
   - sh build.sh
 branches:
   only:
+    - develop
     - release
     - master
