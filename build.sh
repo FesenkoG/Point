@@ -1,7 +1,7 @@
 #!/bin/sh
 xcrun xcodebuild \
   -scheme 'Point' \
-  -project $XCODE_PROJECT \
+  -target $XCODE_PROJECT \
   -configuration Debug \
   -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.4' \
   -derivedDataPath 'build'\

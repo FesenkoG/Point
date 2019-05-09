@@ -18,12 +18,11 @@ class AuthTests(unittest.TestCase):
             }
         )
     
-    def testEmailField(self):
-        emailTF = self.driver.find_element_by_accessibility_id('emailTextField')
-        emailTF.send_keys("test@appcoda.com")
-        emailTF.send_keys(Keys.RETURN)
+    def testPhoneTextField(self):
+        phoneTextField = self.driver.find_element_by_accessibility_id('phoneTextField')
+        phoneTextField.send_keys("+79264931002")
         sleep(1)
-        self.assertEqual(emailTF.get_attribute("value"), "test@appcoda.com")
+        self.assertEqual(phoneTextField.get_attribute("value"), "+7 926 493-10-02")
 
     def testPasswordField(self):
         passwordTF = self.driver.find_element_by_accessibility_id('passwordTextField')
