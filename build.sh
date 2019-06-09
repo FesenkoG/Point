@@ -1,13 +1,4 @@
 #!/bin/sh
-xcrun xcodebuild \
-  -scheme 'Point' \
-  -target $XCODE_PROJECT \
-  -configuration Debug \
-  -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.4' \
-  -derivedDataPath 'build'\
-  build
-
-pytest test_auth.py
 
 if [[ "$TRAVIS_BRANCH" == "develop" ]]; then
   fastlane fabric
